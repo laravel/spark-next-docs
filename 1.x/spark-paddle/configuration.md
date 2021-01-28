@@ -38,7 +38,7 @@ As you may have noticed, each entry in the `billables` configuration array has a
 
 Next, you should define the authorization callbacks that Spark will use to determine if the currently authenticated user of your application is authorized to view the billing portal for a particular billable entity.
 
-...
+TODO: ... Where should this go? SparkServiceProvider?
 
 ## Configuring Payment Plans
 
