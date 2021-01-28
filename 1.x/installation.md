@@ -1,0 +1,5 @@
+# Installation
+
+[[toc]]
+
+## Installing Spark
