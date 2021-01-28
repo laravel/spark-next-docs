@@ -30,7 +30,7 @@ class User extends Authenticatable
 }
 ```
 
-#### Billable Slugs
+### Billable Slugs
 
 As you may have noticed, each entry in the `billables` configuration array has a "slug" key that is a shortened form of the billable model class. This slug will be used when accessing the Spark customer billing portal, such as `https://example.com/billing/user` or `https://example.com/billing/team`.
 
