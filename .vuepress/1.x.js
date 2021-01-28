@@ -7,10 +7,10 @@ module.exports = [
             'installation',
         ],
     }, {
-        title: "Features",
+        title: "Spark Paddle",
         collapsable: false,
-        children: prefix('features', [
-            'registration',
+        children: prefix('spark-paddle', [
+            'configuration',
         ]),
     }
 ]
