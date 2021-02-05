@@ -14,6 +14,7 @@ module.exports = [
             'plans',
             'middleware',
             'events',
+            'customization',
         ]),
     }
 ]

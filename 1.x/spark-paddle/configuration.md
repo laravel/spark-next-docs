@@ -127,7 +127,31 @@ public function paddleEmail()
 
 ## Defining Subscription Plans
 
-All of Spark's configuration options are housed in your application's `config/spark.php` configuration file. As we previously discussed, Spark allows you to define the types of billable models that your application will be managing. These billable models are defined within the `billables` array of your application's `spark` configuration file.
+All of Spark's configuration options are housed in your application's `config/spark.php` configuration file. As we previously discussed, Spark allows you to define the types of billable models that your application will be managing. These billable models are defined within the `billables` array of your application's `spark` configuration file:
+
+```php
+use App\Models\User;
+
+'billables' => [
+    'user' => [
+        'model' => User::class,
+        'trial_days' => 5,
+        'plans' => [
+            [
+                'name' => 'Standard',
+                'short_description' => 'This is a short, human friendly description of the plan.',
+                'monthly_id' => 1000,
+                'yearly_id' => 1001,
+                'features' => [
+                    'Feature 1',
+                    'Feature 2',
+                    'Feature 3',
+                ],
+            ],
+        ],
+    ],
+]
+```
 
 Each billable configuration within the `billables` array contains a `plans` array. Within this array you may configure each of the billing plans offered by your application. **The `monthly_id` and `yearly_id` identifiers should correspond to the plan identifiers configured within your Paddle account dashboard.**
 
@@ -137,8 +161,8 @@ In addition, you are free to supply a short description of the plan and a list o
 
 ## Accessing The Billing Portal
 
-Once you have configured your Spark installation, you may access your application's billing portal at the `/billing` URI. So, if your application is being served on `localhost`, you may access the billing portal at `http://localhost/billing`.
+Once you have configured your Spark installation, you may access your application's billing portal at the `/billing` URI. So, if your application is being served on `localhost`, you may access your application's billing portal at `http://localhost/billing`.
 
-#### Accessing The Billing Portal For A Billable Type
+#### Billing Portal & Multiple Billables
 
-Instead of billing users, your application may be billing a different [billable type](#configuring-billables) such as teams or organizations. If so, you should add the type's [billable slug](#billable-slugs) to the `/billing` URI. For example, if you have configured a `team` billable type, you may access the billing portal for that type by navigating to `http://localhost/billing/team`.
+If your application is billing more than one type of billable, you should add the billable type's [slug](#billable-slugs) to the `/billing` URI. For example, if you have configured a `team` billable type in addition to your `user` billable type, you may access the billing portal for teams by navigating to `http://localhost/billing/team`. However, this typically should not be necessary because most applications only bill one type of model.

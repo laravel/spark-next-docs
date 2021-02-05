@@ -4,7 +4,7 @@
 
 ## Defining Payment Plans
 
-For more information on defining your payment plans, please consult the [plan configuration documentation](./configuration.md#defining-subscription-plans).
+**For more information on defining your payment plans, please consult the [plan configuration documentation](./configuration.md#defining-subscription-plans).**
 
 ## Determining Plan Eligibility
 
@@ -43,3 +43,27 @@ After configuring per-seat billing, Spark will automatically update your billing
 While building your application, you will often need to inspect a user's subscription status and plan to determine if they are allowed to perform a given action. For example, you may not want to let a user create a project if they are not subscribed to a billing plan. First, you should review the [subscription verification middleware](./middleware.md) provided by Spark.
 
 Additionally, you may always manually inspect a billable model's subscription status using the [methods provided by Laravel Cashier](https://laravel.com/docs/cashier-paddle#checking-subscription-status), which can be especially useful for verifying that a user is subscribed to a particular plan.
+
+## Archiving Plans
+
+If you plan to "archive" or retire a particular plan for your application, you should add the `archived` configuration option to the plan's configuration. You should not completely remove the plan's configuration if existing users of your application that have already subscribed to the plan will be allowed to continue their subscription:
+
+```php
+'plans' => [
+    [
+        'name' => 'Standard',
+        // ...
+        'archived' => true,
+    ],
+],
+```
+
+## Account Deletion
+
+If your application allows users to completely delete their account data, you should ensure that you cancel any subscription plans they have subscribed to before you delete their data. Otherwise, the user may continue to be billed even after you have deleted their data. You may cancel their subscription using [Laravel Cashier's](https://laravel.com/docs/cashier-paddle) typical subscription management methods:
+
+```php
+if (optional($user->subscription())->recurring()) {
+    $user->subscription()->cancelNow();
+}
+```
