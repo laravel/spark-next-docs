@@ -8,9 +8,9 @@ In the following documentation, we will discuss how to configure a Laravel Spark
 
 ## Configuring Billables
 
-Spark allows you to define the types of billable entities that your application will be managing. Most commonly, applications bill individual users for monthly and yearly subscription plans. However, your application may choose to bill some other type of model, such as a team, organization, band, etc.
+Spark allows you to define the types of billable models that your application will be managing. Most commonly, applications bill individual users for monthly and yearly subscription plans. However, your application may choose to bill some other type of model, such as a team, organization, band, etc.
 
-You may define your billable entities within the `billables` array of your application's `spark` configuration file. By default, this array contains an entry for the `App\Models\User` model of your application.
+You may define your billable models within the `billables` array of your application's `spark` configuration file. By default, this array contains an entry for the `App\Models\User` model of your application.
 
 Before continuing, you should ensure that the model class that corresponds to your billable model is using the `Laravel\Spark\Billable` trait:
 
@@ -68,6 +68,17 @@ Spark::billable(User::class)->authorize(function (User $billable, Request $reque
 ```
 
 If the authorization callback returns `true`, the currently authenticated user will be authorized to view the billing portal and manage the billing settings for the given `$billable` model. If the callback returns `false`, the request to access the billing portal will be denied.
+
+You are free to customize the `authorize` callback based on your own application's needs. For example, if your application bills teams instead of individual users, you might update the callback like so:
+
+```php
+use App\Models\Team;
+
+Spark::billable(Team::class)->authorize(function (Team $billable, Request $request) {
+    return $request->user() &&
+           $request->user()->ownsTeam($billable);
+});
+```
 
 ### Billable Email Address
 
