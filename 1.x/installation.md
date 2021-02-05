@@ -4,7 +4,7 @@
 
 ## Installing Spark Via Composer
 
-To get started, add the Spark repository to your application's `composer.json` file:
+To get started installing Spark, add the Spark repository to your application's `composer.json` file:
 
 ```json
 "repositories": [
@@ -15,7 +15,7 @@ To get started, add the Spark repository to your application's `composer.json` f
 ],
 ```
 
-Next, you may add `laravel/spark-paddle` or `laravel/spark-stripe` to your list of required packages in your `composer.json` file:
+Next, you may add the `laravel/spark-paddle` or `laravel/spark-stripe` package to the list of required packages in your `composer.json` file:
 
 ```json
 "require": {
@@ -31,7 +31,23 @@ After your `composer.json` file has been updated, run the `composer update` comm
 composer update
 ```
 
-When running `composer update`, you will be prompted to provide your login credentials for the Spark website. These credentials will authenticate your Composer session as having permission to download the Spark source code. To avoid manually typing these credentials, you may create a [Composer auth.json file](https://getcomposer.org/doc/articles/http-basic-authentication.md) while optionally using your [API token](https://spark.laravel.com/user/api-tokens) in place of your password.
+When running `composer update`, you will be prompted to provide your login credentials for the Spark website. These credentials will authenticate your Composer session as having permission to download the Spark source code. To avoid manually typing these credentials, you may create a [Composer auth.json file](https://getcomposer.org/doc/articles/http-basic-authentication.md) and use your [API token](https://spark.laravel.com/user/api-tokens) in place of your password:
+
+```json
+{
+    "http-basic": {
+        "spark.laravel.com": {
+            "username": "taylor@laravel.com",
+            "password": "your-api-token"
+        }
+    }
+}
+```
+
+:::danger The `auth.json` File
+
+You should not commit your application's `auth.json` file into source control.
+:::
 
 Finally, run the `spark:install` and `migrate` Artisan commands:
 
