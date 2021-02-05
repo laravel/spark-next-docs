@@ -12,7 +12,9 @@ Of course, to use Paddle as a payment provider for your Laravel Spark applicatio
 
 ### Environment Variables
 
-Next, you should configure the application environment variables that will be needed by Spark in order to access your Paddle account. These variables should be placed in your application's `.env` environment file. Of course, you should adjust the variable's values to correspond to your own Paddle account's credentials. Your Paddle API credentials and public key are available in your Paddle account dashboard via the "Developer Tools" section's "Authentication", "Public Key", and "SDK API" panels:
+Next, you should configure the application environment variables that will be needed by Spark in order to access your Paddle account. These variables should be placed in your application's `.env` environment file.
+
+Of course, you should adjust the variable's values to correspond to your own Paddle account's credentials. Your Paddle API credentials and public key are available in your Paddle account dashboard via the "Developer Tools" section's "Authentication", "Public Key", and "SDK API" panels:
 
 ```bash
 CASHIER_CURRENCY=USD
@@ -44,9 +46,9 @@ For Paddle to be able to send your application webhooks during local development
 
 Spark allows you to define the types of billable models that your application will be managing. Most commonly, applications bill individual users for monthly and yearly subscription plans. However, your application may choose to bill some other type of model, such as a team, organization, band, etc.
 
-You may define your billable models within the `billables` array of your application's `spark` configuration file. By default, this array contains an entry for the `App\Models\User` model of your application.
+You may define your billable models within the `billables` array of your application's `spark` configuration file. By default, this array contains an entry for the `App\Models\User` model.
 
-Before continuing, you should ensure that the model class that corresponds to your billable model is using the `Laravel\Spark\Billable` trait:
+Before continuing, you should ensure that the model class that corresponds to your billable model is using the `Spark\Billable` trait:
 
 ```php
 <?php
@@ -56,7 +58,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Laravel\Spark\Billable;
+use Spark\Billable;
 
 class User extends Authenticatable
 {
@@ -66,13 +68,17 @@ class User extends Authenticatable
 
 ### Billable Slugs
 
-As you may have noticed, each entry in the `billables` configuration array has a "slug" key that is a shortened form of the billable model class. This slug will be used when accessing the Spark customer billing portal, such as `https://example.com/billing/user` or `https://example.com/billing/team`.
+As you may have noticed, each entry in the `billables` configuration array is keyed by a "slug" that is a shortened form of the billable model class. This slug can be used when accessing the Spark customer billing portal, such as `https://example.com/billing/user` or `https://example.com/billing/team`.
 
 ### Billable Resolution
 
-When you installed Laravel Spark, an `App\Providers\SparkServiceProvider` class was created for you. Within this service provider, you will find a callback that is used by Spark to resolve the billable model instance when accessing the Spark billing portal. By default, this callback simply returns the currently authenticated user, which is the desired behavior for most application using Laravel Spark:
+When you installed Laravel Spark, an `App\Providers\SparkServiceProvider` class was created for you. Within this service provider, you will find a callback that is used by Spark to resolve the billable model instance when accessing the Spark billing portal. By default, this callback simply returns the currently authenticated user, which is the desired behavior for most applications using Laravel Spark:
 
 ```php
+use App\Models\User;
+use Illuminate\Http\Request;
+use Spark\Spark;
+
 Spark::billable(User::class)->resolve(function (Request $request) {
     return $request->user();
 });
@@ -82,6 +88,8 @@ However, if your application is not billing individual users, you may need to ad
 
 ```php
 use App\Models\Team;
+use Illuminate\Http\Request;
+use Spark\Spark;
 
 Spark::billable(Team::class)->resolve(function (Request $request) {
     return $request->user()->currentTeam;
@@ -95,6 +103,10 @@ Next, let's examine the authorization callbacks that Spark will use to determine
 When you installed Laravel Spark, an `App\Providers\SparkServiceProvider` class was created for you. Within this service provider, you will find the authorization callback definition used to determine if a given user is authorized to view the billing portal for the `App\Models\User` billable class. Of course, if your application is not billing users, you should update the billable class and authorization callback logic to fit your application's needs. By default, Spark will simply verify that the currently authenticated user can only manage its own billing settings:
 
 ```php
+use App\Models\User;
+use Illuminate\Http\Request;
+use Spark\Spark;
+
 Spark::billable(User::class)->authorize(function (User $billable, Request $request) {
     return $request->user() &&
            $request->user()->id == $billable->id;
@@ -107,6 +119,8 @@ You are free to customize the `authorize` callback based on your own application
 
 ```php
 use App\Models\Team;
+use Illuminate\Http\Request;
+use Spark\Spark;
 
 Spark::billable(Team::class)->authorize(function (Team $billable, Request $request) {
     return $request->user() &&
@@ -119,6 +133,11 @@ Spark::billable(Team::class)->authorize(function (Team $billable, Request $reque
 By default, Spark will use your billable model's `email` attribute as the email address associated with the Paddle customer record it creates for the model. If you would like to specify another attribute that should be used instead, you may define a `paddleEmail` method on your billable model:
 
 ```php
+/**
+ * Get the email address that should be associated with the Paddle customer.
+ *
+ * @return string
+ */
 public function paddleEmail()
 {
     return $this->email;
@@ -127,7 +146,9 @@ public function paddleEmail()
 
 ## Defining Subscription Plans
 
-All of Spark's configuration options are housed in your application's `config/spark.php` configuration file. As we previously discussed, Spark allows you to define the types of billable models that your application will be managing. These billable models are defined within the `billables` array of your application's `spark` configuration file:
+As we previously discussed, Spark allows you to define the types of billable models that your application will be managing. These billable models are defined within the `billables` array of your application's `config/spark.php` configuration file:
+
+Each billable configuration within the `billables` array contains a `plans` array. Within this array you may configure each of the billing plans offered by your application to that particular billable type. **The `monthly_id` and `yearly_id` identifiers should correspond to the plan identifiers configured within your Paddle account dashboard:**
 
 ```php
 use App\Models\User;
@@ -153,9 +174,7 @@ use App\Models\User;
 ]
 ```
 
-Each billable configuration within the `billables` array contains a `plans` array. Within this array you may configure each of the billing plans offered by your application. **The `monthly_id` and `yearly_id` identifiers should correspond to the plan identifiers configured within your Paddle account dashboard.**
-
-If your plan only offers a monthly billing cycle, you may remove the `yearly_id` identifier from your plan configuration. Likewise, if your plan only offers a yearly billing cycle, you may remove the `monthly_id` identifier.
+If your subscription plan only offers a monthly billing cycle, you may omit the `yearly_id` identifier from your plan configuration. Likewise, if your plan only offers a yearly billing cycle, you may omit the `monthly_id` identifier.
 
 In addition, you are free to supply a short description of the plan and a list of features relevant to the plan. This information will be displayed in the Spark billing portal.
 
@@ -165,4 +184,4 @@ Once you have configured your Spark installation, you may access your applicatio
 
 #### Billing Portal & Multiple Billables
 
-If your application is billing more than one type of billable, you should add the billable type's [slug](#billable-slugs) to the `/billing` URI. For example, if you have configured a `team` billable type in addition to your `user` billable type, you may access the billing portal for teams by navigating to `http://localhost/billing/team`. However, this typically should not be necessary because most applications only bill one type of model.
+If your application is billing more than one type of billable, you should add the billable type's [slug](#billable-slugs) to the `/billing` URI. For example, if you have configured a `team` billable type in addition to your `user` billable type, you may access the billing portal for teams by navigating to `http://localhost/billing/team`. However, this typically should not be necessary because most applications will only ever bill one type of model.
