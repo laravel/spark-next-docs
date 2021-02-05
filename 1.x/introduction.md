@@ -26,3 +26,17 @@ When using Paddle, your Paddle account must be approved by Paddle before you can
 [Stripe](https://stripe.com) is a global leader in payment infrastructure with direct integration with card networks and banks, a fast-improving platform, and battle-tested reliability. In addition, intelligent optimizations help increase revenue across conversion, prevent fraud, and assist with revenue recovery. Finally, Stripe provides a robust sandbox environment for you to test your application's payment system.
 
 Spark's Stripe support is provided by the underlying [Laravel Stripe Paddle](https://laravel.com/docs/billing) library.
+
+## Frequently Asked Questions
+
+#### **Is it possible to upgrade an application from Spark Classic to Spark?**
+
+No. However, we will continue to provide bug fixes and security updates to Spark Classic indefinitely.
+
+#### **Does Spark support any other payment providers?**
+
+No. Spark only supports Stripe and Paddle and it is not possible for developers to customize Spark to accept additional providers. If you need to use another payment provider **you should not purchase Laravel Spark**.
+
+#### **Do I have to use Tailwind / Blade / Vue / etc. in order to use Spark?**
+
+No. Spark's billing portal is totally isolated from the rest of your Laravel application and includes its own pre-compiled frontend assets. Your own application may be built using the frontend technologies of your choice.
