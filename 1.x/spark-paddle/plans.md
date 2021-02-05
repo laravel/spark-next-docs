@@ -42,7 +42,17 @@ After configuring per-seat billing, Spark will automatically update your billing
 
 While building your application, you will often need to inspect a user's subscription status and plan to determine if they are allowed to perform a given action. For example, you may not want to let a user create a project if they are not subscribed to a billing plan. First, you should review the [subscription verification middleware](./middleware.md) provided by Spark.
 
-Additionally, you may always manually inspect a billable model's subscription status using the [methods provided by Laravel Cashier](https://laravel.com/docs/cashier-paddle#checking-subscription-status), which can be especially useful for verifying that a user is subscribed to a particular plan.
+Additionally, you may always manually inspect a billable model's subscription status using the [methods provided by Laravel Cashier](https://laravel.com/docs/cashier-paddle#checking-subscription-status), which can be especially useful for verifying that a user is subscribed to a particular plan:
+
+```php
+if ($user->subscribed()) {
+    // The user has an active subscription...
+}
+
+if ($user->subscribedToPlan($planId = 1000)) {
+    // The user has a subscription to a plan with a Paddle plan ID of 1000...
+}
+```
 
 ## Archiving Plans
 
