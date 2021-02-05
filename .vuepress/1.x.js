@@ -11,6 +11,7 @@ module.exports = [
         collapsable: false,
         children: prefix('spark-paddle', [
             'configuration',
+            'plans',
         ]),
     }
 ]

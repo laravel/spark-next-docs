@@ -8,11 +8,11 @@ In the following documentation, we will discuss how to configure a Laravel Spark
 
 ## Configuring Billables
 
-Spark allows you to define the types of billable entities that your application will be managing. Most commonly, applications bill individual users for monthly and yearly subscription plans. However, your application may choose to bill some other type of entity, such as a team, organization, band, etc.
+Spark allows you to define the types of billable entities that your application will be managing. Most commonly, applications bill individual users for monthly and yearly subscription plans. However, your application may choose to bill some other type of model, such as a team, organization, band, etc.
 
 You may define your billable entities within the `billables` array of your application's `spark` configuration file. By default, this array contains an entry for the `App\Models\User` model of your application.
 
-Before continuing, you should ensure that the model class that corresponds to your billable entity is using the `Laravel\Spark\Billable` trait:
+Before continuing, you should ensure that the model class that corresponds to your billable model is using the `Laravel\Spark\Billable` trait:
 
 ```php
 <?php
@@ -34,14 +34,48 @@ class User extends Authenticatable
 
 As you may have noticed, each entry in the `billables` configuration array has a "slug" key that is a shortened form of the billable model class. This slug will be used when accessing the Spark customer billing portal, such as `https://example.com/billing/user` or `https://example.com/billing/team`.
 
+### Billable Resolution
+
+When you installed Laravel Spark, an `App\Providers\SparkServiceProvider` class was created for you. Within this service provider, you will find a callback that is used by Spark to resolve the billable model instance when accessing the Spark billing portal. By default, this callback simply returns the currently authenticated user, which is the desired behavior for most application using Laravel Spark:
+
+```php
+Spark::billable(User::class)->resolve(function (Request $request) {
+    return $request->user();
+});
+```
+
+However, if your application is not billing individual users, you may need to adjust this callback. For example, if your application offers team billing instead of user billing, you might customize the callback like so:
+
+```php
+use App\Models\Team;
+
+Spark::billable(Team::class)->resolve(function (Request $request) {
+    return $request->user()->currentTeam;
+});
+```
+
 ### Billable Authorization
 
-Next, you should define the authorization callbacks that Spark will use to determine if the currently authenticated user of your application is authorized to view the billing portal for a particular billable entity.
+Next, let's examine the authorization callbacks that Spark will use to determine if the currently authenticated user of your application is authorized to view the billing portal for a particular billable model.
 
-TODO: ... Where should this go? SparkServiceProvider?
+When you installed Laravel Spark, an `App\Providers\SparkServiceProvider` class was created for you. Within this service provider, you will find the authorization callback definition used to determine if a given user is authorized to view the billing portal for the `App\Models\User` billable class. Of course, if your application is not billing users, you should update the billable class and authorization callback logic to fit your application's needs. By default, Spark will simply verify that the currently authenticated user can only manage its own billing settings:
 
-## Configuring Payment Plans
+```php
+Spark::billable(User::class)->authorize(function (User $billable, Request $request) {
+    return $request->user() &&
+           $request->user()->id == $billable->id;
+});
+```
 
-Each billable configuration within the `billables` array contains a `plans` array. Within this array you may configure each of the billing plans offered by your application. The `monthly_id` and `yearly_id` identifiers should correspond to the plan identifiers configured within your Paddle account dashboard.
+If the authorization callback returns `true`, the currently authenticated user will be authorized to view the billing portal and manage the billing settings for the given `$billable` model. If the callback returns `false`, the request to access the billing portal will be denied.
 
-In addition, you are free to supply a short description of the plan and a list of features relevant to the plan. This information will be displayed in the Spark billing portal.
+### Billable Email Address
+
+By default, Spark will use your billable model's `email` attribute as the email address associated with the Paddle customer record it creates for the model. If you would like to specify another attribute that should be used instead, you may define a `paddleEmail` method on your billable model:
+
+```php
+public function paddleEmail()
+{
+    return $this->email;
+}
+```
