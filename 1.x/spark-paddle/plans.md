@@ -2,15 +2,9 @@
 
 [[toc]]
 
-## Configuring Payment Plans
+## Defining Payment Plans
 
-All of Spark's configuration options are housed in your application's `config/spark.php` configuration file. As we discussed in the [configuration documentation](./configuration.md), Spark allows you to define the types of billable models that your application will be managing. These billable models are defined within the `billables` array of your application's `spark` configuration file.
-
-Each billable configuration within the `billables` array contains a `plans` array. Within this array you may configure each of the billing plans offered by your application. The `monthly_id` and `yearly_id` identifiers should correspond to the plan identifiers configured within your Paddle account dashboard.
-
-If your plan only offers a monthly billing cycle, you may remove the `yearly_id` identifier from your plan configuration. Likewise, if your plan only offers a yearly billing cycle, you may remove the `monthly_id` identifier.
-
-In addition, you are free to supply a short description of the plan and a list of features relevant to the plan. This information will be displayed in the Spark billing portal.
+For more information on defining your payment plans, please consult the [plan configuration documentation](./configuration.md#defining-subscription-plans).
 
 ## Determining Plan Eligibility
 
@@ -43,3 +37,9 @@ Spark::billable(User::class)->chargePerSeat('project', function ($billable) {
 The first argument accepted by the `chargePerSeat` method is the word that your application uses to refer to a "seat". In the case of a project management application, this would be a "project". The second argument given to the `chargePerSeat` method should be a closure that accepts the billable model and returns the current number of "seats" occupied by that model.
 
 After configuring per-seat billing, Spark will automatically update your billing portal to inform users that billing is calculated on a per-seat basis.
+
+## Determining Subscription Status
+
+While building your application, you will often need to inspect a user's subscription status and plan to determine if they are allowed to perform a given action. For example, you may not want to let a user create a project if they are not subscribed to a billing plan. First, you should review the [subscription verification middleware](./middleware.md) provided by Spark.
+
+Additionally, you may always manually inspect a billable model's subscription status using the [methods provided by Laravel Cashier](https://laravel.com/docs/cashier-paddle#checking-subscription-status), which can be especially useful for verifying that a user is subscribed to a particular plan.

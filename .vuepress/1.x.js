@@ -12,6 +12,8 @@ module.exports = [
         children: prefix('spark-paddle', [
             'configuration',
             'plans',
+            'middleware',
+            'events',
         ]),
     }
 ]
