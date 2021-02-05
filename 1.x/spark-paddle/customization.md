@@ -8,7 +8,7 @@ Although Spark's billing portal is intended to be an isolated part of your appli
 
 ### Brand Logo
 
-To customize the logo used at the top left of the Spark billing portal, you may define a `brand.logo` configuration item within your application's `config/spark.php` configuration file. This configuration value should contain the absolute path to an SVG file of your logo:
+To customize the logo used at the top left of the Spark billing portal, you may define a `brand.logo` configuration item within your application's `config/spark.php` configuration file. This configuration value should contain an absolute path to the SVG file of the logo you would like to use:
 
 ```php
 'brand' => [
@@ -18,7 +18,7 @@ To customize the logo used at the top left of the Spark billing portal, you may 
 
 ### Brand Color
 
-To customize the brand color used to determine the color of the button elements within the Spark billing portal, you may define a `brand.color` configuration item within your application's `config/spark.php` configuration file. This configuration value should correspond to a background color offered by the [Tailwind CSS framework](https://tailwindcss.com/docs/customizing-colors):
+To customize the color used as the background color of the button elements within the Spark billing portal, you may define a `brand.color` configuration item within your application's `config/spark.php` configuration file. This configuration value should correspond to a background color offered by the [Tailwind CSS framework](https://tailwindcss.com/docs/customizing-colors):
 
 ```php
 'brand' => [
@@ -28,7 +28,7 @@ To customize the brand color used to determine the color of the button elements 
 
 ## Localization
 
-To publish the Spark localization file, you may use the `vendor:publish` Artisan command:
+You may localize / translate all of the text within the Spark billing portal. To publish the Spark localization file, you may use the `vendor:publish` Artisan command:
 
 ```bash
 php artisan vendor:publish --tag=spark-lang

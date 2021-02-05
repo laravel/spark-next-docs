@@ -2,11 +2,11 @@
 
 [[toc]]
 
-Spark dispatches several [events](https://laravel.com/docs/events) that you may listen for. We will describe each of these events below.
+Spark dispatches several [events](https://laravel.com/docs/events) that you may intercept and handle based on your application's needs. We will describe each of these events below.
 
 ## `Spark\Events\SubscriptionCreated`
 
-This event is dispatched when a subscription is created with a status of "trailing" or "active".
+This event is dispatched when a subscription is created with a status of `trialing` or `active`.
 
 ## `Spark\Events\SubscriptionUpdated`
 
