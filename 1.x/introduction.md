@@ -21,11 +21,23 @@ Spark's Paddle support is provided by the underlying [Laravel Cashier Paddle](ht
 When using Paddle, your Paddle account must be approved by Paddle before you can begin using Spark. To apply for an account, please visit the [Paddle website](https://paddle.com).
 :::
 
+#### Limitations
+
+We have listed some known limitations of using the Paddle payment provider below:
+
+- When a recurring coupon is used while subscribing to a plan, the coupon discount will be applied on every billing cycle. However, if the subscription's quantity or plan changes, Paddle will remove the coupon from the subscription.
+
 ### Stripe
 
 [Stripe](https://stripe.com) is a global leader in payment infrastructure with direct integration with card networks and banks, a fast-improving platform, and battle-tested reliability. In addition, intelligent optimizations help increase revenue across conversion, prevent fraud, and assist with revenue recovery. Finally, Stripe provides a robust sandbox environment for you to test your application's payment system.
 
 Spark's Stripe support is provided by the underlying [Laravel Stripe Paddle](https://laravel.com/docs/billing) library.
+
+#### Limitations
+
+We have listed some known limitations of using the Paddle payment provider below:
+
+- The Stripe payment provider does not provide a PayPal integration.
 
 ## Frequently Asked Questions
 
