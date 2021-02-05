@@ -10,7 +10,7 @@
 
 Sometimes, you may wish to place limitations on a particular billing plan. For example, a project management application might limit users on a particular billing plan to a maximum of 10 projects, while a higher priced plan might allow the creation of 20 projects.
 
-If you choose to do this, we need to instruct Spark how to determine if a given billable model is eligible to be placed on a particular billing plan. We may accomplish this by modifying the `checkPlanEligibility` callback registered within the application's `App\Providers\SparkServiceProvider` class. This callback will be invoked when a billable model attempts to subscribe to or switch to a new subscription plan:
+If you choose to do this, you will need to instruct Spark how to determine if a given billable model is eligible to be placed on a particular billing plan. You may accomplish this by modifying the `checkPlanEligibility` callback registered within your application's `App\Providers\SparkServiceProvider` class. This callback will be invoked when a billable model attempts to subscribe to or switch to a new subscription plan:
 
 ```php
 Spark::billable(User::class)->checkPlanEligibility(function ($billable, $plan) {
