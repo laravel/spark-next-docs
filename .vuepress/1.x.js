@@ -16,6 +16,16 @@ module.exports = [
             'events',
             'customization',
         ]),
+    }, {
+        title: "Spark Stripe",
+        collapsable: false,
+        children: prefix('spark-stripe', [
+            'configuration',
+            'plans',
+            'middleware',
+            'events',
+            'customization',
+        ]),
     }
 ]
 
