@@ -44,6 +44,12 @@ When running `composer update`, you will be prompted to provide your login crede
 }
 ```
 
+You can also create the `auth.json` file using the following CLI command:
+
+```bash
+composer config http-basic.spark.laravel.com taylor@laravel.com your-api-token
+```
+
 :::danger The `auth.json` File
 
 You should not commit your application's `auth.json` file into source control.
