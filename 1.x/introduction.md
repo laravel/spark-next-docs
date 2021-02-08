@@ -31,7 +31,7 @@ We have listed some known limitations of using the Paddle payment provider below
 
 [Stripe](https://stripe.com) is a global leader in payment infrastructure with direct integration with card networks and banks, a fast-improving platform, and battle-tested reliability. In addition, intelligent optimizations help increase revenue across conversion, prevent fraud, and assist with revenue recovery. Finally, Stripe provides a robust sandbox environment for you to test your application's payment system.
 
-Spark's Stripe support is provided by the underlying [Laravel Stripe Paddle](https://laravel.com/docs/billing) library.
+Spark's Stripe support is provided by the underlying [Laravel Cashier Stripe](https://laravel.com/docs/billing) library.
 
 #### Limitations
 

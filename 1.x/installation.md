@@ -37,11 +37,17 @@ When running `composer update`, you will be prompted to provide your login crede
 {
     "http-basic": {
         "spark.laravel.com": {
-            "username": "taylor@laravel.com",
+            "username": "taylor@example.com",
             "password": "your-api-token"
         }
     }
 }
+```
+
+You may quickly create an `auth.json` file via your terminal using the following command:
+
+```bash
+composer config http-basic.spark.laravel.com taylor@example.com your-api-token
 ```
 
 :::danger The `auth.json` File

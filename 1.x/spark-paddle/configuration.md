@@ -14,10 +14,11 @@ Of course, to use Paddle as a payment provider for your Laravel Spark applicatio
 
 Next, you should configure the application environment variables that will be needed by Spark in order to access your Paddle account. These variables should be placed in your application's `.env` environment file.
 
-Of course, you should adjust the variable's values to correspond to your own Paddle account's credentials. Your Paddle API credentials and public key are available in your Paddle account dashboard via the "Developer Tools" section's "Authentication", "Public Key", and "SDK API" panels:
+Of course, you should adjust the variable's values to correspond to your own Paddle account's credentials. In addition, you should set the `PADDLE_SANDBOX` variable to `true` if you are using Paddle's sandbox environment. Your Paddle API credentials and public key are available in your Paddle account dashboard via the "Developer Tools" section's "Authentication", "Public Key", and "SDK API" panels:
 
 ```bash
 CASHIER_CURRENCY=USD
+PADDLE_SANDBOX=true
 PADDLE_VENDOR_ID=your-paddle-vendor-id
 PADDLE_VENDOR_AUTH_CODE=your-paddle-vendor-auth-code
 PADDLE_PUBLIC_KEY="-----BEGIN PUBLIC KEY-----
