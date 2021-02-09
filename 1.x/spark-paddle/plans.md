@@ -6,6 +6,25 @@
 
 **For more information on defining payment plans for your application, please consult the [plan configuration documentation](./configuration.md#defining-subscription-plans).**
 
+## Trial Periods
+
+By default, the plan configuration in your application's `config/spark.php` configuration file contains a `trial_days` option with a value of `5`. This configuration option determines the amount of time the user is allowed to use your application during their free trial period. You are free to modify this configuration value based on your application's needs.
+
+In practical terms, this configuration option simply determines when the `onTrial` method of the billable model will begin returning `false` instead of `true`:
+
+```php
+$user = Auth::user();
+
+if ($user->onTrial()) {
+    // The user is still within their trial period...
+}
+```
+
+:::danger Paddle Trials
+
+Because Paddle does not allow plan quantity changes during trial periods, the Paddle edition of Spark does not support requiring a credit card up front when beginning a trial. All trial periods are be started without a credit card or payment method provided up front during the user's initial registration process.
+:::
+
 ## Determining Plan Eligibility
 
 Sometimes, you may wish to place limitations on a particular billing plan. For example, a project management application might limit users on a particular billing plan to a maximum of 10 projects, while a higher priced plan might allow the creation of up to 20 projects.

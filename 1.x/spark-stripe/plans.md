@@ -6,6 +6,49 @@
 
 **For more information on defining payment plans for your application, please consult the [plan configuration documentation](./configuration.md#defining-subscription-plans).**
 
+## Trial Periods
+
+By default, the plan configuration in your application's `config/spark.php` configuration file contains a `trial_days` option with a value of `5`. This configuration option determines the amount of time the user is allowed to use your application during their free trial period. You are free to modify this configuration value based on your application's needs.
+
+In practical terms, this configuration option simply determines when the `onTrial` method of the billable model will begin returning `false` instead of `true`:
+
+```php
+$user = Auth::user();
+
+if ($user->onTrial()) {
+    // The user is still within their trial period...
+}
+```
+
+### Requiring A Payment Method Up Front
+
+Some applications may need to require a payment method up front before beginning a free trial. The Stripe edition of Spark supports this behavior. To get started, you will add a `trial_days` configuration option to the individual plan configuration array and remove the `trial_days` configuration option that is within the billable configuration array:
+
+```php
+'user' => [
+    'model' => User::class,
+    // 'trial_days' => 5, Remove this configuration option...
+    'plans' => [
+        [
+            'name' => 'Standard',
+            'short_description' => 'This is a short, human friendly description of the plan.',
+            'trial_days' => 5,
+            // ...
+        ],
+    ],
+],
+```
+
+Now, after a billable model's initial registration, the `trialDays` method provided by the model instance will return `false`. You may examine the results of the `subscribed` method to conditionally show an alert to your user that they should select a subscription plan before beginning to use your application. For example, if you are using the Blade templating language:
+
+```html
+@if (! Auth::user()->subscribed())
+    <div>
+        You must <a href="/billing">select a subscription plan</a> before continuing.
+    </div>
+@endif
+```
+
 ## Determining Plan Eligibility
 
 Sometimes, you may wish to place limitations on a particular billing plan. For example, a project management application might limit users on a particular billing plan to a maximum of 10 projects, while a higher priced plan might allow the creation of up to 20 projects.

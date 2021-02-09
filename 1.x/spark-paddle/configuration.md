@@ -149,7 +149,7 @@ public function paddleEmail()
 
 As we previously discussed, Spark allows you to define the types of billable models that your application will be managing. These billable models are defined within the `billables` array of your application's `config/spark.php` configuration file:
 
-Each billable configuration within the `billables` array contains a `plans` array. Within this array you may configure each of the billing plans offered by your application to that particular billable type. **The `monthly_id` and `yearly_id` identifiers should correspond to the plan identifiers configured within your Paddle account dashboard:**
+Each billable configuration within the `billables` array contains a `plans` array. Within this array you may configure each of the billing plans offered by your application to that particular billable type. **The `monthly_id` and `yearly_id` identifiers should correspond to the plan identifiers associated with the subscription plan within your Paddle account dashboard:**
 
 ```php
 use App\Models\User;

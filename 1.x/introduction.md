@@ -26,6 +26,7 @@ Your Paddle account must be approved by Paddle before you can begin using Spark.
 We have listed some known limitations of using the Paddle payment provider below:
 
 - When a recurring coupon is used while subscribing to a plan, the coupon discount will be applied on every billing cycle. However, if the subscription's quantity or plan changes, Paddle will remove the coupon from the subscription.
+- Because Paddle does not allow plan quantity changes during trial periods, the Paddle edition of Spark does not support requiring a credit card up front when beginning a trial. All trial periods are be started without a credit card or payment method provided up front during the user's initial registration process.
 
 ### Stripe
 
