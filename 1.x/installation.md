@@ -55,7 +55,7 @@ composer config http-basic.spark.laravel.com taylor@example.com your-api-token
 You should not commit your application's `auth.json` file into source control.
 :::
 
-Once the package is installed via composer, run the `spark:install` Artisan command:
+Once the package is installed via Composer, run the `spark:install` Artisan command:
 
 ```bash
 php artisan spark:install
@@ -63,14 +63,14 @@ php artisan spark:install
 
 Finally, run the `migrate` Artisan command:
 
-:::tip Using Stripe to Bill a Differnt Type
-
-If you use `laravel/spark-stripe` to bill a model other than the `User` model, you should follow [these instructions](./spark-stripe/customization.md#migrations) before running the migration command.
-:::
-
 ```bash
 php artisan migrate
 ```
+
+:::tip Stripe Billables
+
+If you are using the Stripe edition of Spark and plan to bill a model other than the `App\Models\User` model, you should follow [these instructions](./spark-stripe/customization.md#migrations) before running the migration command.
+:::
 
 That's it! Next, you may navigate to your application's `config/spark.php` configuration file and begin configuring your Spark installation.
 
