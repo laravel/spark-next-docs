@@ -35,3 +35,31 @@ php artisan vendor:publish --tag=spark-lang
 ```
 
 This command will publish a `resources/lang/spark/en.json` file containing translation keys and values for the English language. You may copy this file and translate it to the language of your choice. For more information on how to use Laravel's translation features, please consult the [Laravel localization documentation](https://laravel.com/docs/localization#using-translation-strings-as-keys).
+
+## Migrations
+
+Most commonly, applications bill individual users for monthly and yearly subscription plans. However, your application may choose to bill some other type of model, such as a team, organization, band, etc.
+
+In that case, you should add `Spark::ignoreMigrations()` in the boot method of the `App\Providers\SparkServiceProvider` class:
+
+```php
+use Spark\Spark;
+
+class SparkServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
+        Spark::ignoreMigrations();
+
+        // ...
+    }
+}
+```
+
+After that, you need to publish the Spark migrations by running the `vendor:publish` Artisan command:
+
+```bash
+php artisan vendor:publish --tag="spark-migrations"
+```
+
+Finally, you should inspect the published migrations and update the `2019_05_03_000001_add_spark_columns_to_users_table.php` file to add the columns needed by Spark to the correct table.
