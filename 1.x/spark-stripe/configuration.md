@@ -8,7 +8,7 @@ In the following documentation, we will discuss how to configure a Laravel Spark
 
 ## Stripe Configuration
 
-Of course, to use Stripe as a payment provider for your Laravel Spark application, you should have an active Stripe account.
+Of course, to use Stripe as a payment provider for your Laravel Spark application you must have an active [Stripe account](https://stripe.com).
 
 ### Environment Variables
 

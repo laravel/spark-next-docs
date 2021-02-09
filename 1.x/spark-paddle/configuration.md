@@ -8,7 +8,7 @@ In the following documentation, we will discuss how to configure a Laravel Spark
 
 ## Paddle Configuration
 
-Of course, to use Paddle as a payment provider for your Laravel Spark application, you should have an active Paddle account.
+Of course, to use Paddle as a payment provider for your Laravel Spark application you must have an active [Paddle account](https://paddle.com).
 
 ### Environment Variables
 
