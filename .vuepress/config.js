@@ -1,7 +1,7 @@
 module.exports = {
     title: "Laravel Spark",
     description: "A perfect starting point for your next great idea.",
-    base: '/',
+    base: '/docs/',
 
     head: require('./head'),
 
