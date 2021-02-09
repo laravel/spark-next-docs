@@ -4,6 +4,11 @@
 
 ## Installing Spark Via Composer
 
+:::tip License
+
+Before installing Spark, you will need to purchase a [Spark license](https://spark.laravel.com/licenses). You can purchase a Spark license via the Spark dashboard.
+:::
+
 To get started installing Spark, add the Spark repository to your application's `composer.json` file:
 
 ```json
@@ -44,7 +49,7 @@ When running `composer update`, you will be prompted to provide your login crede
 }
 ```
 
-You may quickly create an `auth.json` file via your terminal using the following command:
+You may quickly create an `auth.json` file via your terminal using the following command. As mentioned previously, you may create an API token via the [Spark dashboard](https://spark.laravel.com/user/api-tokens). This token may be used as a substitute for your password when creating a Composer `auth.json` file:
 
 ```bash
 composer config http-basic.spark.laravel.com taylor@example.com your-api-token
