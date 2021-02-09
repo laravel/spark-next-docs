@@ -35,7 +35,7 @@ Spark's Stripe support is provided by the underlying [Laravel Cashier Stripe](ht
 
 #### Limitations
 
-We have listed some known limitations of using the Paddle payment provider below:
+We have listed some known limitations of using the Stripe payment provider below:
 
 - The Stripe payment provider does not provide a PayPal integration.
 
