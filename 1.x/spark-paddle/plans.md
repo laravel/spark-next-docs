@@ -22,7 +22,9 @@ if ($user->onTrial()) {
 
 :::danger Paddle Trials
 
-Because Paddle does not allow plan quantity changes during trial periods, the Paddle edition of Spark does not support requiring a credit card up front when beginning a trial. All trial periods are be started without a credit card or payment method provided up front during the user's initial registration process.
+Because Paddle does not allow plan quantity changes during trial periods, the Paddle edition of Spark does not support requiring a credit card up front when beginning a trial. All trial periods are started without a credit card or payment method provided up front during the user's initial registration process.
+
+**Therefore, you may assign each subscription plan zero trial days when configuring subscription plans in your Paddle dashboard.**
 :::
 
 ## Determining Plan Eligibility
