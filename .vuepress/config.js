@@ -15,12 +15,12 @@ module.exports = {
 
         // repo: 'laravel/spark',
 
-        docsRepo: 'laravel/spark-docs',
-        editLinks: true,
-        editLinkText: 'Help us improve this page!',
+        // docsRepo: 'laravel/spark-next-docs',
+        // editLinks: true,
+        // editLinkText: 'Help us improve this page!',
 
         nav: [
-            { text: 'Home', link: '/', target: '_self' },
+            { text: 'Home', link: 'https://spark.laravel.com', target: '_self' },
         ],
 
         sidebar: {
