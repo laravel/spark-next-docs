@@ -68,3 +68,52 @@ php artisan vendor:publish --tag="spark-migrations"
 ```
 
 Finally, you should inspect the published migrations and update the `2019_05_03_000001_add_spark_columns_to_users_table.php` file to add the columns needed by Spark to the table that will be used by your application's billable model.
+
+## Webhooks
+
+Spark and Cashier automatically handle subscription cancellations for failed charges and other common Stripe webhook events. However, if you have additional webhook events you would like to handle, you may do so by extending the Spark webhook controller.
+
+Your controller's method names should correspond to Cashier's controller conventions. Specifically, methods should be prefixed with `handle` and the "camel case" name of the webhook you wish to handle. For example, if you wish to handle the `invoice.payment_succeeded` webhook, you should add a `handleInvoicePaymentSucceeded` method to the controller:
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Spark\Http\Controllers\WebhookController as SparkWebhookController;
+
+class WebhookController extends SparkWebhookController
+{
+    /**
+     * Handle invoice payment succeeded.
+     *
+     * @param  array  $payload
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function handleInvoicePaymentSucceeded($payload)
+    {
+        // Handle the incoming event...
+
+        return parent::handleInvoicePaymentSucceeded($payload);
+    }
+}
+```
+
+Next, define a route to your webhook controller within your application's `routes/web.php` file. This will overwrite the default route registered by Spark's service provider:
+
+```php
+use App\Http\Controllers\WebhookController;
+
+Route::post(
+    '/spark/webhook',
+    [WebhookController::class, 'handleWebhook']
+);
+```
+
+Finally, since Stripe webhooks need to bypass Laravel's CSRF protection, be sure to list the URI as an exception in your application's `App\Http\Middleware\VerifyCsrfToken` middleware or list the route outside of the `web` middleware group:
+
+```php
+protected $except = [
+    'spark/webhook',
+];
+```

@@ -35,3 +35,47 @@ php artisan vendor:publish --tag=spark-lang
 ```
 
 This command will publish a `resources/lang/spark/en.json` file containing translation keys and values for the English language. You may copy this file and translate it to the language of your choice. For more information on how to use Laravel's translation features, please consult the [Laravel localization documentation](https://laravel.com/docs/localization#using-translation-strings-as-keys).
+
+## Webhooks
+
+Spark and Cashier automatically handles subscription cancellation on failed charges and other common Paddle webhooks, but if you have additional webhook events you would like to handle, you should extend Spark's `WebhookController`.
+
+Your controller's method names should correspond to Cashier's controller method conventions. Specifically, methods should be prefixed with `handle` and the "camel case" name of the webhook you wish to handle. For example, if you wish to handle the `payment_succeeded` webhook, you should add a `handlePaymentSucceeded` method to the controller:
+
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Spark\Http\Controllers\WebhookController as SparkWebhookController;
+
+class WebhookController extends SparkWebhookController
+{
+    /**
+     * Handle the payment succeeded webhook.
+     *
+     * @param  array  $payload
+     * @return void
+     */
+    public function handlePaymentSucceeded($payload)
+    {
+        // Handle the event...
+    }
+}
+```
+
+Next, define a route to your webhook controller within your application's `routes/web.php` file. This will overwrite the default route registered by Spark's service provider:
+
+```php
+use App\Http\Controllers\WebhookController;
+
+Route::post('/spark/webhook', WebhookController::class);
+```
+
+Finally, since Paddle webhooks need to bypass Laravel's CSRF protection, be sure to list the URI as an exception in your application's `App\Http\Middleware\VerifyCsrfToken` middleware or list the route outside of the `web` middleware group:
+
+```php
+protected $except = [
+    'spark/webhook',
+];
+```
