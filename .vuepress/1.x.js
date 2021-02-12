@@ -23,6 +23,7 @@ module.exports = [
             'configuration',
             'plans',
             'middleware',
+            'taxes',
             'events',
             'customization',
         ]),
