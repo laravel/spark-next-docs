@@ -18,8 +18,6 @@ To customize the logo used at the top left of the Spark billing portal, you may 
 
 ### Brand Color
 
-### Brand Color
-
 To customize the color used as the background color of the button elements within the Spark billing portal, you may specify a value for the `brand.color` configuration item within your application's `config/spark.php` configuration file. This configuration value should be a valid hex code or correspond to a background color offered by the [Tailwind CSS framework](https://tailwindcss.com/docs/customizing-colors):
 
 ```php
