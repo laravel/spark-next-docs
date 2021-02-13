@@ -30,6 +30,28 @@ To customize the color used as the background color of the button elements withi
 ],
 ```
 
+### Font
+
+To customize the font used by the Spark billing portal, you should export Spark's views using the `vendor:publish` Artisan command:
+
+```bash
+php artisan vendor:publish --tag=spark-views
+```
+
+Next, within the `resources/views/vendor/spark/app.blade.php` template, you may define your own `font-sans` CSS class at the bottom of the templates `head` section:
+
+```html
+<head>
+    <!-- ...... -->
+
+    <style>
+        .font-sans {
+            font-family: 'Your Custom Font';
+        }
+    </style>
+</head>
+```
+
 ## Localization
 
 You may localize / translate all of the text within the Spark billing portal. To publish the Spark localization file, you may use the `vendor:publish` Artisan command:
