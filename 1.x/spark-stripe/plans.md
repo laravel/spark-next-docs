@@ -107,6 +107,29 @@ if ($user->subscribedToPlan($planId = 'price_id')) {
 }
 ```
 
+## Defining Plan Incentive Text
+
+Spark allows you to define plan "incentive" text to display to your users. For example, you may wish to display the amount saved by choosing to use a yearly plan vs. a monthly plan. Incentive text is shown in the top right corner of the plan's card:
+
+![Incentive text example](./../../assets/img/incentive.png)
+
+To define incentive text, you may add `monthly_incentive` and / or `yearly_incentive` configuration options to your plan definition:
+
+```php
+[
+    'name' => 'Standard',
+    'short_description' => 'This is a short, human friendly description of the plan.',
+    'monthly_id' => 'price_id',
+    'yearly_id' => 'price_id',
+    'yearly_incentive' => 'Save 10%',
+    'features' => [
+        'Feature 1',
+        'Feature 2',
+        'Feature 3',
+    ],
+],
+```
+
 ## Archiving Plans
 
 If you plan to "archive" or retire a particular plan for your application, you should add the `archived` configuration option to the plan's configuration array. You should not completely remove the plan's configuration if existing users of your application that have already subscribed to the plan will be allowed to continue their subscription:
