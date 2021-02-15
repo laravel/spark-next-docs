@@ -163,3 +163,11 @@ In addition, you are free to supply a short description of the plan and a list o
 ## Accessing The Billing Portal
 
 Once you have configured your Spark installation, you may access your application's billing portal at the `/billing` URI. So, if your application is being served on `localhost`, you may access your application's billing portal at `http://localhost/billing`.
+
+Of course, you may link to the billing portal from your application's dashboard however you see fit:
+
+```html
+<a href="/billing">
+    Manage Subscription
+</a>
+```

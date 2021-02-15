@@ -183,6 +183,14 @@ In addition, you are free to supply a short description of the plan and a list o
 
 Once you have configured your Spark installation, you may access your application's billing portal at the `/billing` URI. So, if your application is being served on `localhost`, you may access your application's billing portal at `http://localhost/billing`.
 
+Of course, you may link to the billing portal from your application's dashboard however you see fit:
+
+```html
+<a href="/billing">
+    Manage Subscription
+</a>
+```
+
 #### Billing Portal & Multiple Billables
 
 If your application is billing more than one type of billable, you should add the billable type's [slug](#billable-slugs) to the `/billing` URI. For example, if you have configured a `team` billable type in addition to your `user` billable type, you may access the billing portal for teams by navigating to `http://localhost/billing/team`. However, this typically should not be necessary because most applications will only ever bill one type of model.
