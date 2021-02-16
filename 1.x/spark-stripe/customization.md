@@ -71,7 +71,7 @@ This command will publish a `resources/lang/spark/en.json` file containing trans
 
 Most commonly, applications bill individual users for monthly and yearly subscription plans. However, your application may choose to bill some other type of model, such as a team, organization, band, etc.
 
-In that case, you should add `Spark::ignoreMigrations()` in the boot method of your application's `App\Providers\SparkServiceProvider` class:
+In that case, you should add `Spark::ignoreMigrations()` in the register method of your application's `App\Providers\SparkServiceProvider` class:
 
 ```php
 use Spark\Spark;
@@ -79,11 +79,11 @@ use Spark\Spark;
 class SparkServiceProvider extends ServiceProvider
 {
     /**
-     * Bootstrap any application services.
+     * Register any application services.
      *
      * @return void
      */
-    public function boot()
+    public function register()
     {
         Spark::ignoreMigrations();
 
