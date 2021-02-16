@@ -46,7 +46,7 @@ Spark allows you to define the types of billable models that your application wi
 
 You may define your billable models within the `billables` array of your application's `spark` configuration file. By default, this array contains an entry for the `App\Models\User` model.
 
-Before continuing, you should ensure that the model class that corresponds to your billable model is using the `Spark\Billable` trait:
+Before continuing, you should ensure that the model class that corresponds to your billable model is using the `Spark\Billable` trait and that it casts the `trial_ends_at` attribute to `datetime`:
 
 ```php
 <?php
@@ -61,6 +61,11 @@ use Spark\Billable;
 class User extends Authenticatable
 {
     use Billable, HasFactory, Notifiable;
+
+    protected $casts = [
+        'trial_ends_at' => 'datetime',
+    ];
+
 }
 ```
 
