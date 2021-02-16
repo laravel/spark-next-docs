@@ -74,6 +74,16 @@ The first argument accepted by the `chargePerSeat` method is the term that your 
 
 After configuring per-seat billing, Spark will automatically update the wording within your application's billing portal to inform users that billing is calculated on a per-seat basis.
 
+### Incrementing / Decrementing The Seat Count
+
+The `chargePerSeat` callback that was explained above will inform Spark of the current seat count that should be used when a customer initiates a subscription. However, you still need to inform Spark when to add or remove a seat when a user is using your application. For example, if building a project management application that bills per project, you would need to inform Spark when a user creates or deletes a project. You can accomplish this by calling the `addSeat` and `removeSeat` method:
+
+```php
+$user->addSeat();
+
+$user->removeSeat();
+```
+
 ## Determining Subscription Status
 
 While building your application, you will often need to inspect a user's subscription status and plan to determine if they are allowed to perform a given action. For example, you may not want to let a user create a project if they are subscribed to a billing plan that only allows a specific number of projects to be created. First, you should review the [subscription verification middleware](./middleware.md) provided by Spark.
