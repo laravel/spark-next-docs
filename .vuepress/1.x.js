@@ -14,6 +14,7 @@ module.exports = [
             'plans',
             'middleware',
             'events',
+            'testing',
             'customization',
         ]),
     }, {
@@ -25,6 +26,7 @@ module.exports = [
             'middleware',
             'taxes',
             'events',
+            'testing',
             'customization',
         ]),
     }
