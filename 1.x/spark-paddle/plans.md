@@ -54,6 +54,11 @@ Some applications charge users per "seat" instead of a fixed monthly price. For 
 
 If your application will be using per-seat billing, you will likely define a single, monthly plan in your application's `config/spark.php` configuration file. In addition, you will need to instruct Spark how to calculate the current number of "seats" a billable model is currently using.
 
+:::danger Enabling Plans Quantity
+
+While creating the subscription plans in Paddle's dashboard, make sure you select "Enable quantity". Otherwise, Paddle will ignore any quantity sent by Spark for per-seat billing.
+:::
+
 You may instruct Spark how to calculate the current number of "seats" a billable model is currently using via the `chargePerSeat` method when configuring a billable model. Typically, this method should be called within the `boot` method of your application's `App\Providers\SparkServiceProvider` class:
 
 ```php
