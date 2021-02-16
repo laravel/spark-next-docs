@@ -20,7 +20,7 @@ Spark's Paddle support is provided by the underlying [Laravel Cashier Paddle](ht
 
 :::warning Paddle Account Approval
 
-Your Paddle account must be approved by Paddle before you can begin using Spark. To apply for an account, please visit the [Paddle website](https://paddle.com).
+Your Paddle account must be approved by Paddle before you can begin using Spark. To apply for an account, please visit the [Paddle website](https://paddle.com). **While you are developing your application, you may use the [Paddle Sandbox](https://developer.paddle.com/getting-started/sandbox).**
 :::
 
 #### Limitations
