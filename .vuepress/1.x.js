@@ -27,6 +27,7 @@ module.exports = [
             'taxes',
             'events',
             'testing',
+            'cookbook',
             'customization',
         ]),
     }
