@@ -24,6 +24,11 @@ STRIPE_SECRET=sk_test_example
 STRIPE_WEBHOOK_SECRET=sk_test_example
 ```
 
+:::danger Configuring Locales
+
+In order to use locales other than `en`, ensure the `ext-intl` PHP extension is installed and configured on your server.
+:::
+
 ### Stripe Webhooks
 
 In addition, your Spark powered application will need to receive webhooks from Stripe in order to keep your application's billing and subscription data in sync with Stripe's. Within your Stripe dashboard's webhook management panel, you should configure Stripe to send webhook alerts to your application's `/spark/webhook` URI. You should enable webhook alerts for the following events:

@@ -18,6 +18,7 @@ Of course, you should adjust the variable's values to correspond to your own Pad
 
 ```bash
 CASHIER_CURRENCY=USD
+CASHIER_CURRENCY_LOCALE=en
 PADDLE_SANDBOX=true
 PADDLE_VENDOR_ID=your-paddle-vendor-id
 PADDLE_VENDOR_AUTH_CODE=your-paddle-vendor-auth-code
@@ -26,6 +27,11 @@ MIICIjANBiuqhiiG9w0BAQEFXAOCAg8AMIIjjgKCAraAyj/UyC89sqpOnpEZcM76
 guppK9vfF7balLj87rE9VXq5...EAAQ==
 -----END PUBLIC KEY-----"
 ```
+
+:::danger Configuring Locales
+
+In order to use locales other than `en`, ensure the `ext-intl` PHP extension is installed and configured on your server.
+:::
 
 ### Paddle Webhooks
 
