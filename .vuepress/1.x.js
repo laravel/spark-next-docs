@@ -15,6 +15,7 @@ module.exports = [
             'middleware',
             'events',
             'testing',
+            'cookbook',
             'customization',
         ]),
     }, {
