@@ -78,6 +78,25 @@ Next, update the `CASHIER_MODEL` environment variable to use the `Team` model in
 CASHIER_MODEL=App\\Models\\Team
 ```
 
+#### Updating The Model
+
+Now we can update the `Team` model to use the `Spark\Billable` trait and implement a `stripeEmail` method that returns the team owner's email address to be displayed in the Stripe dashboard as the customer identifier:
+
+```php
+use Spark\Billable;
+
+class Team extends JetstreamTeam
+{
+    use Billable;
+
+    public function stripeEmail()
+    {
+        return $this->owner->email;
+    }
+}
+```
+
+
 #### Spark Configuration File
 
 Finally, update your application's `config/spark.php` configuration file so that it defines a `team` billable model:
