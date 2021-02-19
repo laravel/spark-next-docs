@@ -75,7 +75,7 @@ class SparkServiceProvider extends ServiceProvider
 Next, update the `CASHIER_MODEL` environment variable to use the `Team` model instead of the `User` model:
 
 ```bash
-CASHIER_MODEL=App\\Models\\Team
+CASHIER_MODEL=App\Models\Team
 ```
 
 #### Updating The Model
