@@ -203,12 +203,10 @@ If your application is billing more than one type of billable, you should add th
 
 ## Showing A Link To The Terms And Conditions
 
-Many application display billing terms and conditions during checkout. Spark allows you to easily enable this requirement for your own application.
-
-To get started, add a `terms_url` attribute in your `config/spark.php` configuration file:
+Many applications display billing terms and conditions during checkout. Spark allows you to easily do the same within your application's billing portal. To get started, add a `terms_url` configuration value in your application's `config/spark.php` configuration file:
 
 ```php
 'terms_url' => '/terms'
 ```
 
-Now Spark is going to display a link pointing to `/terms` in the billing portal.
+Once added, Spark will display a link pointing to `/terms` in the billing portal.
