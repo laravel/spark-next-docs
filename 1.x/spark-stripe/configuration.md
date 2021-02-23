@@ -181,3 +181,13 @@ Of course, you may link to the billing portal from your application's dashboard 
     Manage Subscription
 </a>
 ```
+
+## Showing A Link To The Terms And Conditions
+
+Many applications display billing terms and conditions during checkout. Spark allows you to easily do the same within your application's billing portal. To get started, add a `terms_url` configuration value in your application's `config/spark.php` configuration file:
+
+```php
+'terms_url' => '/terms'
+```
+
+Once added, Spark will display a link pointing to `/terms` in the billing portal.
