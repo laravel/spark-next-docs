@@ -10,7 +10,7 @@ To make the `App\Models\Team` model our billable model, we first need to adjust 
 
 #### Updating The Service Provider
 
-Now that the migrations have been updated, we should update the `SparkServiceProvider` to reference the `Team` model instead of the `User` model:
+Now we should update the `SparkServiceProvider` to reference the `Team` model instead of the `User` model:
 
 ```php
 use App\Models\Team;
