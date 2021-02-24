@@ -123,6 +123,33 @@ To define incentive text, you may add `monthly_incentive` and / or `yearly_incen
 ],
 ```
 
+## Access A Billable's Spark Plan
+
+Sometimes you may wish to access the Spark plan instance for a given billable in order to determine what options are available to the plan. For example, if your plan definition contains the following:
+
+```php
+[
+    'name' => 'Standard',
+    'short_description' => 'This is a short, human friendly description of the plan.',
+    'monthly_id' => env('SPARK_STANDARD_MONTHLY_PLAN', 1000),
+    'yearly_id' => env('SPARK_STANDARD_YEARLY_PLAN', 1001),
+    'features' => [
+        // ...
+    ],
+    'options' => [
+        'database_backups' => true,
+    ],
+],
+```
+
+You may access the plan and options like so:
+
+```php
+if ($user->sparkPlan()) {
+    $canCreateBackups = $user->sparkPlan()->options['database_backups'] ?? false;
+}
+```
+
 ## Archiving Plans
 
 If you plan to "archive" or retire a particular plan for your application, you should add the `archived` configuration option to the plan's configuration array. You should not completely remove the plan's configuration if existing users of your application that have already subscribed to the plan will be allowed to continue their subscription:
