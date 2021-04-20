@@ -55,3 +55,7 @@ No. Spark only supports Stripe and Paddle and it is not possible for developers 
 #### **Am I required to use Tailwind / Blade / Vue / etc. in order to use Spark?**
 
 No. Spark's billing portal is totally isolated from the rest of your Laravel application and includes its own pre-compiled frontend assets. Your own application may be built using the frontend technologies of your choice.
+
+#### **Why are my customers presented with a payment confirmation screen?**
+
+Extra verification is sometimes required in order to confirm and process a payment. When this happens, Paddle or Stripe will present a payment confirmation screen. Payment confirmation screens presented by Paddle, Stripe, or Spark may be tailored to a specific bank or card issuer's payment flow and can include additional card confirmation, a temporary small charge, separate device authentication, or other forms of verification.
