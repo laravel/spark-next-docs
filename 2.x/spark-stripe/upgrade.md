@@ -2,9 +2,9 @@
 
 [[toc]]
 
-## Upgrading to Spark-Stripe v2.0 From v1.x
+## Upgrading to Spark (Stripe) 2.0 From 1.x
 
-In addition to the upgrade guide below, please reference [the Cashier v13 upgrade guide ](https://github.com/laravel/cashier-stripe/blob/13.x/UPGRADE.md)as well.
+Spark (Stripe) 2.0 primarily provides an upgrade from Cashier 12.x to Cashier 13.x. As such, in addition to the upgrade guide below, please consult [the Cashier 13 upgrade guide](https://github.com/laravel/cashier-stripe/blob/13.x/UPGRADE.md).
 
 ### Minimum Versions
 
@@ -17,13 +17,13 @@ The following required dependency versions have been updated:
 
 ### Stripe API Version
 
-The default Stripe API version for Cashier 13.x will be `2020-08-27`. If this is the latest Stripe API version at the time that you're upgrading to this Cashier version then it's also recommended that you upgrade your own Stripe API version settings [in your Stripe dashboard](https://dashboard.stripe.com/developers) to this version after deploying the Cashier upgrade. If this is no longer the latest Stripe API version, we recommend you do not modify your Stripe API version settings.
+The default Stripe API version for Cashier 13.x is `2020-08-27`.
 
 If you use the Stripe SDK directly, make sure to properly test your integration after updating.
 
-#### Upgrading Your Webhook
+#### Upgrading Your Stripe Webhook
 
-You should ensure your webhook operates on the same API version as Cashier. To do so, you may use the `cashier:webhook` command from your production environment to create a new webhook that matches Cashier's Stripe API version:
+You should ensure your Stripe webhook operates on the same API version as Spark's underlying API version used by Cashier. To do so, you may use the `cashier:webhook` command from your production environment to create a new webhook that matches Cashier's Stripe API version:
 
 ```bash
 php artisan cashier:webhook --disabled
@@ -80,7 +80,7 @@ Running this migration requires you to [install the `doctrine/dbal` package](htt
 
 PR: https://github.com/laravel/cashier-stripe/pull/1185
 
-Cashier Stripe v13 comes with support for checking Stripe Product identifiers. To provide support for this feature, a new `stripe_product` column should be added to the `subscription_items` table:
+Cashier Stripe v13 includes support for inspecting Stripe Product identifiers. To provide support for this feature, a new `stripe_product` column should be added to the `subscription_items` table:
 
 ```php
 Schema::table('subscription_items', function (Blueprint $table) {
@@ -88,13 +88,13 @@ Schema::table('subscription_items', function (Blueprint $table) {
 });
 ```
 
-If you'd like to make use of the new `onProduct` & `subscribedToProduct` methods on your billable model, you should ensure the records in the `subscription_items` have their `stripe_product` column filled with the correct Product ID from Stripe.
+If you would like to make use of the new `onProduct` & `subscribedToProduct` methods on your billable model, you should ensure the records in the `subscription_items` have their `stripe_product` column filled with the correct Product ID from Stripe.
 
-## Upgrading to Spark-Stripe v1.0.5
+## Upgrading To Spark (Stripe) v1.0.5
 
 #### Updating The Configuration File
 
-Spark-Stripe v1.0.5 introduces a new format for enabling features in the configuration file. To use the new format, add the following lines to your `config/spark.php` configuration file:
+Spark (Stripe) v1.0.5 introduces a new format for enabling features in the configuration file. To use the new format, add the following lines to your `config/spark.php` configuration file:
 
 ```php
 use Spark\Features;
@@ -114,7 +114,7 @@ Next, uncomment the features you want to use in your application and remove the 
 
 #### Collecting Billing Email Addresses
 
-Spark-Stripe v1.0.5 introduces the ability to email receipts to a custom billing address that the customer provides. This is typically used to email receipts directly to an accountant.
+Spark (Stripe) 1.0.5 introduces the ability to email receipts to a custom billing address that the customer provides. This is typically used to email receipts directly to an accountant.
 
 To support this feature, you need to create a new migration in your application and add the following schema modification in the migration's `up()` method:
 

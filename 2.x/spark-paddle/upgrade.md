@@ -2,9 +2,17 @@
 
 [[toc]]
 
-## Upgrading to Spark-Paddle v2.0 From v1.x
+## Upgrading to Spark (Paddle) 2.0 From v1.x
 
-No major changes were made to Spark Paddle v2.
+Spark (Paddle) 2.0 is a maintenance release with no breaking changes. To upgrade, simply update your application's `composer.json` file to depend on the latest release:
+
+```json
+"require": {
+    "php": "^8.0",
+    "laravel/framework": "^9.0",
+    "laravel/spark-paddle": "^2.0"
+},
+```
 
 ### Minimum Versions
 
