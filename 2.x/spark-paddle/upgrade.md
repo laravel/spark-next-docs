@@ -2,7 +2,7 @@
 
 [[toc]]
 
-## Upgrading to Spark-Stripe v2.0 From v1.x
+## Upgrading to Spark-Paddle v2.0 From v1.x
 
 No major changes were made to Spark Paddle v2.
 
