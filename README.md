@@ -1,1 +1,1 @@
-<meta http-equiv="refresh" content="0;url=/docs/1.x/introduction.html" />
+<meta http-equiv="refresh" content="0;url=/docs/2.x/introduction.html" />
