@@ -5,7 +5,6 @@ module.exports = [
         children: [
             'introduction',
             'installation',
-            'upgrade',
         ],
     }, {
         title: "Spark Paddle",
@@ -18,6 +17,7 @@ module.exports = [
             'testing',
             'cookbook',
             'customization',
+            'upgrade',
         ]),
     }, {
         title: "Spark Stripe",
@@ -31,6 +31,7 @@ module.exports = [
             'testing',
             'cookbook',
             'customization',
+            'upgrade',
         ]),
     }
 ]
