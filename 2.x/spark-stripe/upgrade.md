@@ -4,7 +4,7 @@
 
 ## Upgrading to Spark (Stripe) 2.0 From 1.x
 
-Spark (Stripe) 2.0 primarily provides an upgrade from Cashier 12.x to Cashier 13.x. As such, in addition to the upgrade guide below, please consult [the Cashier 13 upgrade guide](https://github.com/laravel/cashier-stripe/blob/13.x/UPGRADE.md).
+Spark (Stripe) 2.0 primarily provides an upgrade from Cashier 12.x to Cashier 13.x. As such, in addition to the upgrade guide below, please consult the [Cashier 13 upgrade guide](https://github.com/laravel/cashier-stripe/blob/13.x/UPGRADE.md).
 
 ### Minimum Versions
 
