@@ -112,7 +112,7 @@ if ($user->subscribed()) {
     // The user has an active subscription...
 }
 
-if ($user->subscribedToPlan($planId = 'price_id')) {
+if ($user->subscribedToPrice($planId = 'price_id')) {
     // The user has a subscription to a plan with a Stripe plan / price ID of "price_id"...
 }
 ```

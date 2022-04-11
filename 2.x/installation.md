@@ -24,8 +24,8 @@ Next, you may add the `laravel/spark-paddle` or `laravel/spark-stripe` package t
 
 ```json
 "require": {
-    "php": "^7.3.0",
-    "laravel/framework": "^8.0",
+    "php": "^8.0",
+    "laravel/framework": "^9.0",
     "laravel/spark-paddle": "^1.0"
 },
 ```

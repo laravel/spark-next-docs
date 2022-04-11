@@ -3,6 +3,8 @@ module.exports = {
     description: "A perfect starting point for your next great idea.",
     base: '/docs/',
 
+    plugins: [require("./plugins/metaVersion.js")],
+
     head: require('./head'),
 
     themeConfig: {
@@ -21,6 +23,18 @@ module.exports = {
 
         nav: [
             { text: 'Home', link: 'https://spark.laravel.com', target: '_self' },
+        ],
+
+        nav: [
+            { text: 'Home', link: 'https://spark.laravel.com', target: '_self' },
+            {
+                text: "Version",
+                link: "/",
+                items: [
+                    { text: "1.x", link: "/1.x/" },
+                    { text: "2.x", link: "/2.x/" },
+                ]
+            }
         ],
 
         sidebar: {
