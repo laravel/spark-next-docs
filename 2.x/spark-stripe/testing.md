@@ -22,7 +22,7 @@ public function withSubscription($planId = null)
             'name' => 'default',
             'stripe_id' => Str::random(10),
             'stripe_status' => 'active',
-            'stripe_plan' => $planId,
+            'stripe_price' => $planId,
             'quantity' => 1,
             'trial_ends_at' => null,
             'ends_at' => null,
@@ -30,7 +30,8 @@ public function withSubscription($planId = null)
 
         $subscription->items()->create([
             'stripe_id' => Str::random(10),
-            'stripe_plan' => $planId,
+            'stripe_product' => Str::random(10),
+            'stripe_price' => $planId,
             'quantity' => 1,
         ]);
     });
@@ -40,7 +41,7 @@ public function withSubscription($planId = null)
 Once you have define the state method, you may use it when creating models via your factory:
 
 ```php
-$user = User::factory()->withSubscription('plan_id')->create();
+$user = User::factory()->withSubscription('price_id')->create();
 
 $user->subscribed(); // true
 ```
