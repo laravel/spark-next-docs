@@ -14,6 +14,7 @@ The following required dependency versions have been updated:
 - The minimum Laravel version is now v9.0
 - The minimum PHP version is now v8.0
 - The minimum Stripe SDK version is now v7.39
+- The minimum VatCalculator version is now v3.0
 
 ### Stripe API Version
 
@@ -45,6 +46,10 @@ You may use the following upgrade checklist to properly enable to the new webhoo
 6. Remove the old webhook in your Stripe dashboard.
 
 After following this process, your new webhook will be active and ready to receive events.
+
+### VatCalculator 3.x
+
+The [VatCalculator](https://github.com/driesvints/vat-calculator) package utilized by Spark has been upgraded to its latest major version. While we do not anticipate any breaking changes from this upgrade, you might want to review this package's [upgrade guide](https://github.com/driesvints/vat-calculator/blob/3.x/UPGRADE.md), specifically the section on [removed countries](https://github.com/driesvints/vat-calculator/blob/3.x/UPGRADE.md#removed-countries).
 
 ### Renaming "Plans" To Prices
 
