@@ -47,9 +47,9 @@ You may use the following upgrade checklist to properly enable to the new webhoo
 
 After following this process, your new webhook will be active and ready to receive events.
 
-### VatCalculator v3
+### VatCalculator 3.x
 
-[VatCalculator](https://github.com/driesvints/vat-calculator) was upgraded to its latest major version, v3. While there shouldn't be any breaking changes for Spark, you might want to review its [upgrade guide](https://github.com/driesvints/vat-calculator/blob/3.x/UPGRADE.md), specifically the section on [removed countries](https://github.com/driesvints/vat-calculator/blob/3.x/UPGRADE.md#removed-countries) for tax calculations.
+The [VatCalculator](https://github.com/driesvints/vat-calculator) package utilized by Spark has been upgraded to its latest major version. While we do not anticipate any breaking changes from this upgrade, you might want to review this package's [upgrade guide](https://github.com/driesvints/vat-calculator/blob/3.x/UPGRADE.md), specifically the section on [removed countries](https://github.com/driesvints/vat-calculator/blob/3.x/UPGRADE.md#removed-countries).
 
 ### Renaming "Plans" To Prices
 
