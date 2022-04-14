@@ -41,6 +41,7 @@ Now that the migrations have been updated, we should update the `SparkServicePro
 
 ```php
 use App\Models\Team;
+use Laravel\Cashier\Cashier;
 use Spark\Spark;
 
 class SparkServiceProvider extends ServiceProvider
@@ -52,6 +53,9 @@ class SparkServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // Update Cashier to use the `Team` model instead of the `User` model...
+        Cashier::useCustomerModel(Team::class);
+
         // Resolve the current team...
         Spark::billable(Team::class)->resolve(function (Request $request) {
             return $request->user()->currentTeam;
@@ -68,14 +72,6 @@ class SparkServiceProvider extends ServiceProvider
         });
     }
 }
-```
-
-#### Environment Variables
-
-Next, update the `CASHIER_MODEL` environment variable to use the `Team` model instead of the `User` model:
-
-```bash
-CASHIER_MODEL=App\Models\Team
 ```
 
 #### Updating The Model
