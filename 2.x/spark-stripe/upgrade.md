@@ -83,7 +83,7 @@ Running this migration requires you to [install the `doctrine/dbal` package](htt
 
 ### Billable Model Customization Changes
 
-If you were overriding the billable `User` model with a custom billable model such as a `Team`, you should now invoke the `useCustomerModel` method within the `boot` method of your application's `AppServiceProvider` in order to make Cashier aware of your custom model:
+If you are overriding the billable `User` model with a custom billable model such as a `Team`, you should now invoke the `useCustomerModel` method within the `boot` method of your application's `AppServiceProvider` in order to make Cashier aware of your custom model:
 
 ```php
 use App\Models\Team;
