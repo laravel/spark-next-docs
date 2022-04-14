@@ -83,7 +83,7 @@ Running this migration requires you to [install the `doctrine/dbal` package](htt
 
 ### Billable Model Customization Changes
 
-If you were overriding the `User` model with a custom model like `Team` from the example in the Spark Cookbook, you'll need to reference it differently. Add the below `useCustomerModel` call to the `boot` method of your `AppServiceProvider`.
+If you were overriding the billable `User` model with a custom billable model such as a `Team`, you should now invoke the `useCustomerModel` method within the `boot` method of your application's `AppServiceProvider` in order to make Cashier aware of your custom model:
 
 ```php
 use App\Models\Team;
@@ -100,7 +100,7 @@ public function boot()
 }
 ```
 
-Afterwards, you can remove you `CASHIER_MODEL` variable from your `.env` file.
+After adding this method call to your `AppServiceProvider`, you may remove the `CASHIER_MODEL` environment variable from your `.env` file.
 
 ### Stripe Product Support
 
