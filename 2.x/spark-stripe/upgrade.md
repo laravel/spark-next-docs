@@ -81,6 +81,27 @@ Schema::table('users', function (Blueprint $table) {
 
 Running this migration requires you to [install the `doctrine/dbal` package](https://laravel.com/docs/migrations#renaming-columns).
 
+### Billable Model Customization Changes
+
+If you are overriding the billable `User` model with a custom billable model such as a `Team`, you should now invoke the `useCustomerModel` method within the `boot` method of your application's `AppServiceProvider` in order to make Cashier aware of your custom model:
+
+```php
+use App\Models\Team;
+use Laravel\Cashier\Cashier;
+
+/**
+ * Bootstrap any application services.
+ *
+ * @return void
+ */
+public function boot()
+{
+    Cashier::useCustomerModel(Team::class);
+}
+```
+
+After adding this method call to your `AppServiceProvider`, you may remove the `CASHIER_MODEL` environment variable from your `.env` file.
+
 ### Stripe Product Support
 
 PR: https://github.com/laravel/cashier-stripe/pull/1185
