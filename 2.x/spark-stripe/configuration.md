@@ -47,9 +47,24 @@ For Stripe to be able to send your application webhooks during local development
 
 ## Configuring Billables
 
-Spark allows you to define the types of billable models that your application will be managing. Most commonly, applications bill individual users for monthly and yearly subscription plans. However, your application may choose to bill some other type of model, such as a team, organization, band, etc.
+Spark allows you to define the types of billable models that your application will be managing. Most commonly, applications bill individual users for monthly and yearly subscription plans. However, your application may choose to bill some other type of model, such as a team, organization, band, etc. The Stripe edition of Spark currently only supports a single billable model entity (team, user, etc.) per application.
 
-You may define your billable models within the `billables` array of your application's `spark` configuration file. By default, this array contains an entry for the `App\Models\User` model.
+You may define your billable models within the `billables` array of your application's `spark` configuration file. By default, this array contains an entry for the `App\Models\User` model. If the billable model is something else than `App\Models\User` you'll need to configure the model on Cashier as well by setting it through the `useCustomerModel` in the `boot` method of your `AppServiceProvider` class:
+
+```php
+use App\Models\Cashier\User;
+use Laravel\Cashier\Cashier;
+ 
+/**
+ * Bootstrap any application services.
+ *
+ * @return void
+ */
+public function boot()
+{
+    Cashier::useCustomerModel(User::class);
+}
+```
 
 Before continuing, you should ensure that the model class that corresponds to your billable model is using the `Spark\Billable` trait and that it casts the `trial_ends_at` attribute to `datetime`:
 
