@@ -37,7 +37,7 @@ public function withSubscription($planId = null)
 }
 ```
 
-Once you have define the state method, you may use it when creating models via your factory:
+Once you have defined the state method, you may use it when creating models via your factory:
 
 ```php
 $user = User::factory()->withSubscription('plan_id')->create();
