@@ -207,17 +207,17 @@ Many applications display billing terms and conditions during checkout. Spark al
 
 Once added, Spark will display a link pointing to `/terms` in the billing portal.
 
-## Customer Balance Topups
+## Customer Balance Top Ups
 
-Spark Stripe is able to allow your customers to topup their balance. This is useful in situations where customers want to deposit an amount which they can then use to pay off their monthly or yearly subscription fees.
+Spark Stripe allows your customers to "top up" their balance. This feature can prove useful if your customer's cards do not support recurring payments, such as customers under India's RBI regulations.
 
-To get started you'll need to create a special product and price in your Stripe Dashboard. Create a new product called "Balance Top Up" and add a price to it that makes use of the "Customer chooses price" pricing model. After creating it, set the price ID as an environment variable in your `.env` file:
+To get started, you will need to create a special product and price in your Stripe Dashboard. So, create a product called "Balance Top Up" and add a price to the product that utilizes the "Customer chooses price" Stripe pricing model. After creating the product and price, define the price ID as an environment variable in your application's `.env` file:
 
 ```
-SPARK_TOPUP_PRICE=price_xxx
+SPARK_TOP_UP_PRICE=price_xxx
 ```
 
-In test mode you can then swap this out for a test price. After setting this, enable the feature using the feature flag:
+After defining the environment variable, enable the top up feature using its corresponding feature flag in your application's `config/spark.php` configuration file:
 
 ```php
 'features' => [
@@ -227,6 +227,6 @@ In test mode you can then swap this out for a test price. After setting this, en
 ],
 ```
 
-And now the balance top up button will shown in the customer balance block on the billing portal. After clicking it, the customer is redirected to a Stripe Checkout session where they can choose the amount they want to top up their account with. Then, when completing the Checkout session, the customer is redirected back to the Spark billing portal and their balance is updated. Make sure you have webhooks configured for this and that you are listening to the `checkout.session.completed` event.
+Once this feature has been enabled, the balance top up button will be shown in the Spark billing portal. After clicking the balance top up button, the customer will be redirected to a Stripe Checkout session where they can choose the monetary amount they wish to add to their account. Once the customer has completed the Checkout session, the customer will be redirected back to the Spark billing portal and their balance will be updated. You should ensure that your Stripe webhooks are configured to dispatch the `checkout.session.completed` event.
 
-Note that no invoices are generated for topups. Invoicing only happens when the billing cycle renews. If a customer wants a refund of their balance they can contact you and you can refund them from the Stripe Dashboard.
+Invoices are not generated for balance top ups, as invoicing only occurs when the billing cycle renews. Customers that need a refund for a balance top up will need to contact your application's customer support, and the charge can then be refunded manually from the Stripe dashboard.
