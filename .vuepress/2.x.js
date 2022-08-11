@@ -7,6 +7,12 @@ module.exports = [
             'installation',
         ],
     }, {
+        title: "General",
+        collapsable: false,
+        children: [
+            'customization',
+        ],
+    }, {
         title: "Spark Paddle",
         collapsable: false,
         children: prefix('spark-paddle', [
