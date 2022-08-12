@@ -24,6 +24,11 @@ If you use the Stripe SDK directly, make sure to properly test your integration 
 
 #### Upgrading Your Stripe Webhook
 
+:::danger Timing your upgrade
+
+It's very important that when you deploy your new Spark upgrade, that you upgrade your webhook immediately after deployment, to minimize conflicts where the API version of your webhook is a mismatch with the one used by Cashier.
+:::
+
 You should ensure your Stripe webhook operates on the same API version as Spark's underlying API version used by Cashier. To do so, you may use the `cashier:webhook` command from your production environment to create a new webhook that matches Cashier's Stripe API version:
 
 ```bash
