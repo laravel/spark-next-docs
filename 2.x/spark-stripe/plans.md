@@ -101,7 +101,7 @@ $user->addSeat();
 $user->removeSeat();
 ```
 
-Sometimes, payments for increasing seats can fail because a bank might require extra confirmation checks for card payments. When this happens you should catch the `IncompletePayment` exception that occurs and handle it by redirecting to Cashier's payment page and redirect back to the page that triggered the `addSeat` call:
+Sometimes, payments for increasing seats can fail because a bank might require extra confirmation checks for card payments. When this happens, you should catch the `IncompletePayment` exception that occurs and handle it by redirecting to Cashier's payment page, while providing a `redirect` location back to the page that triggered the `addSeat` call:
 
 ```php
 <?php
@@ -118,7 +118,7 @@ try {
 }
 ```
 
-See [the Cashier](https://laravel.com/docs/billing#handling-failed-payments) docs for more info on handling failed payments.
+Please consult the [Cashier documentation](https://laravel.com/docs/billing#handling-failed-payments) for more information on handling failed payments.
 
 ## Determining Subscription Status
 
