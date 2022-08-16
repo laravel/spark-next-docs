@@ -5,6 +5,7 @@ module.exports = [
         children: [
             'introduction',
             'installation',
+            'customization'
         ],
     }, {
         title: "Spark Paddle",
