@@ -5,12 +5,7 @@ module.exports = [
         children: [
             'introduction',
             'installation',
-        ],
-    }, {
-        title: "General",
-        collapsable: false,
-        children: [
-            'customization',
+            'customization'
         ],
     }, {
         title: "Spark Paddle",
