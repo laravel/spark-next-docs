@@ -101,6 +101,25 @@ $user->addSeat();
 $user->removeSeat();
 ```
 
+Sometimes, payments for increasing seats can fail because a bank might require extra confirmation checks for card payments. When this happens you should catch the `IncompletePayment` exception that occurs and handle it by redirecting to Cashier's payment page and redirect back to the page that triggered the `addSeat` call:
+
+```php
+<?php
+
+use Laravel\Cashier\Exceptions\IncompletePayment;
+ 
+try {
+    $user->addSeat();
+} catch (IncompletePayment $exception) {
+    return redirect()->route(
+        'cashier.payment',
+        [$exception->payment->id, 'redirect' => route('spark.portal')]
+    );
+}
+```
+
+See [the Cashier](https://laravel.com/docs/billing#handling-failed-payments) docs for more info on handling failed payments.
+
 ## Determining Subscription Status
 
 While building your application, you will often need to inspect a user's subscription status and plan to determine if they are allowed to perform a given action. For example, you may not want to let a user create a project if they are subscribed to a billing plan that only allows a specific number of projects to be created. First, you should review the [subscription verification middleware](./middleware.md) provided by Spark.
