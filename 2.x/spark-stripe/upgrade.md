@@ -29,17 +29,13 @@ If you use the Stripe SDK directly, make sure to properly test your integration 
 It's very important that you upgrade your webhook immediately after updating and deploying Spark in order to minimize conflicts where the API version of your webhook does not match the version used by Cashier.
 :::
 
-You should ensure your Stripe webhook operates on the same API version as Spark's underlying API version used by Cashier. To do so, you may use the `cashier:webhook` command from your production environment to create a new webhook that matches Cashier's Stripe API version:
+You should ensure your Stripe webhook operates on the same API version as Spark's underlying API version used by Cashier. To do so, you may use the `cashier:webhook` command from your production environment to create a new webhook that matches Cashier's Stripe API version. Of course, you should ensure the webhook's URL corresponds to the URL where your application expects to receive webhook requests. By default, your application will receive Spark Stripe webhooks at `/spark/webhook`:
 
 ```bash
-php artisan cashier:webhook --disabled
+php artisan cashier:webhook --disabled --url "https://your-site.com/spark/webhook"
 ```
 
-This will create a new webhook with the same Stripe API version as Cashier [in your Stripe dashboard](https://dashboard.stripe.com/webhooks). The webhook will be immediately disabled so it doesn't interfere with your existing production application until you are ready to enable it. By default, the webhook will be created using the `APP_URL` environment variable to determine the proper URL for your application. If you need to use a different URL, you can use the `--url` flag when invoking the command:
-
-```bash
-php artisan cashier:webhook --disabled --url "http://example.com/spark/webhook"
-```
+This will create a new webhook with the same Stripe API version as Cashier [in your Stripe dashboard](https://dashboard.stripe.com/webhooks). The webhook will be immediately disabled so it doesn't interfere with your existing production application until you are ready to enable it.
 
 You may use the following upgrade checklist to properly enable to the new webhook:
 
