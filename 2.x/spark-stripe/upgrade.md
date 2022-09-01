@@ -29,7 +29,7 @@ If you use the Stripe SDK directly, make sure to properly test your integration 
 It's very important that you upgrade your webhook immediately after updating and deploying Spark in order to minimize conflicts where the API version of your webhook does not match the version used by Cashier.
 :::
 
-You should ensure your Stripe webhook operates on the same API version as Spark's underlying API version used by Cashier. To do so, you may use the `cashier:webhook` command from your production environment to create a new webhook that matches Cashier's Stripe API version. You'll also need to point to the exact url where your app receives webhooks. By default, for Spark Stripe this is the `/spark/webhook` path:
+You should ensure your Stripe webhook operates on the same API version as Spark's underlying API version used by Cashier. To do so, you may use the `cashier:webhook` command from your production environment to create a new webhook that matches Cashier's Stripe API version. Of course, you should ensure the webhook's URL corresponds to the URL where your application expects to receive webhook requests. By default, your application will receive Spark Stripe webhooks at `/spark/webhook`:
 
 ```bash
 php artisan cashier:webhook --disabled --url "https://your-site.com/spark/webhook"
