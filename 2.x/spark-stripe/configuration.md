@@ -230,3 +230,43 @@ After defining the environment variable, enable the top up feature using its cor
 Once this feature has been enabled, the balance top up button will be shown in the Spark billing portal. After clicking the balance top up button, the customer will be redirected to a Stripe Checkout session where they can choose the monetary amount they wish to add to their account. Once the customer has completed the Checkout session, the customer will be redirected back to the Spark billing portal and their balance will be updated. You should ensure that your Stripe webhooks are configured to dispatch the `checkout.session.completed` event.
 
 Invoices are not generated for balance top ups, as invoicing only occurs when the billing cycle renews. Customers that need a refund for a balance top up will need to contact your application's customer support, and the charge can then be refunded manually from the Stripe dashboard.
+
+### Receipt Emails
+
+Spark Stripe is able to make sure your customers receive their receipts by email. To enable this, simple uncomment the feature in your `config/spark.php` configuration file:
+
+```php
+'features' => [
+    ...
+    Features::receiptEmails(),
+    ...
+]
+```
+
+And now your billable will receive their paid receipts by email. If you would like to grant your customers the ability to choose to which email addresses these receipts are sent to you can add the following option:
+
+```php
+'features' => [
+    ...
+    Features::topups(['price' => env('SPARK_TOPUP_PRICE')]),
+    ...
+]
+```
+
+Now, a new section in your billing portal will show up where customers can add specific billing email addresses to which the receipts will be sent to. If no email address are filled in here, receipts will still be sent to themselves. If one or more email addresses are filled out then receipts are only sent to those email addresses.
+
+If you enable this feature it's best that you disable receipt email sending to customers [in Stripe itself](https://dashboard.stripe.com/settings/billing/automatic) to prevent duplicate receipts being sent.
+
+### Failed Payment Emails
+
+Since SCA regulations require customers to occasionally verify their payment details even while their subscription is active, Spark can send a notification to the customer when off-session payment confirmation is required. For example, this may occur when a subscription is renewing. Spark's payment notification can be enabled by enabling the feature (which is enabled by default):
+
+```php
+'features' => [
+    ...
+    Features::paymentNotificationEmails(),
+    ...
+]
+```
+
+Should a failed payment occur, your customers will be sent an email with a button they can click which will lead them to a payment page hosted by Spark to confirm their payment.
