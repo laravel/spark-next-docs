@@ -233,40 +233,36 @@ Invoices are not generated for balance top ups, as invoicing only occurs when th
 
 ### Receipt Emails
 
-Spark Stripe is able to make sure your customers receive their receipts by email. To enable this, simple uncomment the feature in your `config/spark.php` configuration file:
+Spark Stripe can also email subscription payment receipts to your customers. To enable this feature, uncomment the 'receiptEmails' feature entry in your application's `config/spark.php` configuration file:
 
 ```php
 'features' => [
-    ...
+    // ...
     Features::receiptEmails(),
-    ...
+    // ...
 ]
 ```
 
-And now your billable will receive their paid receipts by email. If you would like to grant your customers the ability to choose to which email addresses these receipts are sent to you can add the following option:
+If you would like to grant your customers the ability to specify the email address that receipts should be sent to, you may provide the `custom-addresses` option to the feature definition:
 
 ```php
 'features' => [
-    ...
-    Features::topups(['price' => env('SPARK_TOPUP_PRICE')]),
-    ...
+    // ...
+    Features::receiptEmails(['custom-addresses' => true]),
+    // ...
 ]
 ```
 
-Now, a new section in your billing portal will show up where customers can add specific billing email addresses to which the receipts will be sent to. If no email address are filled in here, receipts will still be sent to themselves. If one or more email addresses are filled out then receipts are only sent to those email addresses.
-
-If you enable this feature it's best that you disable receipt email sending to customers [in Stripe itself](https://dashboard.stripe.com/settings/billing/automatic) to prevent duplicate receipts being sent.
+If you enable email receipts within your application, we suggest disabling [Stripe's receipt mailing](https://dashboard.stripe.com/settings/billing/automatic) feature so that customers do not receive duplicate receipt emails.
 
 ### Failed Payment Emails
 
-Since SCA regulations require customers to occasionally verify their payment details even while their subscription is active, Spark can send a notification to the customer when off-session payment confirmation is required. For example, this may occur when a subscription is renewing. Spark's payment notification can be enabled by enabling the feature (which is enabled by default):
+Since SCA regulations require customers to occasionally verify their payment details even while their subscription is active, Spark can send a notification to the customer when off-session payment confirmation is required. Spark's payment confirmation notifications can be enabled by enabling the `paymentNotificationEmails` feature within your application's `config/spark.php` configuration file:
 
 ```php
 'features' => [
-    ...
+    // ...
     Features::paymentNotificationEmails(),
-    ...
+    // ...
 ]
 ```
-
-Should a failed payment occur, your customers will be sent an email with a button they can click which will lead them to a payment page hosted by Spark to confirm their payment.
