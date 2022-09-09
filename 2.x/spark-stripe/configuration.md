@@ -230,3 +230,39 @@ After defining the environment variable, enable the top up feature using its cor
 Once this feature has been enabled, the balance top up button will be shown in the Spark billing portal. After clicking the balance top up button, the customer will be redirected to a Stripe Checkout session where they can choose the monetary amount they wish to add to their account. Once the customer has completed the Checkout session, the customer will be redirected back to the Spark billing portal and their balance will be updated. You should ensure that your Stripe webhooks are configured to dispatch the `checkout.session.completed` event.
 
 Invoices are not generated for balance top ups, as invoicing only occurs when the billing cycle renews. Customers that need a refund for a balance top up will need to contact your application's customer support, and the charge can then be refunded manually from the Stripe dashboard.
+
+### Receipt Emails
+
+Spark Stripe can also email subscription payment receipts to your customers. To enable this feature, uncomment the 'receiptEmails' feature entry in your application's `config/spark.php` configuration file:
+
+```php
+'features' => [
+    // ...
+    Features::receiptEmails(),
+    // ...
+]
+```
+
+If you would like to grant your customers the ability to specify the email address that receipts should be sent to, you may provide the `custom-addresses` option to the feature definition:
+
+```php
+'features' => [
+    // ...
+    Features::receiptEmails(['custom-addresses' => true]),
+    // ...
+]
+```
+
+If you enable email receipts within your application, we suggest disabling [Stripe's receipt mailing](https://dashboard.stripe.com/settings/billing/automatic) feature so that customers do not receive duplicate receipt emails.
+
+### Failed Payment Emails
+
+Since SCA regulations require customers to occasionally verify their payment details even while their subscription is active, Spark can send a notification to the customer when off-session payment confirmation is required. Spark's payment confirmation notifications can be enabled by enabling the `paymentNotificationEmails` feature within your application's `config/spark.php` configuration file:
+
+```php
+'features' => [
+    // ...
+    Features::paymentNotificationEmails(),
+    // ...
+]
+```
