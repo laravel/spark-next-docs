@@ -231,7 +231,7 @@ Once this feature has been enabled, the balance top up button will be shown in t
 
 Invoices are not generated for balance top ups, as invoicing only occurs when the billing cycle renews. Customers that need a refund for a balance top up will need to contact your application's customer support, and the charge can then be refunded manually from the Stripe dashboard.
 
-### Receipt Emails
+## Receipt Emails
 
 Spark Stripe can also email subscription payment receipts to your customers. To enable this feature, uncomment the 'receiptEmails' feature entry in your application's `config/spark.php` configuration file:
 
@@ -255,7 +255,7 @@ If you would like to grant your customers the ability to specify the email addre
 
 If you enable email receipts within your application, we suggest disabling [Stripe's receipt mailing](https://dashboard.stripe.com/settings/billing/automatic) feature so that customers do not receive duplicate receipt emails.
 
-### Failed Payment Emails
+## Failed Payment Emails
 
 Since SCA regulations require customers to occasionally verify their payment details even while their subscription is active, Spark can send a notification to the customer when off-session payment confirmation is required. Spark's payment confirmation notifications can be enabled by enabling the `paymentNotificationEmails` feature within your application's `config/spark.php` configuration file:
 
