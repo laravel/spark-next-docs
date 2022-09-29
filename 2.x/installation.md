@@ -86,3 +86,15 @@ It's not advised to store your `auth.json` file inside your project's version co
 ```sh
 composer config http-basic.spark.laravel.com ${SPARK_USERNAME} ${SPARK_API_TOKEN}
 ```
+
+## Expired Licenses
+
+If your Spark license has expired and you don't want to renew the license your `composer.json` file will need to specify the last version of Spark released before your license expired:
+
+```json
+"require": {
+    "php": "^8.0",
+    "laravel/framework": "^9.0",
+    "laravel/spark-paddle": "2.y.z"
+},
+```
