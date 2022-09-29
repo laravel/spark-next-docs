@@ -7,16 +7,6 @@
 :::tip License
 
 Before installing Spark, you will need to purchase a [Spark license](https://spark.laravel.com/licenses). You can purchase a Spark license via the Spark dashboard.
-
-If your license expired and you don't want to renew it you should add your last expired version directly in your composer.json:
-
-```json
-"require": {
-    "php": "^8.0",
-    "laravel/framework": "^9.0",
-    "laravel/spark-paddle": "2.y.z"
-},
-```
 :::
 
 To get started installing Spark, add the Spark repository to your application's `composer.json` file:
@@ -95,4 +85,16 @@ It's not advised to store your `auth.json` file inside your project's version co
 
 ```sh
 composer config http-basic.spark.laravel.com ${SPARK_USERNAME} ${SPARK_API_TOKEN}
+```
+
+## Expired Licenses
+
+If your Spark license has expired and you don't want to renew the license your `composer.json` file will need to specify the last version of Spark released before your license expired:
+
+```json
+"require": {
+    "php": "^8.0",
+    "laravel/framework": "^9.0",
+    "laravel/spark-paddle": "2.y.z"
+},
 ```
