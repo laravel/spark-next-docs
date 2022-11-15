@@ -84,10 +84,7 @@ $user->addSeat();
 $user->removeSeat();
 ```
 
-:::danger Paddle Quantity Amounts
-
-Paddle does not allow subscription quantities below "1". Therefor, you should never decrease the seat count to zero. Instead, if no seats are left on a plan, it's best to cancel the subscription.
-:::
+Paddle does not allow subscription quantities below "1". Therefore, you should never decrease the seat count to zero. Instead, you may cancel the subscription plan.
 
 ## Determining Subscription Status
 
