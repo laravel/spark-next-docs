@@ -84,6 +84,11 @@ $user->addSeat();
 $user->removeSeat();
 ```
 
+:::danger Paddle Quantity Amounts
+
+Paddle does not allow subscription quantities below "1". Therefor, you should never decrease the seat count to zero. Instead, if no seats are left on a plan, it's best to cancel the subscription.
+:::
+
 ## Determining Subscription Status
 
 While building your application, you will often need to inspect a user's subscription status and plan to determine if they are allowed to perform a given action. For example, you may not want to let a user create a project if they are subscribed to a billing plan that only allows a specific number of projects to be created. First, you should review the [subscription verification middleware](./middleware.md) provided by Spark.
