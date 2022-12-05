@@ -222,7 +222,7 @@ After defining the environment variable, enable the top up feature using its cor
 ```php
 'features' => [
     ...
-    Features::topups(['price' => env('SPARK_TOP_UP_PRICESPARK_TOP_UP_PRICESPARK_TOP_UP_PRICE')]),
+    Features::topups(['price' => env('SPARK_TOP_UP_PRICE')]),
     ...
 ],
 ```
