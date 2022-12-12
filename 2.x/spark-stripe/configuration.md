@@ -43,7 +43,7 @@ In addition, your Spark powered application will need to receive webhooks from S
 
 #### Webhooks & Local Development
 
-The best way for Stripe to be able to send your application webhooks during local development is through the Stripe CLI. If, for example, you are developing locally through `artisan server` and serving your site at `http://localhost:8000`:
+The best way for Stripe to be able to send your application webhooks during local development is through [the Stripe CLI](https://stripe.com/docs/stripe-cli). If, for example, you are developing locally through `artisan server` and serving your site at `http://localhost:8000`:
 
 ```zsh
 stripe listen --forward-to http://localhost:8000/spark/webhook
