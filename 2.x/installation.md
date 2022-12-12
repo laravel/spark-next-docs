@@ -77,6 +77,8 @@ php artisan migrate
 If you are using the Stripe edition of Spark and plan to bill a model other than the `App\Models\User` model, you should follow [these instructions](./spark-stripe/customization.md#migrations) before running the migration command.
 :::
 
+Lastly, you'll need to configure webhooks in order to properly let Stripe or Paddle update the data in your database. Head over to the configuration docs of either [Stripe](./spark-stripe/configuration.md#stripe-webhooks) or [Paddle](./spark-paddle/configuration.md#paddle-webhooks) and set them up. These are needed both in development and production.
+
 That's it! Next, you may navigate to your application's `config/spark.php` configuration file and begin configuring your Spark installation.
 
 ## Authenticating Spark in Continuous Integration (CI) Environments
