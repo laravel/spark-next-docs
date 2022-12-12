@@ -43,7 +43,13 @@ In addition, your Spark powered application will need to receive webhooks from S
 
 #### Webhooks & Local Development
 
-For Stripe to be able to send your application webhooks during local development, you will need to expose your application via a site sharing service such as [Ngrok](https://ngrok.io) or [Expose](https://beyondco.de/docs/expose/introduction). If you are developing your application locally using [Laravel Sail](http://laravel.com/docs/sail), you may use Sail's [site sharing command](https://laravel.com/docs/sail#sharing-your-site).
+The best way for Stripe to be able to send your application webhooks during local development is through the Stripe CLI. If, for example, you are developing locally through `artisan server` and serving your site at `http://localhost:8000`:
+
+```zsh
+stripe listen --forward-to http://localhost:8000/spark/webhook
+```
+
+Alternatively, you can expose your application via a site sharing service such as [Ngrok](https://ngrok.io) or [Expose](https://beyondco.de/docs/expose/introduction). If you are developing your application locally using [Laravel Sail](http://laravel.com/docs/sail), you may use Sail's [site sharing command](https://laravel.com/docs/sail#sharing-your-site).
 
 ## Configuring Billables
 
