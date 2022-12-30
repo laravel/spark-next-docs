@@ -2,17 +2,17 @@
 
 [[toc]]
 
-Spark dispatches several [events](https://laravel.com/docs/events) that you may intercept and handle based on your application's needs. We will describe each of these events below.
+Cashier dispatches several [events](https://laravel.com/docs/events) that you may intercept and handle based on your application's needs. We will describe each of these events below.
 
-## `Spark\Events\SubscriptionCreated`
+## `Laravel\Paddle\Events\SubscriptionCreated`
 
 This event is dispatched when a subscription is created with a status of `trialing` or `active`.
 
-## `Spark\Events\SubscriptionUpdated`
+## `Laravel\Paddle\Events\SubscriptionUpdated`
 
 This event is dispatched when a subscription is changed. Possible changes include plan changes, quantity changes, pausing a subscription, or resuming a subscription.
 
-## `Spark\Events\SubscriptionCancelled`
+## `Laravel\Paddle\Events\SubscriptionCancelled`
 
 This event is dispatched when a subscription expires. This happens when a paused or cancelled subscription is no longer within its cancellation "grace period".
 
