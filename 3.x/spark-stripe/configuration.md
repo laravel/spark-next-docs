@@ -155,9 +155,9 @@ Spark::billable(Team::class)->authorize(function (Team $billable, Request $reque
 });
 ```
 
-### Syncing Customer Data
+### Syncing Customer Data With Stripe
 
-Spark will sync customer data like name, email and billing address. This means that every time this data changes Spark will peform a Stripe API request. To offload this, it's best that you [configure a queue](https://laravel.com/docs/queues). 
+Spark synchronizes user data such as name, email, and billing address information to Stripe when this data is updated on the underlying billable Eloquent model. To ensure that this does not negatively affect the performance of your application, we recommend that you configure a [queue worker](https://laravel.com/docs/queues). If a queue worker has been configured, Spark will automatically perform Stripe data synchronization using your application's default queue.
 
 ## Defining Subscription Plans
 
