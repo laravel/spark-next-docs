@@ -2,7 +2,7 @@
 
 [[toc]]
 
-Spark dispatches several [events](https://laravel.com/docs/events) that you may intercept and handle based on your application's needs. We will describe each of these events below. Each event contains a `$billable` instance and a `$subscription` instance.
+Spark dispatches several [events](https://laravel.com/docs/events) that you may intercept and handle based on your application's needs. We will describe each of these events below. Each event defines a `$billable` instance and a `$subscription` instance as public properties available for your application.
 
 ## `Spark\Events\SubscriptionCreated`
 
