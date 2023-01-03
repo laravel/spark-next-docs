@@ -9,15 +9,16 @@ While developing your application, you will likely want to "stub" a subscription
 To accomplish this, you may add a "state" method to your billable model's [factory class](https://laravel.com/docs/database-testing#defining-model-factories). Typically, this will be your application's `UserFactory` class. Below you will find an example state method implementation; however, you are free to adjust this to your application's own needs:
 
 ```php
+use App\Models\User;
+
 /**
  * Indicate that the user should have a subscription plan.
  *
- * @param  string  $planId
- * @return \Illuminate\Database\Eloquent\Factories\Factory
+ * @return $this
  */
-public function withSubscription($planId = null)
+public function withSubscription(string|int $planId = null): static
 {
-    return $this->afterCreating(function ($user) use ($planId) {
+    return $this->afterCreating(function (User $user) use ($planId) {
         $subscription = $user->subscriptions()->create([
             'name' => 'default',
             'stripe_id' => Str::random(10),

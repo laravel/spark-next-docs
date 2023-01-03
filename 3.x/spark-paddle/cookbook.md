@@ -20,10 +20,8 @@ class SparkServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         // Resolve the current team...
         Spark::billable(Team::class)->resolve(function (Request $request) {
@@ -54,7 +52,7 @@ class Team extends JetstreamTeam
 {
     use Billable;
 
-    public function paddleEmail()
+    public function paddleEmail(): string|null
     {
         return $this->owner->email;
     }

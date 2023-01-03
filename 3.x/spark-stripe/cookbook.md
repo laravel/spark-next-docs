@@ -15,7 +15,7 @@ To instruct Spark to ignore its migrations, call the `Spark::ignoreMigrations()`
 ```php
 use Spark\Spark;
 
-public function register()
+public function register(): void
 {
     Spark::ignoreMigrations();
 }
@@ -48,10 +48,8 @@ class SparkServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         // Instruct Cashier to use the `Team` model instead of the `User` model...
         Cashier::useCustomerModel(Team::class);
@@ -85,7 +83,7 @@ class Team extends JetstreamTeam
 {
     use Billable;
 
-    public function stripeEmail()
+    public function stripeEmail(): string|null
     {
         return $this->owner->email;
     }

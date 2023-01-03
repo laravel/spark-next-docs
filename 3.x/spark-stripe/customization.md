@@ -80,10 +80,8 @@ class SparkServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
-     *
-     * @return void
      */
-    public function register()
+    public function register(): void
     {
         Spark::ignoreMigrations();
 
@@ -117,11 +115,8 @@ class StripeEventListener
 {
     /**
      * Handle the event.
-     *
-     * @param  \Laravel\Cashier\Events\WebhookReceived  $event
-     * @return void
      */
-    public function handle(WebhookReceived $event)
+    public function handle(WebhookReceived $event): void
     {
         if ($event->payload['type'] !== 'customer.subscription.updated') {
             return;

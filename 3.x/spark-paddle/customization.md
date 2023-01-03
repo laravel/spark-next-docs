@@ -84,11 +84,8 @@ class PaddleEventListener
 {
     /**
      * Handle the event.
-     *
-     * @param  \Laravel\Paddle\Events\WebhookReceived  $event
-     * @return void
      */
-    public function handle(WebhookReceived $event)
+    public function handle(WebhookReceived $event): void
     {
         if ($event->payload['alert_name'] === 'payment_succeeded') {
             return;
