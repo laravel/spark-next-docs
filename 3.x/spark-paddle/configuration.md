@@ -142,10 +142,8 @@ By default, Spark will use your billable model's `email` attribute as the email 
 ```php
 /**
  * Get the email address that should be associated with the Paddle customer.
- *
- * @return string
  */
-public function paddleEmail()
+public function paddleEmail(): string|null
 {
     return $this->email;
 }

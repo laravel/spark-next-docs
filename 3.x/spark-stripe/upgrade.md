@@ -63,10 +63,8 @@ If you don't want this sync to happen then you can add a `shouldSyncCustomerDeta
 ```php
 /**
  * Determine if any Stripe synced customer data has changed.
- *
- * @return bool
  */
-public function shouldSyncCustomerDetailsToStripe()
+public function shouldSyncCustomerDetailsToStripe(): bool
 {
     return false;
 }
