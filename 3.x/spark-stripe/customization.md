@@ -102,49 +102,55 @@ Finally, you should inspect the published migrations and update the `2019_05_03_
 
 ## Webhooks
 
-Spark and Cashier automatically handle subscription cancellations for failed charges and other common Stripe webhook events. However, if you have additional webhook events you would like to handle, you may do so by extending the Spark webhook controller.
+Spark and Cashier automatically handle subscription cancellations for failed charges and other common Stripe webhook events. However, if you have additional webhook events you would like to handle, you may do so by listening to the `WebhookReceived` event from Cashier.
 
-Your controller's method names should correspond to Cashier's controller conventions. Specifically, methods should be prefixed with `handle` and the "camel case" name of the webhook you wish to handle. For example, if you wish to handle the `invoice.payment_succeeded` webhook, you should add a `handleInvoicePaymentSucceeded` method to the controller:
+First, you should create a listener for the event. Inside this listener's `handle` method you'll receive the `WebhookReceived` event which contains the event payload. The first thing you should do is check if the event type is the one you want to act on:
 
 ```php
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Listeners;
 
-use Spark\Http\Controllers\WebhookController as SparkWebhookController;
+use Laravel\Cashier\Cashier;
+use Laravel\Cashier\Events\WebhookReceived;
 
-class WebhookController extends SparkWebhookController
+class StripeEventListener
 {
     /**
-     * Handle invoice payment succeeded.
+     * Handle the event.
      *
-     * @param  array  $payload
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @param  \Laravel\Cashier\Events\WebhookReceived  $event
+     * @return void
      */
-    public function handleInvoicePaymentSucceeded($payload)
+    public function handle(WebhookReceived $event)
     {
-        // Handle the incoming event...
+        if ($event->payload['type'] !== 'customer.subscription.updated') {
+            return;
+        }
 
-        return parent::handleInvoicePaymentSucceeded($payload);
+        // Handle the incoming event...
     }
 }
 ```
 
-Next, define a route to your webhook controller within your application's `routes/web.php` file. This will overwrite the default route registered by Spark's service provider:
+Inside this listener you can perform whatever changes you need. Next, we'll need to make sure our app can listen to the incoming event and act upon it. Add it to the `App\Providers\EventServiceProvider` class:
 
 ```php
-use App\Http\Controllers\WebhookController;
+use App\Listeners\StripeEventListener;
+use Laravel\Cashier\Events\WebhookReceived;
 
-Route::post(
-    '/spark/webhook',
-    [WebhookController::class, 'handleWebhook']
-);
+class EventServiceProvider extends ServiceProvider
+{
+    /**
+     * The event handler mappings for the application.
+     *
+     * @var array
+     */
+    protected $listen = [
+        WebhookReceived::class => [
+            StripeEventListener::class,
+        ],
+    ];
 ```
 
-Finally, since Stripe webhooks need to bypass Laravel's CSRF protection, be sure to list the URI as an exception in your application's `App\Http\Middleware\VerifyCsrfToken` middleware or list the route outside of the `web` middleware group:
-
-```php
-protected $except = [
-    'spark/webhook',
-];
-```
+Now, whener a webhook is received, it'll be propogated to the listener where you can handle it. Of course, you can add as many listeners as you like.
