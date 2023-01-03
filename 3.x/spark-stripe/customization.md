@@ -100,9 +100,9 @@ Finally, you should inspect the published migrations and update the `2019_05_03_
 
 ## Webhooks
 
-Spark and Cashier automatically handle subscription cancellations for failed charges and other common Stripe webhook events. However, if you have additional webhook events you would like to handle, you may do so by listening to the `WebhookReceived` event from Cashier.
+Spark and Cashier automatically handle subscription cancellations for failed charges and other common Stripe webhook events. However, if you have additional webhook events you would like to handle, you may do so by listening to the `WebhookReceived` event that is dispatched by Cashier.
 
-First, you should create a listener for the event. Inside this listener's `handle` method you'll receive the `WebhookReceived` event which contains the event payload. The first thing you should do is check if the event type is the one you want to act on:
+First, you should create a listener for the event. Then, inside of the listener's `handle` method, you will receive the `WebhookReceived` event which contains the event payload. You may inspect this event's payload to determine if the given listener should handle the underlying Stripe event:
 
 ```php
 <?php
@@ -127,7 +127,7 @@ class StripeEventListener
 }
 ```
 
-Inside this listener you can perform whatever changes you need. Next, we'll need to make sure our app can listen to the incoming event and act upon it. Add it to the `App\Providers\EventServiceProvider` class:
+Next, the listener should be registered in your application's `App\Providers\EventServiceProvider` class:
 
 ```php
 use App\Listeners\StripeEventListener;
@@ -146,5 +146,3 @@ class EventServiceProvider extends ServiceProvider
         ],
     ];
 ```
-
-Now, whener a webhook is received, it'll be propogated to the listener where you can handle it. Of course, you can add as many listeners as you like.
