@@ -2,7 +2,7 @@
 
 [[toc]]
 
-## Upgrading to Spark (Stripe) 3.0 From 2.x
+## Upgrading to Spark (Stripe) 3.0 from 2.x
 
 Spark (Stripe) 3.0 primarily provides an upgrade from Cashier 13.x to Cashier 14.x. As such, in addition to the upgrade guide below, please consult the [Cashier 14 upgrade guide](https://github.com/laravel/cashier-stripe/blob/14.x/UPGRADE.md).
 
@@ -25,7 +25,7 @@ You should ensure your Stripe webhook operates on the same API version as Spark'
 php artisan cashier:webhook --disabled --url "https://your-site.com/spark/webhook"
 ```
 
-This will create a new webhook with the same Stripe API version as Cashier [in your Stripe dashboard](https://dashboard.stripe.com/webhooks). The webhook will be immediately disabled so it doesn't interfere with your existing production application until you are ready to enable it.
+This command will create a new webhook with the same Stripe API version as Cashier [in your Stripe dashboard](https://dashboard.stripe.com/webhooks). The webhook will be immediately disabled so it doesn't interfere with your existing production application until you are ready to enable it.
 
 You may use the following upgrade checklist to properly enable to the new webhook:
 
@@ -33,14 +33,14 @@ You may use the following upgrade checklist to properly enable to the new webhoo
 2. Add any extra Stripe events your application requires to the new webhook in your Stripe dashboard.
 3. Disable the old webhook in your Stripe dashboard.
 4. Enable the new webhook in your Stripe dashboard.
-5. Re-enable the new webhook secret by re-adding the `STRIPE_WEBHOOK_SECRET` environment variable in production with the secret from the new webhook.
+5. Re-enable the new webhook secret verification by re-adding the `STRIPE_WEBHOOK_SECRET` environment variable in production with the secret from the new webhook.
 6. Remove the old webhook in your Stripe dashboard.
 
 After following this process, your new webhook will be active and ready to receive events.
 
-### Removing Top Ups
+### Removing Top-Ups
 
-Spark Stripe 3.0 removes all functionality related to top-ups. We've found that Stripe did not handle top-ups in a sufficient way needed to handle recurring subscription payments. Therefor it seemed better to remove this feature entirely. You should remove all related top-up functionality:
+Spark Stripe 3.0 removes all functionality related to top-ups. We've found that Stripe did not offer the functionality needed to fully utilize top-ups for recurring subscription payments. You should therefore remove the `topUps` feature from your Spark configuration file:
 
 ```diff
 'features' => [
@@ -52,13 +52,13 @@ Spark Stripe 3.0 removes all functionality related to top-ups. We've found that 
 
 ### Stripe Checkout Screens
 
-Spark Stripe 3.0 introduces Stripe Checkout for subscribing customers to new subscriptions and for adding new payment methods. These screens will provide a different experience to your customers than before. You can customize how Checkout looks by adjusting [your branding settings](https://dashboard.stripe.com/settings/branding).
+Spark Stripe 3.0 utilizes Stripe Checkout for finalizing subscriptions and adding new payment methods. You can customize the appearance of Stripe Checkout by adjusting [your branding settings within Stripe](https://dashboard.stripe.com/settings/branding).
 
 ### Syncing Customer Details
 
-Spark Stripe 3.0 will now automatically sync your customer's details to Stripe. This includes their name, email address, billing address. This sync will be invoked whenever an update happens for your billable model. To more perfomantely sync these changes you should opt to [set up a queue](https://laravel.com/docs/queues). 
+Spark Stripe 3.0 will now automatically sync some customer information to Stripe, including their name, email address, and billing address. This synchronization will only take place whenever an update to the relevant data occurs on your billable model. To ensure that this does not negatively affect the performance of your application, we should you [configure a Laravel queue worker](https://laravel.com/docs/queues), which Spark will automatically utilize to efficiently synchronize customer data to Stripe.
 
-If you don't want this sync to happen then you can add a `shouldSyncCustomerDetailsToStripe` method to your billable model:
+If you would like to disable customer data synchronization, you can define a `shouldSyncCustomerDetailsToStripe` method on your application's billable model:
 
 ```php
 /**
@@ -72,4 +72,4 @@ public function shouldSyncCustomerDetailsToStripe(): bool
 
 ### Removed Contracts
 
-Because the setup of new payment methods now happens through Stripe Checkout, the `Spark\Contracts\Actions\UpdatesBillingMethod` and its implementing class was removed.
+Because the setup of new payment methods now happens via Stripe Checkout, the `Spark\Contracts\Actions\UpdatesBillingMethod` and its implementing class was removed.
