@@ -69,44 +69,54 @@ This command will publish a `resources/lang/spark/en.json` file containing trans
 
 ## Webhooks
 
-Spark and Cashier automatically handles subscription cancellation on failed charges and other common Paddle webhooks, but if you have additional webhook events you would like to handle, you should extend Spark's `WebhookController`.
+Spark and Cashier automatically handles subscription cancellation on failed charges and other common Paddle webhooks, but if you have additional webhook events you would like to handle, you may do so by listening to the `WebhookReceived` event from Cashier.
 
-Your controller's method names should correspond to Cashier's controller method conventions. Specifically, methods should be prefixed with `handle` and the "camel case" name of the webhook you wish to handle. For example, if you wish to handle the `payment_succeeded` webhook, you should add a `handlePaymentSucceeded` method to the controller:
+First, you should create a listener for the event. Inside this listener's `handle` method you'll receive the `WebhookReceived` event which contains the event payload. The first thing you should do is check if the alert name is the one you want to act on:
 
 ```php
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Listeners;
 
-use Spark\Http\Controllers\WebhookController as SparkWebhookController;
+use Laravel\Paddle\Events\WebhookReceived;
 
-class WebhookController extends SparkWebhookController
+class PaddleEventListener
 {
     /**
-     * Handle the payment succeeded webhook.
+     * Handle the event.
      *
-     * @param  array  $payload
+     * @param  \Laravel\Paddle\Events\WebhookReceived  $event
      * @return void
      */
-    public function handlePaymentSucceeded($payload)
+    public function handle(WebhookReceived $event)
     {
-        // Handle the event...
+        if ($event->payload['alert_name'] === 'payment_succeeded') {
+            return;
+        }
+
+        // Handle the incoming event...
     }
 }
 ```
 
-Next, define a route to your webhook controller within your application's `routes/web.php` file. This will overwrite the default route registered by Spark's service provider:
+Inside this listener you can perform whatever changes you need. Next, we'll need to make sure our app can listen to the incoming event and act upon it. Add it to the `App\Providers\EventServiceProvider` class:
 
 ```php
-use App\Http\Controllers\WebhookController;
+use App\Listeners\PaddleEventListener;
+use Laravel\Paddle\Events\WebhookReceived;
 
-Route::post('/spark/webhook', WebhookController::class);
+class EventServiceProvider extends ServiceProvider
+{
+    /**
+     * The event handler mappings for the application.
+     *
+     * @var array
+     */
+    protected $listen = [
+        WebhookReceived::class => [
+            PaddleEventListener::class,
+        ],
+    ];
 ```
 
-Finally, since Paddle webhooks need to bypass Laravel's CSRF protection, be sure to list the URI as an exception in your application's `App\Http\Middleware\VerifyCsrfToken` middleware or list the route outside of the `web` middleware group:
-
-```php
-protected $except = [
-    'spark/webhook',
-];
-```
+Now, whener a webhook is received, it'll be propogated to the listener where you can handle it. Of course, you can add as many listeners as you like.

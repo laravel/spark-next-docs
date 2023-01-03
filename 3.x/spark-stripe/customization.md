@@ -111,7 +111,6 @@ First, you should create a listener for the event. Inside this listener's `handl
 
 namespace App\Listeners;
 
-use Laravel\Cashier\Cashier;
 use Laravel\Cashier\Events\WebhookReceived;
 
 class StripeEventListener
