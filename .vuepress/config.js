@@ -33,13 +33,15 @@ module.exports = {
                 items: [
                     { text: "1.x", link: "/1.x/" },
                     { text: "2.x", link: "/2.x/" },
+                    { text: "3.x", link: "/3.x/" },
                 ]
             }
         ],
 
         sidebar: {
             '/1.x/': require('./1.x'),
-            '/2.x/': require('./2.x')
+            '/2.x/': require('./2.x'),
+            '/3.x/': require('./3.x')
         },
     },
 }
