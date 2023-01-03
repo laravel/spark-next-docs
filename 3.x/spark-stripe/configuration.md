@@ -157,6 +157,10 @@ Spark::billable(Team::class)->authorize(function (Team $billable, Request $reque
 });
 ```
 
+### Syncing Customer Data
+
+Spark will sync customer data like name, email and billing address. This means that every time this data changes Spark will peform a Stripe API request. To offload this, it's best that you [configure a queue](https://laravel.com/docs/queues). 
+
 ## Defining Subscription Plans
 
 As we previously discussed, Spark allows you to define the types of billable models that your application will be managing. These billable models are defined within the `billables` array of your application's `config/spark.php` configuration file:
