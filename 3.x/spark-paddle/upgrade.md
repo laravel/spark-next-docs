@@ -2,21 +2,17 @@
 
 [[toc]]
 
-## Upgrading to Spark (Paddle) 2.0 From v1.x
+## Upgrading to Spark (Paddle) 3.0 From v2.x
 
-Spark (Paddle) 2.0 is a maintenance release with no breaking changes. To upgrade, simply update your application's `composer.json` file to depend on the latest release:
+### Removed Events
 
-```json
-"require": {
-    "php": "^8.0",
-    "laravel/framework": "^9.0",
-    "laravel/spark-paddle": "^2.0"
-},
+Spark Paddle's own events were removed in favor of Cashier Paddle's events. You can update them like so:
+
+```diff
+-Spark\Events\SubscriptionCreated
+-Spark\Events\SubscriptionUpdated
+-Spark\Events\SubscriptionDeleted
++Laravel\Cashier\Events\SubscriptionCreated
++Laravel\Cashier\Events\SubscriptionUpdated
++Laravel\Cashier\Events\SubscriptionDeleted
 ```
-
-### Minimum Versions
-
-The following required dependency versions have been updated:
-
-- The minimum Laravel version is now v9.0
-- The minimum PHP version is now v8.0
