@@ -72,4 +72,4 @@ public function shouldSyncCustomerDetailsToStripe(): bool
 
 ### Removed Contracts
 
-Because the setup of new payment methods now happens via Stripe Checkout, the `Spark\Contracts\Actions\UpdatesBillingMethod` and its implementing class was removed.
+Because the setup of new payment methods now happens via Stripe Checkout, the `Spark\Contracts\Actions\UpdatesBillingMethod` contract and its implementing class was removed.
