@@ -48,6 +48,10 @@ We have listed some known limitations of using the Stripe payment provider below
 
 No. However, we will continue to provide bug fixes and security updates to Spark Classic indefinitely.
 
+#### **Am I allowed to bundle up Spark in an app and resell it?**
+
+No. We currently do not allow reselling of Spark in any way.
+
 #### **Does Spark support any other payment providers?**
 
 No. Spark only supports Stripe and Paddle and it is not possible for developers to customize Spark to accept additional providers. If you need to use another payment provider **you should not purchase Laravel Spark**.
