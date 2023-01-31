@@ -50,7 +50,7 @@ No. However, we will continue to provide bug fixes and security updates to Spark
 
 #### **Am I allowed to bundle up Spark in an app and resell it?**
 
-No. We currently do not allow reselling of Spark in any way.
+Right now, we don't allow bundling up Spark in an app and reselling it en mass. We do however allow you to sell your SaaS app directly to a third party.
 
 #### **Does Spark support any other payment providers?**
 
