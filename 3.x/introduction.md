@@ -48,9 +48,9 @@ We have listed some known limitations of using the Stripe payment provider below
 
 No. However, we will continue to provide bug fixes and security updates to Spark Classic indefinitely.
 
-#### **Can I re-sell Spark powered applications?**
+#### **Can I sell Spark powered applications?**
 
-You may not re-sell Spark powered applications on code distribution platforms such as Code Canyon, etc. However, if you build a SaaS application / business which is later acquired by a private third-party, you may transfer your Spark license to that buyer.
+You may not sell Spark powered applications on code distribution platforms such as Code Canyon, etc. However, if you build a SaaS application / business which is later acquired by a private third-party, you may transfer your Spark license to that buyer.
 
 #### **Does Spark support any other payment providers?**
 
