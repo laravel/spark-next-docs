@@ -48,6 +48,10 @@ We have listed some known limitations of using the Stripe payment provider below
 
 No. However, we will continue to provide bug fixes and security updates to Spark Classic indefinitely.
 
+#### **Can I sell Spark powered applications?**
+
+You may not sell Spark powered applications on code distribution platforms such as Code Canyon, etc. However, if you build a SaaS application / business which is later acquired by a private third-party, you may transfer your Spark license to that buyer.
+
 #### **Does Spark support any other payment providers?**
 
 No. Spark only supports Stripe and Paddle and it is not possible for developers to customize Spark to accept additional providers. If you need to use another payment provider **you should not purchase Laravel Spark**.
