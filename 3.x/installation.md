@@ -9,6 +9,11 @@
 Before installing Spark, you will need to purchase a [Spark license](https://spark.laravel.com/licenses). You can purchase a Spark license via the Spark dashboard.
 :::
 
+:::danger Setting up Webhooks
+
+Please do not forget to set up webhooks when using Spark (both locally and in production). Consult the documentation below after installing Spark.
+:::
+
 To get started installing Spark, add the Spark repository to your application's `composer.json` file:
 
 ```json
