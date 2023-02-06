@@ -56,7 +56,7 @@ Spark Stripe 3.0 utilizes Stripe Checkout for finalizing subscriptions and addin
 
 ### Syncing Customer Details
 
-Spark Stripe 3.0 will now automatically sync some customer information to Stripe, including their name, email address, and billing address. This synchronization will only take place whenever an update to the relevant data occurs on your billable model. To ensure that this does not negatively affect the performance of your application, we should you [configure a Laravel queue worker](https://laravel.com/docs/queues), which Spark will automatically utilize to efficiently synchronize customer data to Stripe.
+Spark Stripe 3.0 will now automatically sync some customer information to Stripe, including their name, email address, and billing address. This synchronization will only take place whenever an update to the relevant data occurs on your billable model. To ensure that this does not negatively affect the performance of your application, we should [configure a Laravel queue worker](https://laravel.com/docs/queues), which Spark will automatically utilize to efficiently synchronize customer data to Stripe.
 
 If you would like to disable customer data synchronization, you can define a `shouldSyncCustomerDetailsToStripe` method on your application's billable model:
 
