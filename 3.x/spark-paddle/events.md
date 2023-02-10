@@ -18,4 +18,4 @@ This event is dispatched when a subscription expires. This happens when a paused
 
 ### Grace Periods and Paused Subscriptions
 
-When a subscription is cancelled, Cashier will pause the subscription and set the subscription's `paused_from` column in your database and keep the user active. This is done because a user is typically allowed to continue using an application until the end of their billing cycle. The user status will remain active until the paused_from date has elapsed; When this happens, paddle will dispatch an event to indicate that the subscription status is now paused.
+When a subscription is cancelled, Cashier will pause the subscription, set the subscription's `paused_from` column in your database, and keep the user active. This is done because a user is typically allowed to continue using an application until the end of their billing cycle. The user status will remain active until the paused_from date has elapsed; When this happens, paddle will dispatch an event to indicate that the subscription status is now paused.
