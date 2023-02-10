@@ -208,3 +208,7 @@ Many applications display billing terms and conditions during checkout. Spark al
 ```
 
 Once added, Spark will display a link pointing to `/terms` in the billing portal.
+
+## Exiting The Billing Portal
+
+Spark will add a `Return to :appName` link to the billing portal that defaults to `/`. To update this link, Spark will first look for a `dashboard_url` configuration value in your application's `config/spark.php`, then it will look for a `dashboard` route.
