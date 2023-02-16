@@ -96,7 +96,7 @@ Next, you should publish the Spark migrations by running the `vendor:publish` Ar
 php artisan vendor:publish --tag="spark-migrations"
 ```
 
-Finally, you should inspect the published migrations and update the `2019_05_03_000001_add_spark_columns_to_users_table.php` file to add the columns needed by Spark to the table that will be used by your application's billable model. For complete steps on how to do this, please refer to [our Cookbook documentation](./cookbook.md#team-billing).
+Finally, you should inspect the published migrations and update the `2019_05_03_000001_add_spark_columns_to_users_table.php` file to add the columns needed by Spark to the table that will be used by your application's billable model. For more information on team billing, checkout [our Cookbook documentation](./cookbook.md#team-billing).
 
 ## Webhooks
 
