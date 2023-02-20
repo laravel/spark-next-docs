@@ -1,4 +1,4 @@
-var versions = ["1.x", "2.x", "3.x"];
+var versions = ["1.x", "2.x", "3.x", "4.x"];
 
 module.exports = (options = {}, context) => ({
   extendPageData($page) {
