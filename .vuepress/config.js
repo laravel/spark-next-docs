@@ -34,6 +34,7 @@ module.exports = {
                     { text: "1.x", link: "/1.x/" },
                     { text: "2.x", link: "/2.x/" },
                     { text: "3.x", link: "/3.x/" },
+                    { text: "4.x", link: "/4.x/" },
                 ]
             }
         ],
@@ -41,7 +42,8 @@ module.exports = {
         sidebar: {
             '/1.x/': require('./1.x'),
             '/2.x/': require('./2.x'),
-            '/3.x/': require('./3.x')
+            '/3.x/': require('./3.x'),
+            '/4.x/': require('./4.x')
         },
     },
 }
