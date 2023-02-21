@@ -2,16 +2,16 @@
 
 [[toc]]
 
-## Upgrading to Spark (Stripe) 4.0 from 3.x
+## Upgrading To Spark (Stripe) 4.0 From 3.x
 
-Spark (Stripe) 4.0 improves the Stripe Checkout experience even further.
+Spark (Stripe) 4.0 continues to improve the Stripe Checkout experience.
 
-### Discounts and Promotion Codes
+### Discounts & Promotion Codes
 
-From now on, promotion codes are handled by Stripe Checkout when subscribing. Because Stripe Checkout doesn't allows the use of legacy Discount codes anymore, customers will only be able to use promotion codes when starting new subscriptions.
+Promotion codes are now collected by Stripe Checkout when subscribing. Since Stripe Checkout doesn't allow the use of legacy "discount codes", customers will only be able to use promotion codes when initiating subscriptions.
 
-Customers will still be able to use legacy Discount codes as well as promotion codes in the checkout field on the billing portal after subscribing. Nevertheless, we encourage you to make use of promotion codes in the future.
+Customers will still be able to use legacy discount codes as well as promotion codes in the billing portal after subscribing. However, since Stripe has deprecated discount codes, we encourage you to use promotion codes in all new applications.
 
-### Terms and Conditions
+### Terms & Conditions
 
-From now on, accepting terms and conditions is handled by Stripe Checkout when starting new subscriptions. If you have the `Features::mustAcceptTerms()` enabled, you're now required to fill out your terms and conditions link in [the public settings of your Stripe dashboard](https://dashboard.stripe.com/settings/public).
+When starting new subscriptions, acceptance of your application's "terms and conditions" is now handled by Stripe Checkout. If you have the `Features::mustAcceptTerms()` feature enabled, you are now required to provide your terms and conditions URL in the [public settings of your Stripe dashboard](https://dashboard.stripe.com/settings/public).
