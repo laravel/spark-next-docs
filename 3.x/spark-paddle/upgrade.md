@@ -12,7 +12,7 @@ Spark's own events were removed in favor of using Cashier's events directly. You
 -Spark\Events\SubscriptionCreated
 -Spark\Events\SubscriptionUpdated
 -Spark\Events\SubscriptionDeleted
-+Laravel\Cashier\Events\SubscriptionCreated
-+Laravel\Cashier\Events\SubscriptionUpdated
-+Laravel\Cashier\Events\SubscriptionDeleted
++Laravel\Paddle\Events\SubscriptionCreated
++Laravel\Paddle\Events\SubscriptionUpdated
++Laravel\Paddle\Events\SubscriptionDeleted
 ```
