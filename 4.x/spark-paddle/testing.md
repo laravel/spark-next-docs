@@ -23,7 +23,7 @@ public function withSubscription(string|int $planId = null): static
 
         $user->subscriptions()->create([
             'name' => 'default',
-            'paddle_id' => $this->faker->unique()->numberBetween(1, 1000),
+            'paddle_id' => fake()->unique()->numberBetween(1, 1000),
             'paddle_status' => 'active',
             'paddle_plan' => $planId,
             'quantity' => 1,
