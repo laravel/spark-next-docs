@@ -73,6 +73,8 @@ class User extends Authenticatable
 }
 ```
 
+It's important to note that your billable's primary key column should be a column with the name `id` and type of `integer`.
+
 ### Billable Slugs
 
 As you may have noticed, each entry in the `billables` configuration array is keyed by a "slug" that is a shortened form of the billable model class. This slug can be used when accessing the Spark customer billing portal, such as `https://example.com/billing/user` or `https://example.com/billing/team`.
