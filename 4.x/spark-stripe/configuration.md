@@ -70,7 +70,7 @@ public function boot(): void
 }
 ```
 
-Before continuing, you should ensure that the model class that corresponds to your billable model is using the `Spark\Billable` trait and that it casts the `trial_ends_at` attribute to `datetime`:
+Before continuing, you should ensure that the model class that corresponds to your billable model is using the `Spark\Billable` trait and that it casts the `trial_ends_at` attribute to `datetime`. In addition, your billable model's primary key should be an `integer` column named `id`:
 
 ```php
 <?php
