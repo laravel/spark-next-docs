@@ -27,6 +27,24 @@ Because Paddle does not allow plan quantity changes during trial periods, the Pa
 **Therefore, you may assign each subscription plan zero trial days when configuring subscription plans in your Paddle dashboard.**
 :::
 
+### Trials For Existing Users
+
+When you install Spark into existing applications, existing users won't get their trial periods automatically. Therefor, you should assign these yourself when you deploy Spark to your app:
+
+```php
+use App\Models\User;
+
+User::all()->each(function (User $user) {
+    $trialDays = $user->sparkConfiguration('trial_days');
+
+    $user->createAsCustomer([
+        'trial_ends_at' => $trialDays ? now()->addDays($trialDays) : null,
+    ]);
+});
+```
+
+This will create a customer record for each user and grant them the trial period you have configured for this billable.
+
 ## Determining Plan Eligibility
 
 Sometimes, you may wish to place limitations on a particular billing plan. For example, a project management application might limit users on a particular billing plan to a maximum of 10 projects, while a higher priced plan might allow the creation of up to 20 projects.

@@ -20,6 +20,24 @@ if ($user->onTrial()) {
 }
 ```
 
+### Trials For Existing Users
+
+When you install Spark into existing applications, existing users won't get their trial periods automatically. Therefor, you should assign these yourself when you deploy Spark to your app:
+
+```php
+use App\Models\User;
+
+User::all()->each(function (User $user) {
+    $trialDays = $user->sparkConfiguration('trial_days');
+
+    $user->forceFill([
+        'trial_ends_at' => $trialDays ? now()->addDays($trialDays) : null,
+    ])->save();
+});
+```
+
+This will update each user and grant them the trial period you have configured for this billable.
+
 ### Requiring A Payment Method Up Front
 
 Some applications may need to require a payment method up front before beginning a free trial. The Stripe edition of Spark supports this behavior. To get started, you will add a `trial_days` configuration option to the individual plan configuration array and remove the `trial_days` configuration option that is within the billable configuration array:
