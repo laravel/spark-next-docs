@@ -41,6 +41,14 @@ In addition, your Spark powered application will need to receive webhooks from S
 - invoice.payment_action_required
 - invoice.payment_succeeded
 
+Or, when you're ready for production, you can create this webhook with all the necessary events by running the following command on your production server:
+
+```bash
+php artisan cashier:webhook
+```
+
+After creation, the webhook will be active immediately. 
+
 #### Webhooks & Local Development
 
 During local development, you will need a way for Stripe to send webhooks to your application running on your local machine. An easy way to get started is via [the Stripe CLI](https://stripe.com/docs/stripe-cli), which provides a convenient `listen` command. For example, if you are developing locally via the `artisan serve` CLI command and serving your site at `http://localhost:8000`, you may run the following Stripe CLI command to allow Stripe to communicate with your application:
