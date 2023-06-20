@@ -41,13 +41,13 @@ In addition, your Spark powered application will need to receive webhooks from S
 - invoice.payment_action_required
 - invoice.payment_succeeded
 
-Or when you're ready for production you can create this webhook with all the necessary events by running the following command on the production server:
+Or, when you're ready for production, you can create this webhook with all the necessary events by running the following command on your production server:
 
 ```bash
 php artisan cashier:webhook
 ```
 
-After creation, the webhook will be immediately active. 
+After creation, the webhook will be active immediately. 
 
 #### Webhooks & Local Development
 
