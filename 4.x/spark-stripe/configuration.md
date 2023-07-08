@@ -40,6 +40,7 @@ In addition, your Spark powered application will need to receive webhooks from S
 - customer.updated
 - invoice.payment_action_required
 - invoice.payment_succeeded
+- payment_method.automatically_updated
 
 Or, when you're ready for production, you can create this webhook with all the necessary events by running the following command on your production server:
 
