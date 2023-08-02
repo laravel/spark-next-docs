@@ -106,7 +106,7 @@ if ($user->subscribedToPlan($planId = 1000)) {
 
 Spark allows you to define plan "incentive" text to display to your users. For example, you may wish to display the amount saved by choosing to use a yearly plan vs. a monthly plan. Incentive text is shown in the top right corner of the plan's card:
 
-![Incentive text example](./../../assets/img/incentive.png)
+![Incentive text example](/img/incentive.png)
 
 To define incentive text, you may add `monthly_incentive` and / or `yearly_incentive` configuration options to your plan definition:
 
