@@ -60,7 +60,20 @@ export default defineConfigWithTheme<ThemeConfig>({
             dark: '/logo-dark.svg',
         },
         nav: [
-            { text: 'Laravel Spark', link: 'https://spark.laravel.com' },
+            {
+                text: 'Laravel Spark',
+                link: 'https://spark.laravel.com',
+            },
+        ],
+        versions: [
+            {
+                text: 'v4.x',
+                link: 'https://spark.laravel.com/docs',
+                current: true,
+            },
+            { text: 'v3.x', link: 'https://github.com/laravel/spark-next-docs/tree/3.x' },
+            { text: 'v2.x', link: 'https://github.com/laravel/spark-next-docs/tree/2.x' },
+            { text: 'v1.x', link: 'https://github.com/laravel/spark-next-docs/tree/1.x' },
         ],
         sidebar: [
             {
