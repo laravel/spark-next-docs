@@ -202,6 +202,30 @@ If your subscription plan only offers a monthly billing cycle, you may omit the 
 
 In addition, you are free to supply a short description of the plan and a list of features relevant to the plan. This information will be displayed in the Spark billing portal.
 
+## Customizing Stripe Checkout
+
+When users start new subscriptions they will be redirected to Stripe's hosted Checkout page. Using the `checkoutSessionOptions` method, you can customize the Stripe Checkout experience by providing a closure that receives the billable and chosen plan as its argument.
+
+Typically, you should invoke Spark's `checkoutSessionOptions` method in the `boot` method of your `SparkServiceProvider` class. The provided closure can return any option accepted by [Stripe Checkout](https://stripe.com/docs/api/checkout/sessions/create):
+
+```php
+use App\Models\User;
+use Spark\Plan;
+use Spark\Spark;
+ 
+/**
+ * Bootstrap any application services.
+ */
+public function boot(): void
+{
+    Spark::checkoutSessionOptions('user', function ($billable, Plan $plan) {
+        return [
+            'locale' => $billable->language,
+        ];
+    });
+}
+```
+
 ## Accessing The Billing Portal
 
 Once you have configured your Spark installation, you may access your application's billing portal at the `/billing` URI. So, if your application is being served on `localhost`, you may access your application's billing portal at `http://localhost/billing`.
