@@ -204,7 +204,9 @@ In addition, you are free to supply a short description of the plan and a list o
 
 ## Customizing Stripe Checkout
 
-When users start new subscriptions they'll be redirected to Stripe's hosted Checkout page. You can customize the experience on this page by defining a callback that receives the billable and chosen plan as its argument. You should invoke Spark's `checkoutSessionOptions` method in the `boot` method of your `SparkServiceProvider` class:
+When users start new subscriptions they will be redirected to Stripe's hosted Checkout page. Using the `checkoutSessionOptions` method, you can customize the Stripe Checkout experience by providing a closure that receives the billable and chosen plan as its argument.
+
+Typically, you should invoke Spark's `checkoutSessionOptions` method in the `boot` method of your `SparkServiceProvider` class. The provided closure can return any option accepted by [Stripe Checkout](https://stripe.com/docs/api/checkout/sessions/create):
 
 ```php
 use App\Models\User;
@@ -223,8 +225,6 @@ public function boot(): void
     });
 }
 ```
-
-You can return any option accepted by [Stripe's Checkout create endpoint](https://stripe.com/docs/api/checkout/sessions/create).
 
 ## Accessing The Billing Portal
 
