@@ -45,7 +45,7 @@ In addition, your Spark powered application will need to receive webhooks from S
 Or, when you're ready for production, you can create this webhook with all the necessary events by running the following command on your production server:
 
 ```bash
-php artisan cashier:webhook
+php artisan cashier:webhook --url="https://your-production-url.com/spark/webhook"
 ```
 
 After creation, the webhook will be active immediately. 
