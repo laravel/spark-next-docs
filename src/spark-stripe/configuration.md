@@ -226,6 +226,28 @@ public function boot(): void
 }
 ```
 
+### Customizing Payment Method Checkout
+
+In addition to customizing the checkout experience when creating new subscriptions, you may also customize the checkout session when adding new payment methods. This can be accomplished using the `paymentMethodSessionOptions` method. Typically, you should invoke Spark's `paymentMethodSessionOptions` method in the `boot` method of your `SparkServiceProvider` class:
+
+```php
+use App\Models\User;
+use Spark\Plan;
+use Spark\Spark;
+ 
+/**
+ * Bootstrap any application services.
+ */
+public function boot(): void
+{
+    Spark::paymentMethodSessionOptions('user', function ($billable, Plan $plan) {
+        return [
+            'locale' => $billable->language,
+        ];
+    });
+}
+```
+
 ## Accessing The Billing Portal
 
 Once you have configured your Spark installation, you may access your application's billing portal at the `/billing` URI. So, if your application is being served on `localhost`, you may access your application's billing portal at `http://localhost/billing`.
