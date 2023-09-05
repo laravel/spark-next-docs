@@ -228,7 +228,7 @@ public function boot(): void
 
 ### Customizing Payment Method Checkout
 
-In addition to customizing the checkout experience when creating new subscriptions, you may also customize the checkout session when adding new payment methods. This can be accomplished using the `paymentMethodSessionOptions` method. Typically, you should invoke Spark's `paymentMethodSessionOptions` method in the `boot` method of your `SparkServiceProvider` class.
+In addition to customizing the checkout experience when creating new subscriptions, you may also customize the checkout session when adding new payment methods. This can be accomplished using the `paymentMethodSessionOptions` method. Typically, you should invoke Spark's `paymentMethodSessionOptions` method in the `boot` method of your `SparkServiceProvider` class:
 
 ```php
 use App\Models\User;
