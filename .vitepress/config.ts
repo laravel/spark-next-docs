@@ -84,18 +84,6 @@ export default defineConfigWithTheme<ThemeConfig>({
                     { text: 'Customization', link: '/customization' },
                 ],
             }, {
-                text: 'Spark Paddle',
-                items: [
-                    { text: 'Configuration', link: '/spark-paddle/configuration' },
-                    { text: 'Plans', link: '/spark-paddle/plans' },
-                    { text: 'Middleware', link: '/spark-paddle/middleware' },
-                    { text: 'Events', link: '/spark-paddle/events' },
-                    { text: 'Testing', link: '/spark-paddle/testing' },
-                    { text: 'Cookbook', link: '/spark-paddle/cookbook' },
-                    { text: 'Customization', link: '/spark-paddle/customization' },
-                    { text: 'Upgrade', link: '/spark-paddle/upgrade' },
-                ],
-            }, {
                 text: 'Spark Stripe',
                 items: [
                     { text: 'Configuration', link: '/spark-stripe/configuration' },
