@@ -240,7 +240,7 @@ use Spark\Spark;
  */
 public function boot(): void
 {
-    Spark::paymentMethodSessionOptions('user', function ($billable, Plan $plan) {
+    Spark::paymentMethodSessionOptions('user', function ($billable) {
         return [
             'locale' => $billable->language,
         ];
