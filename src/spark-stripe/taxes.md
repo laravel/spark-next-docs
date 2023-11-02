@@ -4,9 +4,8 @@ Spark may be configured to calculate and apply European Union VAT tax to subscri
 
 :::tip Price Settings
 
-When creating prices in Stripe, make sure to **disable** "Include tax in price" so the proper tax rates can be added by Spark.
+When creating prices in Stripe, you should **disable** the "Include tax in price" option so the proper tax rates can be added by Spark.
 :::
-
 
 To get started, you should uncomment the `Features::euVatCollection()` line within your application's `config/spark.php` configuration file. The value provided for the `home-country` option should be the two-character country code corresponding to the country where your business is located:
 
