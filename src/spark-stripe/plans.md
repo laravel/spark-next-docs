@@ -8,7 +8,7 @@
 
 ## Trial Periods
 
-By default, the plan configuration in your application's `config/spark.php` configuration file contains a `trial_days` option with a value of `5`. This configuration option determines the amount of time the user is allowed to use your application during their free trial period. You are free to modify this configuration value based on your application's needs but be aware that he minimum amount of trial days is 2 [as required by Stripe Checkout](https://stripe.com/docs/api/checkout/sessions/create?lang=php#create_checkout_session-subscription_data-trial_end).
+By default, the plan configuration in your application's `config/spark.php` configuration file contains a `trial_days` option with a value of `5`. This configuration option determines the amount of time the user is allowed to use your application during their free trial period. You are free to modify this configuration value based on your application's needs; however, if a trial period is configured, Stripe Checkout requires it to be at least two days.
 
 In practical terms, this configuration option simply determines when the `onTrial` method of the billable model will begin returning `false` instead of `true`:
 
