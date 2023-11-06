@@ -6,6 +6,11 @@
 
 In the following documentation, we will discuss how to configure a Laravel Spark installation when using the [Stripe](https://stripe.com) payment provider. All of Spark's configuration options are housed in your application's `config/spark.php` configuration file.
 
+:::danger Link Payments
+
+Spark does not currently support subscriptions via Link payments. You should disable this payment method via your Stripe dashboard when using Spark.
+:::
+
 ## Stripe Configuration
 
 Of course, to use Stripe as a payment provider for your Laravel Spark application you must have an active [Stripe account](https://stripe.com).
