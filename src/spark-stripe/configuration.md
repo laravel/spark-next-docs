@@ -8,7 +8,7 @@ In the following documentation, we will discuss how to configure a Laravel Spark
 
 :::danger Link Payments
 
-At this time, Spark does not support Link payments with subscriptions. Please disable this payment method when using Spark.
+Spark does not currently support subscriptions via Link payments. You should disable this payment method via your Stripe dashboard when using Spark.
 :::
 
 ## Stripe Configuration
