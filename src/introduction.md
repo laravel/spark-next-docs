@@ -10,7 +10,25 @@ Laravel Spark is the perfect starting point for your next big idea. When combine
 
 ## Supported Payment Providers
 
-Spark supports Stripe as its payment provider. **At this time, it is not possible to implement your own custom payment provider when using Spark.**
+Spark supports two payment providers, and purchasing a Spark license grants you the ability to use either of these payment providers. **At this time, it is not possible to implement your own custom payment provider when using Spark.** We'll provide a brief overview of each provider below.
+
+### Paddle
+
+[Paddle](https://paddle.com) is a robust billing provider that serves as a merchant of record for your application. Paddle removes the burden of tax compliance from your SaaS business by handling the complexity of gathering and paying your VAT for you. In addition, Paddle provides support for accepting payments from your customers via credit card or PayPal, localized pricing, and hosted invoices.
+
+Spark's Paddle support is provided by the underlying [Laravel Cashier Paddle](https://laravel.com/docs/cashier-paddle) library.
+
+:::warning Paddle Account Approval
+
+Your Paddle account must be approved by Paddle before you can begin using Spark. To apply for an account, please visit the [Paddle website](https://paddle.com). **While you are developing your application, you may use the [Paddle Sandbox](https://developer.paddle.com/getting-started/sandbox)**.
+:::
+
+#### Limitations
+
+We have listed some known limitations of using the Paddle payment provider below:
+
+- When a recurring coupon is used while subscribing to a plan, the coupon discount will be applied on every billing cycle. However, if the subscription's quantity or plan changes, Paddle will remove the coupon from the subscription.
+- Because Paddle does not allow plan quantity changes during trial periods, the Paddle edition of Spark does not support requiring a credit card up front when beginning a trial. All trial periods are started without a credit card or payment method provided up front during the user's initial registration process.
 
 ### Stripe
 
@@ -36,7 +54,7 @@ You may not sell Spark powered applications on code distribution platforms such 
 
 #### **Does Spark support any other payment providers?**
 
-No. Spark only supports Stripe and it is not possible for developers to customize Spark to accept additional providers. If you need to use another payment provider **you should not purchase Laravel Spark**.
+No. Spark only supports Stripe and Paddle and it is not possible for developers to customize Spark to accept additional providers. If you need to use another payment provider **you should not purchase Laravel Spark**.
 
 #### **Am I required to use Tailwind / Blade / Vue / etc. in order to use Spark?**
 
@@ -44,4 +62,4 @@ No. Spark's billing portal is totally isolated from the rest of your Laravel app
 
 #### **Why are my customers presented with a payment confirmation screen?**
 
-Extra verification is sometimes required in order to confirm and process a payment. When this happens, Stripe will present a payment confirmation screen. Payment confirmation screens presented by Stripe or Spark may be tailored to a specific bank or card issuer's payment flow and can include additional card confirmation, a temporary small charge, separate device authentication, or other forms of verification.
+Extra verification is sometimes required in order to confirm and process a payment. When this happens, Paddle or Stripe will present a payment confirmation screen. Payment confirmation screens presented by Paddle, Stripe, or Spark may be tailored to a specific bank or card issuer's payment flow and can include additional card confirmation, a temporary small charge, separate device authentication, or other forms of verification.
