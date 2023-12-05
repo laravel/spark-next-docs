@@ -2,6 +2,6 @@
 
 [[toc]]
 
-## Upgrading to Spark (Paddle) 4.0 from 3.x
+## Upgrading to Spark (Paddle) 5.0 from 4.x
 
-Spark (Paddle) 4.0 is a maintenance release with no breaking changes.
+Unfortunately there is no official upgrade path from Paddle to migrate from Paddle Classic to Paddle Billing. Therefore, if you use Paddle Classic, you should continue to use Spark Paddle 4.x. New projects on Paddle which use Paddle Billing should use Spark Paddle 5.x.

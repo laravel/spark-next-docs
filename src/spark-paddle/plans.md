@@ -20,13 +20,6 @@ if ($user->onTrial()) {
 }
 ```
 
-:::danger Paddle Trials
-
-Because Paddle does not allow plan quantity changes during trial periods, the Paddle edition of Spark does not support requiring a credit card up front when beginning a trial. All trial periods are started without a credit card or payment method provided up front during the user's initial registration process.
-
-**Therefore, you may assign each subscription plan zero trial days when configuring subscription plans in your Paddle dashboard.**
-:::
-
 ## Determining Plan Eligibility
 
 Sometimes, you may wish to place limitations on a particular billing plan. For example, a project management application might limit users on a particular billing plan to a maximum of 10 projects, while a higher priced plan might allow the creation of up to 20 projects.
@@ -53,11 +46,6 @@ Spark::billable(User::class)->checkPlanEligibility(function ($billable, Plan $pl
 Some applications charge users per "seat" instead of a fixed monthly price. For example, a project management application might charge $10 monthly **per project** such that if a user managed five projects they would be billed $50 monthly.
 
 If your application will be using per-seat billing, you will likely define a single, monthly plan in your application's `config/spark.php` configuration file. In addition, you will need to instruct Spark how to calculate the current number of "seats" a billable model is currently using.
-
-:::danger Enabling Plan Quantity
-
-While creating your subscription plans in Paddle's dashboard, make sure you select "Enable quantity". Otherwise, Paddle will ignore any quantity sent by Spark for per-seat billing.
-:::
 
 You may instruct Spark how to calculate the current number of "seats" a billable model is currently using via the `chargePerSeat` method when configuring a billable model. Typically, this method should be called within the `boot` method of your application's `App\Providers\SparkServiceProvider` class:
 
@@ -97,8 +85,12 @@ if ($user->subscribed()) {
     // The user has an active subscription...
 }
 
-if ($user->subscribedToPlan($planId = 1000)) {
-    // The user has a subscription to a plan with a Paddle plan ID of 1000...
+if ($user->subscribedToPrice($priceId = 'pri_monthly')) {
+    // The user has a subscription to a plan with a Paddle price ID of pri_monthly...
+}
+
+if ($user->subscribedToProduct($productId = 'pro_hobby')) {
+    // The user has a subscription to a product with a Paddle product ID of pro_hobby...
 }
 ```
 

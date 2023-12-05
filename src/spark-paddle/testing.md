@@ -16,20 +16,25 @@ use App\Models\User;
  *
  * @return $this
  */
-public function withSubscription(string|int $planId = null): static
+public function withSubscription(string|int $priceId = null): static
 {
-    return $this->afterCreating(function (User $user) use ($planId) {
+    return $this->afterCreating(function (User $user) use ($priceId) {
         optional($user->customer)->update(['trial_ends_at' => null]);
 
-        $user->subscriptions()->create([
-            'name' => 'default',
+        $subscription = $user->subscriptions()->create([
+            'type' => 'default',
             'paddle_id' => fake()->unique()->numberBetween(1, 1000),
-            'paddle_status' => 'active',
-            'paddle_plan' => $planId,
-            'quantity' => 1,
+            'status' => 'active',
             'trial_ends_at' => null,
-            'paused_from' => null,
+            'paused_at' => null,
             'ends_at' => null,
+        ]);
+
+        $subscription->items()->create([
+            'product_id' => fake()->unique()->numberBetween(1, 1000),,
+            'price_id' => $priceId,
+            'status' => 'active',
+            'quantity' => 1,
         ]);
     });
 }
@@ -38,7 +43,7 @@ public function withSubscription(string|int $planId = null): static
 Once you have defined the state method, you may use it when creating models via your factory:
 
 ```php
-$user = User::factory()->withSubscription($planId = 1000)->create();
+$user = User::factory()->withSubscription($priceId = 'pri_monthly')->create();
 
 $user->subscribed(); // true
 ```

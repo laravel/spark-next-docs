@@ -20,15 +20,8 @@ Spark's Paddle support is provided by the underlying [Laravel Cashier Paddle](ht
 
 :::warning Paddle Account Approval
 
-Your Paddle account must be approved by Paddle before you can begin using Spark. To apply for an account, please visit the [Paddle website](https://paddle.com). **While you are developing your application, you may use the [Paddle Sandbox](https://developer.paddle.com/getting-started/sandbox)**.
+Your Paddle account must be approved by Paddle before you can begin using Spark. To apply for an account, please visit the [Paddle website](https://paddle.com). **While you are developing your application, you may use the [Paddle Sandbox](https://sandbox-vendors.paddle.com/)**.
 :::
-
-#### Limitations
-
-We have listed some known limitations of using the Paddle payment provider below:
-
-- When a recurring coupon is used while subscribing to a plan, the coupon discount will be applied on every billing cycle. However, if the subscription's quantity or plan changes, Paddle will remove the coupon from the subscription.
-- Because Paddle does not allow plan quantity changes during trial periods, the Paddle edition of Spark does not support requiring a credit card up front when beginning a trial. All trial periods are started without a credit card or payment method provided up front during the user's initial registration process.
 
 ### Stripe
 
