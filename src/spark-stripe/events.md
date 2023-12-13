@@ -6,7 +6,7 @@ Spark dispatches several [events](https://laravel.com/docs/events) that you may 
 
 ## `Spark\Events\SubscriptionCreated`
 
-This event is dispatched when a subscription is created with a status of `trialing` or `active`.
+This event is dispatched when a subscription becomes `active`.
 
 ## `Spark\Events\SubscriptionUpdated`
 
