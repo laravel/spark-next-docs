@@ -46,11 +46,11 @@ Spark Stripe 5.0 no longer automatically loads migrations from its own migration
 php artisan vendor:publish --tag=spark-migrations
 ```
 
-### Receipt Naming Changed To Invoice
+### Receipts Renamed To Invoices
 
-Code and text throughout Spark Stripe has been renamed from receipt to invoice. This is to bring Spark Stripe closer to Stripe's own terminology for this. You should make the following changes:
+Code and text throughout Spark Stripe has been updated to refer to "receipts" as "invoices". This is to bring Spark Stripe closer to Stripe's own terminology for this concept. To accomodate this, you should make the following changes to your application:
 
-First, we'll need to rename the feature flag in your `spark.php` config:
+First, rename the corresponding feature flag in your `spark.php` config:
 
 ```php
 // From...
@@ -60,7 +60,7 @@ Features::receiptEmails(['custom-addresses' => true]),
 Features::invoiceEmails(['custom-addresses' => true]),
 ```
 
-Then rename the `receipt_data` key in your `spark.php` config file to `invoice_data`:
+Then, rename the `receipt_data` key in your application's `config/spark.php` configuration file to `invoice_data`:
 
 ```php
 // From...
@@ -82,7 +82,7 @@ Then rename the `receipt_data` key in your `spark.php` config file to `invoice_d
 ],
 ```
 
-And lastly we'll create a migration to rename the `receipt_emails` column to `invoice_emails`:
+Lastly, create a migration to rename the `user` table's `receipt_emails` column to `invoice_emails`:
 
 ```php
 Schema::table('users', function (Blueprint $table) {
