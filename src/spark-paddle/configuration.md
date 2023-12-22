@@ -8,24 +8,21 @@ In the following documentation, we will discuss how to configure a Laravel Spark
 
 ## Paddle Configuration
 
-Of course, to use Paddle as a payment provider for your Laravel Spark application you must have an active [Paddle account](https://paddle.com). **While you are developing your application, you may use the [Paddle Sandbox](https://developer.paddle.com/getting-started/sandbox)**.
+Of course, to use Paddle as a payment provider for your Laravel Spark application you must have an active [Paddle account](https://paddle.com). **While you are developing your application, you may use the [Paddle Sandbox](https://sandbox-vendors.paddle.com/)**.
 
 ### Environment Variables
 
 Next, you should configure the application environment variables that will be needed by Spark in order to access your Paddle account. These variables should be placed in your application's `.env` environment file.
 
-Of course, you should adjust the variable's values to correspond to your own Paddle account's credentials. In addition, you should set the `PADDLE_SANDBOX` variable to `true` if you are using Paddle's sandbox environment. Your Paddle API credentials and public key are available in your Paddle account dashboard via the "Developer Tools" section's "Authentication", "Public Key", and "SDK API" panels:
+Of course, you should adjust the variable's values to correspond to your own Paddle account's credentials. In addition, you should set the `PADDLE_SANDBOX` variable to `true` if you are using Paddle's sandbox environment. Your Paddle API credentials and webhook secret are available in your Paddle account dashboard via the "Developer Tools" section's "Authentication" and "Notifications":
 
 ```bash
 CASHIER_CURRENCY=USD
 CASHIER_CURRENCY_LOCALE=en
 PADDLE_SANDBOX=true
-PADDLE_VENDOR_ID=your-paddle-vendor-id
-PADDLE_VENDOR_AUTH_CODE=your-paddle-vendor-auth-code
-PADDLE_PUBLIC_KEY="-----BEGIN PUBLIC KEY-----
-MIICIjANBiuqhiiG9w0BAQEFXAOCAg8AMIIjjgKCAraAyj/UyC89sqpOnpEZcM76
-guppK9vfF7balLj87rE9VXq5...EAAQ==
------END PUBLIC KEY-----"
+PADDLE_SELLER_ID=your-paddle-seller-id
+PADDLE_AUTH_CODE=your-paddle-auth-code
+PADDLE_WEBHOOK_SECRET=pdl_ntfset_xxx
 ```
 
 :::danger Configuring Locales
@@ -35,15 +32,15 @@ In order to use locales other than `en`, ensure the `ext-intl` PHP extension is 
 
 ### Paddle Webhooks
 
-In addition, your Spark powered application will need to receive webhooks from Paddle in order to keep your application's billing and subscription data in sync with Paddle's. Within your Paddle dashboard's "Alerts / Webhooks" management panel, you should configure Paddle to send webhook alerts to your application's `/spark/webhook` URI. You should enable webhook alerts for the following events:
+In addition, your Spark powered application will need to receive webhooks from Paddle in order to keep your application's billing and subscription data in sync with Paddle's. Within your Paddle dashboard's "Notifications" management panel, you should configure Paddle to send webhook alerts to your application's `/paddle/webhook` URI. You should enable webhook alerts for the following events:
 
+- Customer Updated
+- Transaction Completed
+- Transaction Updated
 - Subscription Created
 - Subscription Updated
-- Subscription Cancelled
-- Subscription Payment Success
-- Subscription Payment Failed
-- High Risk Transaction Created
-- High Risk Transaction Updated
+- Subscription Paused
+- Subscription Canceled
 
 #### Webhooks & Local Development
 
@@ -135,11 +132,19 @@ Spark::billable(Team::class)->authorize(function (Team $billable, Request $reque
 });
 ```
 
-### Billable Email Address
+### Billable Name And Email Address
 
-By default, Spark will use your billable model's `email` attribute as the email address associated with the Paddle customer record it creates for the model. If you would like to specify another attribute that should be used instead, you may define a `paddleEmail` method on your billable model:
+By default, Spark will use your billable model's `name` and `email` attributes as the name and email address associated with the Paddle customer record it creates for the model. If you would like to specify another attribute that should be used instead, you may define a `paddleName` and `paddleEmail` method on your billable model:
 
 ```php
+/**
+ * Get the name that should be associated with the Paddle customer.
+ */
+public function paddleName(): string|null
+{
+    return $this->name;
+}
+
 /**
  * Get the email address that should be associated with the Paddle customer.
  */

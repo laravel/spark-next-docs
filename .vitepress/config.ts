@@ -67,10 +67,11 @@ export default defineConfigWithTheme<ThemeConfig>({
         ],
         versions: [
             {
-                text: 'v4.x',
+                text: 'v5.x',
                 link: 'https://spark.laravel.com/docs',
                 current: true,
             },
+            { text: 'v4.x', link: 'https://github.com/laravel/spark-next-docs/tree/4.x' },
             { text: 'v3.x', link: 'https://github.com/laravel/spark-next-docs/tree/3.x' },
             { text: 'v2.x', link: 'https://github.com/laravel/spark-next-docs/tree/2.x' },
             { text: 'v1.x', link: 'https://github.com/laravel/spark-next-docs/tree/1.x' },
@@ -82,6 +83,18 @@ export default defineConfigWithTheme<ThemeConfig>({
                     { text: 'Introduction', link: '/introduction' },
                     { text: 'Installation', link: '/installation' },
                     { text: 'Customization', link: '/customization' },
+                ],
+            }, {
+                text: 'Spark Paddle',
+                items: [
+                    { text: 'Configuration', link: '/spark-paddle/configuration' },
+                    { text: 'Plans', link: '/spark-paddle/plans' },
+                    { text: 'Middleware', link: '/spark-paddle/middleware' },
+                    { text: 'Events', link: '/spark-paddle/events' },
+                    { text: 'Testing', link: '/spark-paddle/testing' },
+                    { text: 'Cookbook', link: '/spark-paddle/cookbook' },
+                    { text: 'Customization', link: '/spark-paddle/customization' },
+                    { text: 'Upgrade', link: '/spark-paddle/upgrade' },
                 ],
             }, {
                 text: 'Spark Stripe',

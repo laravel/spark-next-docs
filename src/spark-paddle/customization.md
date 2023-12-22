@@ -87,7 +87,7 @@ class PaddleEventListener
      */
     public function handle(WebhookReceived $event): void
     {
-        if ($event->payload['alert_name'] === 'payment_succeeded') {
+        if ($event->payload['event_type'] === 'subscription.created') {
             return;
         }
 

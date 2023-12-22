@@ -20,13 +20,13 @@ To get started installing Spark, add the Spark repository to your application's 
 ],
 ```
 
-Next, you may add the `laravel/spark-stripe` package to the list of required packages in your `composer.json` file:
+Next, you may add the `laravel/spark-paddle` or `laravel/spark-stripe` package to the list of required packages in your `composer.json` file:
 
 ```json
 "require": {
     "php": "^8.1",
     "laravel/framework": "^10.0",
-    "laravel/spark-stripe": "^4.0"
+    "laravel/spark-paddle": "^5.0"
 },
 ```
 
@@ -77,7 +77,7 @@ php artisan migrate
 If you are using the Stripe edition of Spark and plan to bill a model other than the `App\Models\User` model, you should follow [these instructions](./spark-stripe/customization.md#migrations) before running the migration command.
 :::
 
-Lastly, you will need to configure Stripe webhooks so that these services can communicate with your local application via webhooks. To get started, read our dedicated documentation on [Stripe webhooks](./spark-stripe/configuration.md#stripe-webhooks). Webhooks are required during both local development and in production environments.
+Lastly, you will need to configure Stripe or Paddle webhooks so that these services can communicate with your local application via webhooks. To get started, read our dedicated documentation on [Stripe webhooks](./spark-stripe/configuration.md#stripe-webhooks) or [Paddle webhooks](./spark-paddle/configuration.md#paddle-webhooks). Webhooks are required during both local development and in production environments.
 
 That's it! Next, you may navigate to your application's `config/spark.php` configuration file and begin configuring your Spark installation.
 
@@ -97,6 +97,6 @@ If your Spark license has expired and you don't want to renew the license your `
 "require": {
     "php": "^8.1",
     "laravel/framework": "^10.0",
-    "laravel/spark-stripe": "4.y.z"
+    "laravel/spark-paddle": "5.y.z"
 },
 ```
