@@ -275,29 +275,29 @@ Many applications display billing terms and conditions during checkout. Spark al
 
 Once added, Spark will display a link pointing to `/terms` in the billing portal.
 
-## Receipt Emails
+## Invoice Emails
 
-Spark Stripe can also email subscription payment receipts to your customers. To enable this feature, uncomment the 'receiptEmails' feature entry in your application's `config/spark.php` configuration file:
-
-```php
-'features' => [
-    // ...
-    Features::receiptEmails(),
-    // ...
-]
-```
-
-If you would like to grant your customers the ability to specify the email address that receipts should be sent to, you may provide the `custom-addresses` option to the feature definition:
+Spark Stripe can also email subscription invoices to your customers. To enable this feature, uncomment the 'invoiceEmails' feature entry in your application's `config/spark.php` configuration file:
 
 ```php
 'features' => [
     // ...
-    Features::receiptEmails(['custom-addresses' => true]),
+    Features::invoiceEmails(),
     // ...
 ]
 ```
 
-If you enable email receipts within your application, we suggest disabling [Stripe's receipt mailing](https://dashboard.stripe.com/settings/billing/automatic) feature so that customers do not receive duplicate receipt emails.
+If you would like to grant your customers the ability to specify the email address that invoices should be sent to, you may provide the `custom-addresses` option to the feature definition:
+
+```php
+'features' => [
+    // ...
+    Features::invoiceEmails(['custom-addresses' => true]),
+    // ...
+]
+```
+
+If you enable email invoices within your application, we suggest disabling [Stripe's invoice mailing](https://dashboard.stripe.com/settings/billing/automatic) feature so that customers do not receive duplicate invoice emails. Disable the "Send finalised invoices and credit notes to customers" option to achieve this.
 
 ## Failed Payment Emails
 

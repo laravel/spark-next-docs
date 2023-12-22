@@ -33,8 +33,6 @@ After renaming the migration, you may update its contents such that it updates t
 
 Next, update the `subscriptions` table migration to contain `team_id`instead of `user_id`. You should also ensure that you update the column in the migration's index as well.
 
-Finally, you also need to update the migration of the `receipts` table to use the `team_id` column instead of `user_id`.
-
 #### Updating The Service Provider
 
 Now that the migrations have been updated, we should update the `SparkServiceProvider` to reference the `Team` model instead of the `User` model:

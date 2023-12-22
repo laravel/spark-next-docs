@@ -2,16 +2,82 @@
 
 [[toc]]
 
-## Upgrading To Spark (Stripe) 4.0 From 3.x
+## Upgrading To Spark (Stripe) 5.0 From 4.x
 
-Spark (Stripe) 4.0 continues to improve the Stripe Checkout experience.
+Spark (Stripe) 5.0 primarily provides an upgrade from Cashier 14.x to Cashier 15.x. As such, in addition to the upgrade guide below, please consult the [Cashier 15 upgrade guide](https://github.com/laravel/cashier-stripe/blob/15.x/UPGRADE.md).
 
-### Discounts & Promotion Codes
+### Stripe API Version
 
-Promotion codes are now collected by Stripe Checkout when subscribing. Since Stripe Checkout doesn't allow the use of legacy "discount codes", customers will only be able to use promotion codes when initiating subscriptions.
+The default Stripe API version for Cashier 15.x is `2023-10-16`.
 
-Customers will still be able to use legacy discount codes as well as promotion codes in the billing portal after subscribing. However, since Stripe has deprecated discount codes, we encourage you to use promotion codes in all new applications.
+If you use the Stripe SDK directly, make sure to properly test your integration after updating.
 
-### Terms & Conditions
+#### Upgrading Your Stripe Webhook
 
-When starting new subscriptions, acceptance of your application's "terms and conditions" is now handled by Stripe Checkout. If you have the `Features::mustAcceptTerms()` feature enabled, you are now required to provide your terms and conditions URL in the [public settings of your Stripe dashboard](https://dashboard.stripe.com/settings/public).
+:::danger Deployment & Webhooks
+
+It's very important that you upgrade your webhook immediately after updating and deploying Spark in order to minimize conflicts where the API version of your webhook does not match the version used by Cashier.
+:::
+
+You should ensure your Stripe webhook operates on the same API version as Spark's underlying API version used by Cashier. To do so, you may use the `cashier:webhook` command from your production environment to create a new webhook that matches Cashier's Stripe API version. Of course, you should ensure the webhook's URL corresponds to the URL where your application expects to receive webhook requests. By default, your application will receive Spark Stripe webhooks at `/spark/webhook`:
+
+```bash
+php artisan cashier:webhook --disabled --url "https://your-site.com/spark/webhook"
+```
+
+This command will create a new webhook with the same Stripe API version as Cashier [in your Stripe dashboard](https://dashboard.stripe.com/webhooks). The webhook will be immediately disabled so it doesn't interfere with your existing production application until you are ready to enable it.
+
+You may use the following upgrade checklist to properly enable to the new webhook:
+
+1. If you have webhook signature verification enabled, disable it on production by temporarily removing the `STRIPE_WEBHOOK_SECRET` environment variable.
+2. Add any extra Stripe events your application requires to the new webhook in your Stripe dashboard.
+3. Disable the old webhook in your Stripe dashboard.
+4. Enable the new webhook in your Stripe dashboard.
+5. Re-enable the new webhook secret verification by re-adding the `STRIPE_WEBHOOK_SECRET` environment variable in production with the secret from the new webhook.
+6. Remove the old webhook in your Stripe dashboard.
+
+After following this process, your new webhook will be active and ready to receive events.
+
+### Receipt Naming Changed To Invoice
+
+Code and text throughout Spark Stripe has been renamed from receipt to invoice. This is to bring Spark Stripe closer to Stripe's own terminology for this. You should make the following changes:
+
+First, we'll need to rename the feature flag in your `spark.php` config:
+
+```php
+// From...
+Features::receiptEmails(['custom-addresses' => true]),
+
+// To...
+Features::invoiceEmails(['custom-addresses' => true]),
+```
+
+Then rename the `receipt_data` key in your `spark.php` config file to `invoice_data`:
+
+```php
+// From...
+'receipt_data' => [
+    'vendor' => 'Your Product',
+    'product' => 'Your Product',
+    'street' => '111 Example St.',
+    'location' => 'Los Angeles, CA',
+    'phone' => '555-555-5555',
+],
+
+// To...
+'invoice_data' => [
+    'vendor' => 'Your Product',
+    'product' => 'Your Product',
+    'street' => '111 Example St.',
+    'location' => 'Los Angeles, CA',
+    'phone' => '555-555-5555',
+],
+```
+
+And lastly we'll create a migration to rename the `receipt_emails` column to `invoice_emails`:
+
+```php
+Schema::table('users', function (Blueprint $table) {
+    $table->renameColumn('receipt_emails', 'invoice_emails');
+});
+```
