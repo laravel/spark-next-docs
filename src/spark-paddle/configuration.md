@@ -7,7 +7,8 @@
 In the following documentation, we will discuss how to configure a Laravel Spark installation when using the [Paddle](https://paddle.com) payment provider. All of Spark's configuration options are housed in your application's `config/spark.php` configuration file.
 
 ::: warning Paddle Billing
-Spark Paddle v5 offers full support for Paddle Billing. If you are still on Paddle Classic please continue to use [Spark Paddle v4](https://github.com/laravel/spark-next-docs/tree/4.x/src).
+
+Spark Paddle 5.x supports Paddle Billing. If you are still using Paddle Classic you should continue to use [Spark Paddle 4.x](https://github.com/laravel/spark-next-docs/tree/4.x/src).
 :::
 
 ## Paddle Configuration
