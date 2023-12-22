@@ -71,7 +71,7 @@ export default defineConfigWithTheme<ThemeConfig>({
                 link: 'https://spark.laravel.com/docs',
                 current: true,
             },
-            { text: 'v4.x', link: 'https://github.com/laravel/spark-next-docs/tree/4.x' },
+            { text: 'v4.x', link: 'https://github.com/laravel/spark-next-docs/tree/4.x/src' },
             { text: 'v3.x', link: 'https://github.com/laravel/spark-next-docs/tree/3.x' },
             { text: 'v2.x', link: 'https://github.com/laravel/spark-next-docs/tree/2.x' },
             { text: 'v1.x', link: 'https://github.com/laravel/spark-next-docs/tree/1.x' },
