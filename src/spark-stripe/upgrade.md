@@ -38,6 +38,14 @@ You may use the following upgrade checklist to properly enable to the new webhoo
 
 After following this process, your new webhook will be active and ready to receive events.
 
+### Publishing Migrations
+
+Spark Stripe 5.0 no longer automatically loads migrations from its own migrations directory. Instead, you should run the following command to publish Spark's migrations to your application:
+
+```bash
+php artisan vendor:publish --tag=spark-migrations
+```
+
 ### Receipt Naming Changed To Invoice
 
 Code and text throughout Spark Stripe has been renamed from receipt to invoice. This is to bring Spark Stripe closer to Stripe's own terminology for this. You should make the following changes:
