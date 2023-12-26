@@ -71,7 +71,7 @@ This command will publish a `resources/lang/spark/en.json` file containing trans
 
 Most commonly, applications bill individual users for monthly and yearly subscription plans. However, your application may choose to bill some other type of model, such as a team, organization, band, etc.
 
-For this, you should inspect the published migrations and update the `2019_05_03_000001_add_spark_columns_to_users_table.php` file to add the columns needed by Spark to the table that will be used by your application's billable model. For more information on team billing, checkout [our Cookbook documentation](./cookbook.md#team-billing).
+If this describes your application, you should inspect Spark's published migrations and update the `add_spark_columns_to_users_table` migration with the columns that will be used by your application's billable model. For more information on customizing migrations for team billing, checkout [our Cookbook documentation](./cookbook.md#team-billing).
 
 ## Webhooks
 
