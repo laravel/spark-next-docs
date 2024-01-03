@@ -48,7 +48,7 @@ php artisan vendor:publish --tag=spark-migrations
 
 ### Receipts Renamed To Invoices
 
-Code, text and files throughout Spark Stripe has been updated to refer to "receipts" as "invoices". This is to bring Spark Stripe closer to Stripe's own terminology for this concept. To accomodate this, you should make the following changes to your application:
+Code and text throughout Spark Stripe has been updated to refer to "receipts" as "invoices". This is to bring Spark Stripe closer to Stripe's own terminology for this concept. To accomodate this, you should make the following changes to your application:
 
 First, rename the corresponding feature flag in your `spark.php` config:
 
@@ -82,7 +82,7 @@ Then, rename the `receipt_data` key in your application's `config/spark.php` con
 ],
 ```
 
-Next, if you have published Spark's views with the `vendor:publish` Artisan command, you should rename the `receipt.blade.php` template to `invoice.blade.php` in your application's `resources/views/vendor/spark/mail/` directory.
+Next, if you have published Spark's views using the `vendor:publish` Artisan command, you should rename the `receipt.blade.php` template to `invoice.blade.php` in your application's `resources/views/vendor/spark/mail` directory.
 
 Lastly, create a migration to rename the `user` table's `receipt_emails` column to `invoice_emails`:
 
