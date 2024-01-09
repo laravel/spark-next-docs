@@ -2,7 +2,7 @@
 
 [[toc]]
 
-## Installing Spark Via Composer
+## Installing Spark via Composer
 
 :::tip License
 

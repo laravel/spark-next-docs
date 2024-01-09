@@ -62,7 +62,7 @@ The first argument accepted by the `chargePerSeat` method is the term that your 
 
 After configuring per-seat billing, Spark will automatically update the wording within your application's billing portal to inform users that billing is calculated on a per-seat basis.
 
-### Incrementing / Decrementing The Seat Count
+### Incrementing / Decrementing the Seat Count
 
 The `chargePerSeat` callback that was explained above will inform Spark of the current seat count that should be used when a customer initiates a subscription. However, you still need to inform Spark when to add or remove a seat when a user is using your application. For example, if building a project management application that bills per project, you would need to inform Spark when a user creates or deletes a project. You can accomplish this by calling the `addSeat` and `removeSeat` method:
 
@@ -117,7 +117,7 @@ To define incentive text, you may add `monthly_incentive` and / or `yearly_incen
 ],
 ```
 
-## Access A Billable's Spark Plan
+## Access a Billable's Spark Plan
 
 Sometimes you may wish to access the Spark plan instance for a given billable in order to determine what options are available to the plan. For example, if your plan definition contains the following:
 

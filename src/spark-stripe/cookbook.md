@@ -8,7 +8,7 @@ Spark ships with "user" based billing by default. If your applications bills tea
 
 To make the `App\Models\Team` model our billable model, we first need to adjust Spark's default migrations. So, let's configure Spark to ignore its own default migrations and export the migrations to our application so that we can adjust them:
 
-#### Customizing The Migrations
+#### Customizing the Migrations
 
 To instruct Spark to ignore its migrations, call the `Spark::ignoreMigrations()` method in the `register` method of your application's `App\Providers\SparkServiceProvider` class:
 
@@ -33,7 +33,7 @@ After renaming the migration, you may update its contents such that it updates t
 
 Next, update the `subscriptions` table migration to contain `team_id`instead of `user_id`. You should also ensure that you update the column in the migration's index as well.
 
-#### Updating The Service Provider
+#### Updating the Service Provider
 
 Now that the migrations have been updated, we should update the `SparkServiceProvider` to reference the `Team` model instead of the `User` model:
 
@@ -70,7 +70,7 @@ class SparkServiceProvider extends ServiceProvider
 }
 ```
 
-#### Updating The Model
+#### Updating the Model
 
 Now we can update the `Team` model to use the `Spark\Billable` trait and implement a `stripeEmail` method that returns the team owner's email address to be displayed in the Stripe dashboard as the customer identifier:
 

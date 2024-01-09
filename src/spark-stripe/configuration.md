@@ -55,7 +55,7 @@ php artisan cashier:webhook --url="https://your-production-url.com/spark/webhook
 
 After creation, the webhook will be active immediately. 
 
-#### Webhooks & Local Development
+#### Webhooks and Local Development
 
 During local development, you will need a way for Stripe to send webhooks to your application running on your local machine. An easy way to get started is via [the Stripe CLI](https://stripe.com/docs/stripe-cli), which provides a convenient `listen` command. For example, if you are developing locally via the `artisan serve` CLI command and serving your site at `http://localhost:8000`, you may run the following Stripe CLI command to allow Stripe to communicate with your application:
 
@@ -253,7 +253,7 @@ public function boot(): void
 }
 ```
 
-## Accessing The Billing Portal
+## Accessing the Billing Portal
 
 Once you have configured your Spark installation, you may access your application's billing portal at the `/billing` URI. So, if your application is being served on `localhost`, you may access your application's billing portal at `http://localhost/billing`.
 
@@ -265,7 +265,7 @@ Of course, you may link to the billing portal from your application's dashboard 
 </a>
 ```
 
-## Showing A Link To The Terms And Conditions
+## Showing a Link to the Terms and Conditions
 
 Many applications display billing terms and conditions during checkout. Spark allows you to easily do the same within your application's billing portal. To get started, add a `terms_url` configuration value in your application's `config/spark.php` configuration file:
 

@@ -8,7 +8,7 @@ Spark ships with "user" based billing by default. If your applications bills tea
 
 To make the `App\Models\Team` model our billable model, we first need to adjust Spark's service provider.
 
-#### Updating The Service Provider
+#### Updating the Service Provider
 
 Now we should update the `SparkServiceProvider` to reference the `Team` model instead of the `User` model:
 
@@ -41,7 +41,7 @@ class SparkServiceProvider extends ServiceProvider
 }
 ```
 
-#### Updating The Model
+#### Updating the Model
 
 Now we can update the `Team` model to use the `Spark\Billable` trait and implement a `paddleEmail` method that returns the team owner's email address to be displayed in the Paddle dashboard as the customer identifier:
 
@@ -58,7 +58,6 @@ class Team extends JetstreamTeam
     }
 }
 ```
-
 
 #### Spark Configuration File
 

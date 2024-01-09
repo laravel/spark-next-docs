@@ -47,7 +47,7 @@ In addition, your Spark powered application will need to receive webhooks from P
 - Subscription Paused
 - Subscription Canceled
 
-#### Webhooks & Local Development
+#### Webhooks and Local Development
 
 For Paddle to be able to send your application webhooks during local development, you will need to expose your application via a site sharing service such as [Ngrok](https://ngrok.io) or [Expose](https://beyondco.de/docs/expose/introduction). If you are developing your application locally using [Laravel Sail](http://laravel.com/docs/sail), you may use Sail's [site sharing command](https://laravel.com/docs/sail#sharing-your-site).
 
@@ -137,7 +137,7 @@ Spark::billable(Team::class)->authorize(function (Team $billable, Request $reque
 });
 ```
 
-### Billable Name And Email Address
+### Billable Name and Email Address
 
 By default, Spark will use your billable model's `name` and `email` attributes as the name and email address associated with the Paddle customer record it creates for the model. If you would like to specify another attribute that should be used instead, you may define a `paddleName` and `paddleEmail` method on your billable model:
 
@@ -193,7 +193,7 @@ If your subscription plan only offers a monthly billing cycle, you may omit the 
 
 In addition, you are free to supply a short description of the plan and a list of features relevant to the plan. This information will be displayed in the Spark billing portal.
 
-## Accessing The Billing Portal
+## Accessing the Billing Portal
 
 Once you have configured your Spark installation, you may access your application's billing portal at the `/billing` URI. So, if your application is being served on `localhost`, you may access your application's billing portal at `http://localhost/billing`.
 
@@ -205,11 +205,11 @@ Of course, you may link to the billing portal from your application's dashboard 
 </a>
 ```
 
-#### Billing Portal & Multiple Billables
+#### Billing Portal and Multiple Billables
 
 If your application is billing more than one type of billable, you should add the billable type's [slug](#billable-slugs) to the `/billing` URI. For example, if you have configured a `team` billable type in addition to your `user` billable type, you may access the billing portal for teams by navigating to `http://localhost/billing/team`. However, this typically should not be necessary because most applications will only ever bill one type of model.
 
-## Showing A Link To The Terms And Conditions
+## Showing a Link to the Terms and Conditions
 
 Many applications display billing terms and conditions during checkout. Spark allows you to easily do the same within your application's billing portal. To get started, add a `terms_url` configuration value in your application's `config/spark.php` configuration file:
 

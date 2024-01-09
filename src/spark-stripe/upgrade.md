@@ -2,7 +2,7 @@
 
 [[toc]]
 
-## Upgrading To Spark (Stripe) 5.0 From 4.x
+## Upgrading to Spark (Stripe) 5.0 From 4.x
 
 Spark (Stripe) 5.0 primarily provides an upgrade from Cashier 14.x to Cashier 15.x. As such, in addition to the upgrade guide below, please consult the [Cashier 15 upgrade guide](https://github.com/laravel/cashier-stripe/blob/15.x/UPGRADE.md).
 
@@ -46,7 +46,7 @@ Spark Stripe 5.0 no longer automatically loads migrations from its own migration
 php artisan vendor:publish --tag=spark-migrations
 ```
 
-### Receipts Renamed To Invoices
+### Receipts Renamed to Invoices
 
 Code and text throughout Spark Stripe has been updated to refer to "receipts" as "invoices". This is to bring Spark Stripe closer to Stripe's own terminology for this concept. To accomodate this, you should make the following changes to your application:
 
