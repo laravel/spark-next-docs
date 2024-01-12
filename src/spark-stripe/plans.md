@@ -202,7 +202,7 @@ If you plan to "archive" or retire a particular plan for your application, you s
 
 ## Account Deletion
 
-If your application allows users to completely delete their account data, you should ensure that you cancel any subscription plans that the user has subscribed to before you delete their data. Otherwise, the user may continue to be billed even after you have deleted their data. You may cancel their subscription using [Laravel Cashier's](https://laravel.com/docs/billing) typical subscription management methods. Depending on the billable types used by your application, you may need to adjust this code to your application's unique needs:
+If your application allows users to completely delete their account data, you should ensure that you cancel any subscription plans that the user has subscribed to before you delete their data. Otherwise, the user may continue to be billed even after you have deleted their data. You may cancel their subscription using [Laravel Cashier's](https://laravel.com/docs/billing) typical subscription management methods. Depending on the billable type used by your application, you may need to adjust this code to your application's unique needs:
 
 ```php
 if (optional($user->subscription())->recurring()) {

@@ -28,12 +28,3 @@ If the user has a valid subscription, the request will continue to execute norma
 
 Of course, you may always manually inspect a billable model's subscription status using the [methods provided by Laravel Cashier](https://laravel.com/docs/cashier-paddle#checking-subscription-status), which can be especially useful for verifying that a user is subscribed to a particular plan.
 :::
-
-#### Multiple Billables
-
-If your application has more than one configured billable model, you may pass the [billable slug](./configuration.md#billable-slugs) to the middleware to instruct Spark which billable model configuration to use when verifying the subscription. However, this typically should not be necessary because most applications will only ever bill one type of model:
-
-```php
-Route::post('/projects', [ProjectController::class, 'store'])
-        ->middleware(['auth', 'subscribed:team']);
-```

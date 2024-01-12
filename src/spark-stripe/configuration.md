@@ -67,9 +67,9 @@ Alternatively, you can expose your application via another site sharing service 
 
 ## Configuring Billables
 
-Spark allows you to define the types of billable models that your application will be managing. Most commonly, applications bill individual users for monthly and yearly subscription plans. However, your application may choose to bill some other type of model, such as a team, organization, band, etc. The Stripe edition of Spark currently only supports a single billable model entity (team, user, etc.) per application.
+Spark allows you to define the type of billable model that your application will be managing. Most commonly, applications bill individual users for monthly and yearly subscription plans. However, your application may choose to bill some other type of model, such as a team, organization, band, etc. The Stripe edition of Spark currently only supports a single billable model entity (team, user, etc.) per application.
 
-You may define your billable models within the `billables` array of your application's `spark` configuration file. By default, this array contains an entry for the `App\Models\User` model. If the billable model is something other than `App\Models\User`, you should invoke Cashier's `useCustomerModel` method in the `boot` method of your `SparkServiceProvider` class in order to inform Cashier of your custom model:
+You may define your billable model within the `billables` array of your application's `spark` configuration file. By default, this array contains an entry for the `App\Models\User` model. If the billable model is something other than `App\Models\User`, you should invoke Cashier's `useCustomerModel` method in the `boot` method of your `SparkServiceProvider` class in order to inform Cashier of your custom model:
 
 ```php
 use App\Entities\User;
@@ -175,9 +175,9 @@ Spark synchronizes user data such as name, email, and billing address informatio
 
 ## Defining Subscription Plans
 
-As we previously discussed, Spark allows you to define the types of billable models that your application will be managing. These billable models are defined within the `billables` array of your application's `config/spark.php` configuration file:
+As we previously discussed, Spark allows you to define the type of billable model that your application will be managing. This billable model is defined within the `billables` array of your application's `config/spark.php` configuration file:
 
-Each billable configuration within the `billables` array contains a `plans` array. Within this array you may configure each of the billing plans offered by your application to that particular billable type. **The `monthly_id` and `yearly_id` identifiers should correspond to the price / plan identifiers configured within your Stripe account dashboard:**
+The billable configuration within the `billables` array contains a `plans` array. Within this array you may configure each of the billing plans offered by your application to that particular billable type. **The `monthly_id` and `yearly_id` identifiers should correspond to the price / plan identifiers configured within your Stripe account dashboard:**
 
 ```php
 use App\Models\User;
