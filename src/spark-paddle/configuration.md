@@ -26,7 +26,7 @@ CASHIER_CURRENCY=USD
 CASHIER_CURRENCY_LOCALE=en
 PADDLE_SANDBOX=true
 PADDLE_SELLER_ID=your-paddle-seller-id
-PADDLE_AUTH_CODE=your-paddle-auth-code
+PADDLE_API_KEY=your-paddle-api-key
 PADDLE_WEBHOOK_SECRET=pdl_ntfset_xxx
 ```
 
