@@ -8,4 +8,4 @@ Unfortunately there is no official upgrade path guidance from Paddle to migrate 
 
 ### Multiple Billable Types
 
-Unfortunately, due to Paddle limitations with unique email addresses per customer, we've had to remove multiple billable type support from Spark Paddle.
+Unfortunately, due to Paddle limitations, we've removed multiple billable type support from Spark Paddle.
