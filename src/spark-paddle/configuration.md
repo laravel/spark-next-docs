@@ -53,9 +53,22 @@ For Paddle to be able to send your application webhooks during local development
 
 ## Configuring Billables
 
-Spark allows you to define the types of billable models that your application will be managing. Most commonly, applications bill individual users for monthly and yearly subscription plans. However, your application may choose to bill some other type of model, such as a team, organization, band, etc.
+Spark allows you to define the type of billable model that your application will be managing. Most commonly, applications bill individual users for monthly and yearly subscription plans. However, your application may choose to bill some other type of model, such as a team, organization, band, etc. The Paddle  edition of Spark currently only supports a single billable model entity (team, user, etc.) per application.
 
-You may define your billable models within the `billables` array of your application's `spark` configuration file. By default, this array contains an entry for the `App\Models\User` model.
+You may define your billable model within the `billables` array of your application's `spark` configuration file. By default, this array contains an entry for the `App\Models\User` model. If the billable model is something other than `App\Models\User`, you should invoke Cashier's `useCustomerModel` method in the `boot` method of your `SparkServiceProvider` class in order to inform Cashier of your custom model:
+
+```php
+use App\Entities\User;
+use Laravel\Paddle\Cashier;
+ 
+/**
+ * Bootstrap any application services.
+ */
+public function boot(): void
+{
+    Cashier::useCustomerModel(User::class);
+}
+```
 
 Before continuing, you should ensure that the model class that corresponds to your billable model is using the `Spark\Billable` trait. In addition, your billable model's primary key should be an `integer` column named `id`:
 
@@ -161,9 +174,9 @@ public function paddleEmail(): string|null
 
 ## Defining Subscription Plans
 
-As we previously discussed, Spark allows you to define the types of billable models that your application will be managing. These billable models are defined within the `billables` array of your application's `config/spark.php` configuration file:
+As we previously discussed, Spark allows you to define the type of billable model that your application will be managing. This billable model is defined within the `billables` array of your application's `config/spark.php` configuration file:
 
-Each billable configuration within the `billables` array contains a `plans` array. Within this array you may configure each of the billing plans offered by your application to that particular billable type. **The `monthly_id` and `yearly_id` identifiers should correspond to the plan identifiers associated with the subscription plan within your Paddle account dashboard:**
+The billable configuration within the `billables` array contains a `plans` array. Within this array you may configure each of the billing plans offered by your application to that particular billable type. **The `monthly_id` and `yearly_id` identifiers should correspond to the plan identifiers associated with the subscription plan within your Paddle account dashboard:**
 
 ```php
 use App\Models\User;
@@ -204,10 +217,6 @@ Of course, you may link to the billing portal from your application's dashboard 
     Manage Subscription
 </a>
 ```
-
-#### Billing Portal and Multiple Billables
-
-If your application is billing more than one type of billable, you should add the billable type's [slug](#billable-slugs) to the `/billing` URI. For example, if you have configured a `team` billable type in addition to your `user` billable type, you may access the billing portal for teams by navigating to `http://localhost/billing/team`. However, this typically should not be necessary because most applications will only ever bill one type of model.
 
 ## Showing a Link to the Terms and Conditions
 
