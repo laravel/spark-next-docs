@@ -21,4 +21,5 @@ Once you have completed these steps, Spark will automatically gather customer bi
 
 :::danger Stripe Tax
 
-Spark does not currently support the Stripe Tax feature. You should disable Stripe Tax via your Stripe dashboard when using Spark. :::
+Spark does not currently support Stripe Tax. You should disable Stripe Tax via your Stripe dashboard when using Spark.
+:::
