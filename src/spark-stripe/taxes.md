@@ -18,3 +18,7 @@ use Spark\Features;
 ```
 
 Once you have completed these steps, Spark will automatically gather customer billing address information as well as VAT Number and apply the correct VAT based on the customer's location.
+
+:::danger Stripe Tax
+
+Spark does not currently support the Stripe Tax feature. You should disable Stripe Tax via your Stripe dashboard when using Spark. :::
