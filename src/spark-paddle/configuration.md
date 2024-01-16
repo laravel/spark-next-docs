@@ -189,8 +189,8 @@ use App\Models\User;
             [
                 'name' => 'Standard',
                 'short_description' => 'This is a short, human friendly description of the plan.',
-                'monthly_id' => env('SPARK_STANDARD_MONTHLY_PLAN', 1000),
-                'yearly_id' => env('SPARK_STANDARD_YEARLY_PLAN', 1001),
+                'monthly_id' => env('SPARK_STANDARD_MONTHLY_PLAN', 'pri_1000'),
+                'yearly_id' => env('SPARK_STANDARD_YEARLY_PLAN', 'pri_1001'),
                 'features' => [
                     'Feature 1',
                     'Feature 2',
