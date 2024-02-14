@@ -6,15 +6,15 @@
 
 Spark ships with "user" based billing by default. If your applications bills teams or a different model instead, you will need to adjust your Spark installation accordingly. We'll walk through these adjustments in the following documentation using a team billing implementation as an example.
 
-To make the `App\Models\Team` model our billable model, we first need to adjust Spark's default migrations:
+To make the `App\Models\Team` model your billable model, you first need to adjust Spark's default migrations:
 
 #### Customizing the Migrations
 
-We'll need to change the name of the `2019_05_03_000001_add_spark_columns_to_users_table.php` file to `2020_05_03_000001_add_spark_columns_to_teams_table.php`. Adjusting the "year" of the migration will ensure the migration is run after the `teams` table is created in the database.
+First, change the name of the `2019_05_03_000001_add_spark_columns_to_users_table.php` file to `2020_05_03_000001_add_spark_columns_to_teams_table.php`. Adjusting the "year" of the migration will ensure the migration is run after the `teams` table is created in the database.
 
 After renaming the migration, you may update its contents such that it updates the table definition of the `teams` table instead of the `users` table. Also, update the first column so that it is added after a field on the `teams` table instead of `remember_token`.
 
-Next, update the `subscriptions` table migration to contain `team_id`instead of `user_id`. You should also ensure that you update the column in the migration's index as well.
+Next, update the `subscriptions` table migration to contain `team_id` instead of `user_id`. You should also ensure that you update the column in the migration's index as well.
 
 #### Updating the Service Provider
 
