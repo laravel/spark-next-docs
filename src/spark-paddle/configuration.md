@@ -55,20 +55,7 @@ For Paddle to be able to send your application webhooks during local development
 
 Spark allows you to define the type of billable model that your application will be managing. Most commonly, applications bill individual users for monthly and yearly subscription plans. However, your application may choose to bill some other type of model, such as a team, organization, band, etc. The Paddle edition of Spark currently only supports a single billable model (team, user, etc.) per application.
 
-You may define your billable model within the `billables` array of your application's `spark` configuration file. By default, this array contains an entry for the `App\Models\User` model. If the billable model is something other than `App\Models\User`, you should invoke Cashier's `useCustomerModel` method in the `boot` method of your `SparkServiceProvider` class in order to inform Cashier of your custom model:
-
-```php
-use App\Entities\User;
-use Laravel\Paddle\Cashier;
- 
-/**
- * Bootstrap any application services.
- */
-public function boot(): void
-{
-    Cashier::useCustomerModel(User::class);
-}
-```
+You may define your billable model within the `billables` array of your application's `spark` configuration file. By default, this array contains an entry for the `App\Models\User` model.
 
 Before continuing, you should ensure that the model class that corresponds to your billable model is using the `Spark\Billable` trait. In addition, your billable model's primary key should be an `integer` column named `id`:
 
