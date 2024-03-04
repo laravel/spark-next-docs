@@ -101,23 +101,3 @@ class StripeEventListener
     }
 }
 ```
-
-Next, the listener should be registered in your application's `App\Providers\EventServiceProvider` class:
-
-```php
-use App\Listeners\StripeEventListener;
-use Laravel\Cashier\Events\WebhookReceived;
-
-class EventServiceProvider extends ServiceProvider
-{
-    /**
-     * The event handler mappings for the application.
-     *
-     * @var array
-     */
-    protected $listen = [
-        WebhookReceived::class => [
-            StripeEventListener::class,
-        ],
-    ];
-```

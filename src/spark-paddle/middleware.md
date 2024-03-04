@@ -4,18 +4,19 @@
 
 When building a subscription based application, you will commonly need to restrict access to certain routes to users that have a valid subscription. For example, you may not want to let a user create a project if they are not subscribed to a billing plan. For that reason, Spark provides a convenient subscription verification [middleware](https://laravel.com/docs/middleware) that you may register with your application.
 
-To get started, register Spark's subscription verification middleware in your HTTP kernel's `$routeMiddleware` array. Your application's HTTP kernel is typically located at `app/Http/Kernel.php`:
+To get started, register the alias for Spark's subscription verification middleware by using the `alias` middleware method in your application's `bootstrap/app.php` file:
 
 ```php
 use Spark\Http\Middleware\VerifyBillableIsSubscribed;
 
-protected $routeMiddleware = [
-    // ...
-    'subscribed' => VerifyBillableIsSubscribed::class
-];
+->withMiddleware(function (Middleware $middleware) {
+    $middleware->alias([
+        'subscribed' => VerifyBillableIsSubscribed::class
+    ]);
+})
 ```
 
-Once the middleware has been registered, you may attach it to any of your application's route definitions:
+Once the middleware alias has been registered, you may attach it to any of your application's route definitions:
 
 ```php
 Route::post('/projects', [ProjectController::class, 'store'])
