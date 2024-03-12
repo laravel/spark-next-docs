@@ -24,8 +24,8 @@ Next, you may add the `laravel/spark-paddle` or `laravel/spark-stripe` package t
 
 ```json
 "require": {
-    "php": "^8.1",
-    "laravel/framework": "^10.0",
+    "php": "^8.2",
+    "laravel/framework": "^11.0",
     "laravel/spark-paddle": "^5.0"
 },
 ```
@@ -95,8 +95,8 @@ If your Spark license has expired and you don't want to renew the license your `
 
 ```json
 "require": {
-    "php": "^8.1",
-    "laravel/framework": "^10.0",
+    "php": "^8.2",
+    "laravel/framework": "^11.0",
     "laravel/spark-paddle": "5.y.z"
 },
 ```

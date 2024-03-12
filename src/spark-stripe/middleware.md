@@ -2,20 +2,21 @@
 
 [[toc]]
 
-When building a subscription based application, you will commonly need to restrict access to certain routes to users that have an active subscription. For example, you may not want to let a user create a project if they are not subscribed to a billing plan. For that reason, Spark provides a convenient subscription verification [middleware](https://laravel.com/docs/middleware) that you may register with your application.
+When building a subscription based application, you will commonly need to restrict access to certain routes to users that have an active subscription. For example, you may not want to let a user create a project if they are not subscribed to a billing plan. For that reason, Spark provides a convenient subscription verification [middleware](https://laravel.com/docs/middleware) that you may assign to your application's routes.
 
-To get started, register Spark's subscription verification middleware in your HTTP kernel's `$routeMiddleware` array. Your application's HTTP kernel is typically located at `app/Http/Kernel.php`:
+If your application uses Laravel 11's streamlined application structure which configures middleware within the `bootstrap/app.php` file, then Spark's subscription verification middleware alias is automatically registered for you internally. However, if you are using an application structure that does not utilize the `bootstrap/app.php` file for middleware configuration, you may need to manually register the `subscribed` middleware alias in your application's `App\Http\Kernel` class:
 
 ```php
 use Spark\Http\Middleware\VerifyBillableIsSubscribed;
 
-protected $routeMiddleware = [
+protected $middlewareAliases = [
     // ...
+
     'subscribed' => VerifyBillableIsSubscribed::class
 ];
 ```
 
-Once the middleware has been registered, you may attach it to any of your application's route definitions:
+Then, you may attach the `subscribed` middleware to any of your application's route definitions:
 
 ```php
 Route::post('/projects', [ProjectController::class, 'store'])
