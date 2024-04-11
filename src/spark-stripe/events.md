@@ -2,23 +2,23 @@
 
 [[toc]]
 
-Spark dispatches several [events](https://laravel.com/docs/events) that you may intercept and handle based on your application's needs. We will describe each of these events below. Each event defines a `$billable` instance and a `$subscription` instance as public properties available for your application.
+Spark dispatches several [events](https://laravel.com/docs/events) that you may intercept and handle based on your application's needs. We will describe each of these events below.
 
 ## `Spark\Events\SubscriptionCreated`
 
-This event is dispatched when a subscription becomes `active`.
+This event is dispatched when a subscription becomes `active`. The event's public properties include `$billable` and `$subscription`.
 
 ## `Spark\Events\SubscriptionUpdated`
 
-This event is dispatched when a subscription is changed. Possible changes include plan changes, quantity changes, pausing a subscription, or resuming a subscription.
+This event is dispatched when a subscription is changed. Possible changes include plan changes, quantity changes, pausing a subscription, or resuming a subscription. The event's public properties include `$billable` and `$subscription`.
 
 ## `Spark\Events\SubscriptionCancelled`
 
-This event is dispatched when a subscription expires. This happens when a paused or cancelled subscription is no longer within its cancellation "grace period".
+This event is dispatched when a subscription expires. This happens when a paused or cancelled subscription is no longer within its cancellation "grace period". The event's public properties include `$billable` and `$subscription`.
 
 ## `Spark\Events\PaymentSucceeded`
 
-This event is dispatched when a new Stripe invoice is created.
+This event is dispatched when a new Stripe invoice is created. The event's public properties include `$billable` and `$invoice`.
 
 ## Grace Periods
 
