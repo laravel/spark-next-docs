@@ -193,6 +193,20 @@ If your subscription plan only offers a monthly billing cycle, you may omit the 
 
 In addition, you are free to supply a short description of the plan and a list of features relevant to the plan. This information will be displayed in the Spark billing portal.
 
+If you would like to indicate some features that are **not** available for a given plan, you may prefix them with `--`. These features will be displayed using strikethrough text:
+
+```php
+'features' => [
+    'Feature 1',
+    'Feature 2',
+    'Feature 3',
+    '--No Batch Approve',
+    '--No Additional Sources',
+],
+```
+
+![Disabled features example](/img/disabled-features.png)
+
 ## Accessing the Billing Portal
 
 Once you have configured your Spark installation, you may access your application's billing portal at the `/billing` URI. So, if your application is being served on `localhost`, you may access your application's billing portal at `http://localhost/billing`.
