@@ -193,7 +193,7 @@ If your subscription plan only offers a monthly billing cycle, you may omit the 
 
 In addition, you are free to supply a short description of the plan and a list of features relevant to the plan. This information will be displayed in the Spark billing portal.
 
-Also, you may indicate if some features aren't available for a plan. These will show up as strikethrough text:
+If you would like to indicate some features that are **not** available for a given plan, you may prefix them with `--`. These features will be displayed using strikethrough text:
 
 ```php
 'features' => [
