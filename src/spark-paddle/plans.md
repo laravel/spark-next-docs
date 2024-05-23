@@ -106,8 +106,8 @@ To define incentive text, you may add `monthly_incentive` and / or `yearly_incen
 [
     'name' => 'Standard',
     'short_description' => 'This is a short, human friendly description of the plan.',
-    'monthly_id' => env('SPARK_STANDARD_MONTHLY_PLAN', 1000),
-    'yearly_id' => env('SPARK_STANDARD_YEARLY_PLAN', 1001),
+    'monthly_id' => env('SPARK_STANDARD_MONTHLY_PLAN', 'price_id'),
+    'yearly_id' => env('SPARK_STANDARD_YEARLY_PLAN', 'price_id'),
     'yearly_incentive' => 'Save 10%',
     'features' => [
         'Feature 1',
@@ -125,8 +125,8 @@ Sometimes you may wish to access the Spark plan instance for a given billable in
 [
     'name' => 'Standard',
     'short_description' => 'This is a short, human friendly description of the plan.',
-    'monthly_id' => env('SPARK_STANDARD_MONTHLY_PLAN', 1000),
-    'yearly_id' => env('SPARK_STANDARD_YEARLY_PLAN', 1001),
+    'monthly_id' => env('SPARK_STANDARD_MONTHLY_PLAN', 'price_id'),
+    'yearly_id' => env('SPARK_STANDARD_YEARLY_PLAN', 'price_id'),
     'features' => [
         // ...
     ],
