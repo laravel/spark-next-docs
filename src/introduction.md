@@ -29,12 +29,6 @@ Your Paddle account must be approved by Paddle before you can begin using Spark.
 
 Spark's Stripe support is provided by the underlying [Laravel Cashier Stripe](https://laravel.com/docs/billing) library.
 
-#### Limitations
-
-We have listed some known limitations of using the Stripe payment provider below:
-
-- The Stripe payment provider does not provide a PayPal integration.
-
 ## Frequently Asked Questions
 
 #### **Is it possible to upgrade an application from Spark Classic to Spark?**
