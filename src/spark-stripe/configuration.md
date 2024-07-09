@@ -67,7 +67,7 @@ Spark allows you to define the type of billable model that your application will
 You may define your billable model within the `billables` array of your application's `spark` configuration file. By default, this array contains an entry for the `App\Models\User` model. If the billable model is something other than `App\Models\User`, you should invoke Cashier's `useCustomerModel` method in the `boot` method of your `SparkServiceProvider` class in order to inform Cashier of your custom model:
 
 ```php
-use App\Entities\User;
+use App\Models\User;
 use Laravel\Cashier\Cashier;
  
 /**
