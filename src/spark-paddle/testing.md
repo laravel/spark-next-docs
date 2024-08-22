@@ -31,7 +31,7 @@ public function withSubscription(string|int $priceId = null): static
         ]);
 
         $subscription->items()->create([
-            'product_id' => fake()->unique()->numberBetween(1, 1000),,
+            'product_id' => fake()->unique()->numberBetween(1, 1000),
             'price_id' => $priceId,
             'status' => 'active',
             'quantity' => 1,
