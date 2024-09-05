@@ -83,7 +83,7 @@ That's it! Next, you may navigate to your application's `config/spark.php` confi
 
 ## Authenticating Spark in Continuous Integration (CI) Environments
 
-It's not advised to store your `auth.json` file inside your project's version control repository. However, there may be times you wish to download Spark inside a CI environment like [Chipper CI](https://chipperci.com/). For instance, you may wish to run tests for any custom tools you create. To authenticate Spark in these situations, you can use Composer to set the configuration option inside your CI system's pipeline, injecting environment variables containing the credentials you use to login to the Spark dashboard and a valid [Spark dashboard API token](https://spark.laravel.com/users/api-tokens):
+It's not advised to store your `auth.json` file inside your project's version control repository. However, there may be times you wish to download Spark inside a CI environment like [Chipper CI](https://chipperci.com/). For instance, you may wish to run tests for any custom tools you create. To authenticate Spark in these situations, you can use Composer to set the configuration option inside your CI system's pipeline, injecting environment variables containing the credentials you use to login to the Spark dashboard and a valid [Spark dashboard API token](https://spark.laravel.com/user/api-tokens):
 
 ```sh
 composer config http-basic.spark.laravel.com ${SPARK_USERNAME} ${SPARK_API_TOKEN}
