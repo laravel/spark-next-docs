@@ -59,7 +59,7 @@ class Team extends JetstreamTeam
 }
 ```
 
-This email address cannot be used on a different team then because of Paddle limitations. Ideally, you'd setup a custom `billing_email` column on the Team to have a dedicated and unique email address per team.
+Paddle requires each billable entity to have a unique email address, so multiple customers or teams cannot share the same email.
 
 #### Spark Configuration File
 
