@@ -151,13 +151,18 @@ public function paddleName(): string|null
 }
 
 /**
- * Get the email address that should be associated with the Paddle customer.
+ * Get the unique email address that should be associated with the Paddle customer.
  */
 public function paddleEmail(): string|null
 {
     return $this->email;
 }
 ```
+
+::: warning Paddle Customer Email Address
+
+Please note that every email address on every billable needs to be unique. It is not possible within Paddle to associate multiple billables with the same email address.
+:::
 
 ## Defining Subscription Plans
 

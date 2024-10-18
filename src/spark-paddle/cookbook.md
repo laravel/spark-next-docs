@@ -43,7 +43,7 @@ class SparkServiceProvider extends ServiceProvider
 
 #### Updating the Model
 
-Now we can update the `Team` model to use the `Spark\Billable` trait and implement a `paddleEmail` method that returns the team owner's email address to be displayed in the Paddle dashboard as the customer identifier:
+Now we can update the `Team` model to use the `Spark\Billable` trait and implement a `paddleEmail` method that returns the team owner's unique email address to be displayed in the Paddle dashboard as the customer identifier:
 
 ```php
 use Spark\Billable;
@@ -58,6 +58,8 @@ class Team extends JetstreamTeam
     }
 }
 ```
+
+This email address cannot be used on a different team then because of Paddle limitations. Ideally, you'd setup a custom `billing_email` column on the Team to have a dedicated and unique email address per team.
 
 #### Spark Configuration File
 
