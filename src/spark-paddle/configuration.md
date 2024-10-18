@@ -161,7 +161,7 @@ public function paddleEmail(): string|null
 
 ::: warning Paddle Customer Email Address
 
-Please note that every email address on every billable needs to be unique. It is not possible within Paddle to associate multiple billables with the same email address.
+Paddle requires each customer to have a unique email address, so multiple customers cannot share the same email.
 :::
 
 ## Defining Subscription Plans
