@@ -1,0 +1,94 @@
+{
+  "$schema": "https://mintlify.com/schema.json",
+  "name": "Laravel Spark",
+  "logo": {
+    "dark": "/logo/dark.svg",
+    "light": "/logo/light.svg"
+  },
+  "favicon": "/favicon.png",
+  "background": {
+    "style": "windows"
+  },
+  "colors": {
+    "primary": "#7C46F6",
+    "light": "#7C46F6",
+    "dark": "#7C46F6",
+    "anchors": {
+      "from": "#00E1FF",
+      "to": "#7C46F6"
+    }
+  },
+  "font": {
+    "headings": {
+      "family": "Figtree"
+    },
+    "body": {
+      "family": "Figtree"
+    }
+  },
+  "topbarLinks": [
+    {
+      "name": "Support",
+      "url": "mailto:spark@laravel.com"
+    }
+  ],
+  "topbarCtaButton": {
+    "name": "Homepage",
+    "url": "https://spark.laravel.com"
+  },
+  "anchors": [
+    {
+      "name": "Community",
+      "icon": "discord",
+      "url": "https://discord.com/invite/laravel"
+    },
+    {
+      "name": "Blog",
+      "icon": "newspaper",
+      "url": "https://blog.laravel.com/spark"
+    }
+  ],
+  "navigation": [
+    {
+      "group": "Get Started",
+      "pages": [
+        "introduction",
+        "installation",
+        "customization"
+      ]
+    },
+    {
+      "group": "Spark Paddle",
+      "pages": [
+        "spark-paddle/configuration",
+        "spark-paddle/plans",
+        "spark-paddle/middleware",
+        "spark-paddle/events",
+        "spark-paddle/testing",
+        "spark-paddle/cookbook",
+        "spark-paddle/customization",
+        "spark-paddle/upgrade"
+      ]
+    },
+    {
+      "group": "Spark Stripe",
+      "pages": [
+        "spark-stripe/configuration",
+        "spark-stripe/plans",
+        "spark-stripe/middleware",
+        "spark-stripe/taxes",
+        "spark-stripe/events",
+        "spark-stripe/testing",
+        "spark-stripe/cookbook",
+        "spark-stripe/customization",
+        "spark-stripe/upgrade"
+      ]
+    }
+  ],
+  "footerSocials": {
+    "x": "https://x.com/laravelphp",
+    "github": "https://github.com/laravel",
+    "discord": "https://discord.com/invite/laravel",
+    "linkedin": "https://linkedin.com/company/laravel"
+  }
+}
