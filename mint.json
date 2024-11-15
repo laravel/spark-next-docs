@@ -3,7 +3,8 @@
   "name": "Laravel Spark",
   "logo": {
     "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "light": "/logo/light.svg",
+    "href": "https://spark.laravel.com"
   },
   "favicon": "/favicon.png",
   "background": {
