@@ -86,6 +86,28 @@
       ]
     }
   ],
+  "versions": [
+    {
+      "default": true,
+      "name": "v5.x"
+    },
+    {
+      "name": "v4.x",
+      "url": "https://github.com/laravel/spark-next-docs/tree/4.x"
+    },
+    {
+      "name": "v3.x",
+      "url": "https://github.com/laravel/spark-next-docs/tree/3.x"
+    },
+    {
+      "name": "v2.x",
+      "url": "https://github.com/laravel/spark-next-docs/tree/2.x"
+    },
+    {
+      "name": "v1.x",
+      "url": "https://github.com/laravel/spark-next-docs/tree/1.x"
+    }
+  ],
   "footerSocials": {
     "x": "https://x.com/laravelphp",
     "github": "https://github.com/laravel",
