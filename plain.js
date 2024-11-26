@@ -16,7 +16,7 @@
                 }
             ],
             style: {
-                chatButtonColor: '#00B1E4',
+                chatButtonColor: '#7C46F6',
                 chatButtonIconColor: '#ffffff',
             },
             threadDetails: {
