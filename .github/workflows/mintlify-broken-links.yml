@@ -2,7 +2,6 @@ name: Mintlify Broken Links
 
 on:
   push:
-    branches: [ '**' ]
 
 jobs:
   broken-links:
