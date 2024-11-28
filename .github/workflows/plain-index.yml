@@ -1,21 +1,28 @@
 name: Plain index
+
 on:
   push:
     branches:
       - main
   schedule:
     - cron: "0 */3 * * *"
+
 jobs:
   lint:
     name: Lint
+
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v2
+
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
+
       - name: Install CLI
         run: npm install -g @team-plain/cli@latest
+
       - name: Plain index
         run: plain index-sitemap https://spark.laravel.com/docs/sitemap.xml --labelTypeIds lt_01JAZTMHV9XNNYN8DR7424DMPB
         env:
