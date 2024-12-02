@@ -8,7 +8,7 @@
                 {
                     icon: 'book',
                     text: 'View our docs',
-                    url: 'https://docs.vapor.build',
+                    url: 'https://spark.laravel.com/docs',
                 }, {
                     icon: 'discord',
                     text: 'Join our Discord',
@@ -20,7 +20,7 @@
                 chatButtonIconColor: '#ffffff',
             },
             threadDetails: {
-                labelTypeIds: ['liveChatApp_01JDM3PR254XBX2KT88YW09BBE'],
+                labelTypeIds: ['lt_01JAZTMHV9XNNYN8DR7424DMPB'],
             },
         });
     };
