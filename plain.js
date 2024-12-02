@@ -16,6 +16,7 @@
                 }
             ],
             style: {
+                brandColor: '#7C46F6',
                 chatButtonColor: '#7C46F6',
                 chatButtonIconColor: '#ffffff',
             },
