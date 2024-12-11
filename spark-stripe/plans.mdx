@@ -5,7 +5,7 @@ description: 'Learn how to configure plans for your Spark Stripe application.'
 
 ## Defining Payment Plans
 
-**For more information on defining payment plans for your application, please consult the [plan configuration documentation](./configuration.md#defining-subscription-plans).**
+**For more information on defining payment plans for your application, please consult the [plan configuration documentation](./configuration#defining-subscription-plans).**
 
 ## Trial Periods
 
@@ -123,7 +123,7 @@ Please consult the [Cashier documentation](https://laravel.com/docs/billing#hand
 
 ## Determining Subscription Status
 
-While building your application, you will often need to inspect a user's subscription status and plan to determine if they are allowed to perform a given action. For example, you may not want to let a user create a project if they are subscribed to a billing plan that only allows a specific number of projects to be created. First, you should review the [subscription verification middleware](./middleware.md) provided by Spark.
+While building your application, you will often need to inspect a user's subscription status and plan to determine if they are allowed to perform a given action. For example, you may not want to let a user create a project if they are subscribed to a billing plan that only allows a specific number of projects to be created. First, you should review the [subscription verification middleware](./middleware) provided by Spark.
 
 Additionally, you may always manually inspect a billable model's subscription status using the [methods provided by Laravel Cashier](https://laravel.com/docs/billing#checking-subscription-status), which can be especially useful for verifying that a user is subscribed to a particular plan:
 
