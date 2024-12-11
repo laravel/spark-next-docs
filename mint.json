@@ -108,6 +108,9 @@
       "url": "https://github.com/laravel/spark-next-docs/tree/1.x"
     }
   ],
+  "feedback": {
+    "thumbsRating": true
+  },
   "footerSocials": {
     "x": "https://x.com/laravelphp",
     "github": "https://github.com/laravel",
