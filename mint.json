@@ -49,6 +49,16 @@
       "url": "https://blog.laravel.com/spark"
     }
   ],
+  "tabs": [
+    {
+      "name": "Documentation",
+      "url": "/"
+    },
+    {
+      "name": "Knowledge Base",
+      "url": "kb"
+    }
+  ],
   "navigation": [
     {
       "group": "Get Started",
@@ -83,6 +93,12 @@
         "spark-stripe/cookbook",
         "spark-stripe/customization",
         "spark-stripe/upgrade"
+      ]
+    },
+    {
+      "group": "Knowledge Base",
+      "pages": [
+        "kb/faq"
       ]
     }
   ],
