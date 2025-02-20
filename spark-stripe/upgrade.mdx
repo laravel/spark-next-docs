@@ -47,6 +47,10 @@ Spark Stripe 5.0 no longer automatically loads migrations from its own migration
 php artisan vendor:publish --tag=spark-migrations
 ```
 
+### Receipts Table Deprecation
+
+While the `receipts` table contains historical data that may be valuable for reference, it is no longer used and can be safely removed.
+
 ### Receipts Renamed to Invoices
 
 Code and text throughout Spark Stripe has been updated to refer to "receipts" as "invoices". This is to bring Spark Stripe closer to Stripe's own terminology for this concept. To accomodate this, you should make the following changes to your application:
