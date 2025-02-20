@@ -39,6 +39,10 @@ You may use the following upgrade checklist to properly enable to the new webhoo
 
 After following this process, your new webhook will be active and ready to receive events.
 
+### Table Deprecation
+
+While the `receipts` table contains historical data that may be valuable for reference, it is no longer used and can be safely removed.
+
 ### Publishing Migrations
 
 Spark Stripe 5.0 no longer automatically loads migrations from its own migrations directory. Instead, you should run the following command to publish Spark's migrations to your application:
