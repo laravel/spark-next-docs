@@ -7,7 +7,6 @@ description: 'Learn how to upgrade your Spark Stripe application.'
 
 Spark (Stripe) 6.0 primarily provides an upgrade from Cashier 15.x to Cashier 16.x. As such, in addition to the upgrade guide below, please consult the [Cashier 16 upgrade guide](https://github.com/laravel/cashier-stripe/blob/16.x/UPGRADE.md).
 
-
 ### Stripe API Version
 
 The default Stripe API version for Cashier 16 is `2025-07-30.basil`. If this is the latest Stripe API version when you upgrade to this Cashier version, then we recommend you also upgrade your Stripe API version settings in your Stripe dashboard to this version after deploying the Cashier upgrade. If this is no longer the latest Stripe API version, we recommend you do not modify your Stripe API version settings.
@@ -17,7 +16,6 @@ Older Stripe accounts (e.g., those created before Basil previews) may encounter 
 If you use the Stripe SDK directly, make sure to properly test your integration after updating.
 
 ### Database Migration Changes
-
 
 To better track usage-based billings, we've added `meter_event_name` and `meter_id` to the `subscription_items` table. The `meter_id` column is `nullable` and is cast as a string in the model.
 
