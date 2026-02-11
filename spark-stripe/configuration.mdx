@@ -287,6 +287,17 @@ Many applications display billing terms and conditions during checkout. Spark al
 
 Once added, Spark will display a link pointing to `/terms` in the billing portal.
 
+## Defining the Return URL
+
+Spark's billing portal displays a "Return" link that allows users to navigate back to your application. By default, this link points to `/dashboard` or `/`. You may customize this by adding a `dashboard_url` configuration value in your application's `config/spark.php` configuration file:
+
+```php
+'dashboard_url' => '/dashboard',
+```
+
+Adjust the value to correspond to the route where you would like users to be redirected when they click the Return link in the billing portal.
+
+
 ## Invoice Emails
 
 Spark Stripe can also email subscription invoices to your customers. To enable this feature, uncomment the 'invoiceEmails' feature entry in your application's `config/spark.php` configuration file:
