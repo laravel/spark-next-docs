@@ -3,6 +3,9 @@ name: Mintlify Broken Links
 on:
   push:
 
+permissions:
+  contents: read
+
 jobs:
   broken-links:
     runs-on: ubuntu-latest
